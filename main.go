@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"gopack/capture"
+	"main/capture"
 	"io/ioutil"
 	"log"
 
@@ -16,11 +16,11 @@ import (
 	"time"
 
 
-	"github.com/ouqiang/goproxy"
+	"main/goproxy"
 )
 
 var (
-	address string = ":8081"
+	address string = ":8080"
 )
 
 type EventHandler struct{}
@@ -98,8 +98,6 @@ func (c *Cache) Get(host string) *tls.Certificate {
 }
 
 func main() {
-	done := make(chan bool)
-
 	proxy := goproxy.New(goproxy.WithDecryptHTTPS(&Cache{}), goproxy.WithDelegate(&EventHandler{}))
 	server := &http.Server{
 		Addr:         address,
@@ -108,11 +106,10 @@ func main() {
 		WriteTimeout: 1 * time.Minute,
 	}
 
+	go capture.CapturePacket()
+
 	err := server.ListenAndServe()
 	if err != nil {
 		panic(err)
 	}
-
-	go capture.CapturePacket()
-	<-done
 }

@@ -28,6 +28,7 @@ func CapturePacket() {
 	w := pcapgo.NewWriter(f)
 	w.WriteFileHeader(uint32(snapshotLen), layers.LinkTypeEthernet)
 	defer f.Close()
+
 	// Open the device for capturing
 	handle, err = pcap.OpenLive(deviceName, snapshotLen, promiscuous, timeout)
 	if err != nil {
@@ -48,7 +49,7 @@ func CapturePacket() {
 	packetSource := gopacket.NewPacketSource(handle, handle.LinkType())
 	for packet := range packetSource.Packets() {
 		// Process packet here
-		// fmt.Println(packet)
+		fmt.Println(packet)
 		w.WritePacket(packet.Metadata().CaptureInfo, packet.Data())
 		packetCount++
 
