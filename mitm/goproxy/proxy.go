@@ -28,7 +28,7 @@ import (
 	"sync/atomic"
 	"time"
 
-	"main/goproxy/cert"
+	"main/mitm/goproxy/cert"
 )
 
 const (

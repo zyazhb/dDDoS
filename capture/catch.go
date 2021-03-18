@@ -50,20 +50,19 @@ func CapturePacket() {
 	packetSource := gopacket.NewPacketSource(handle, handle.LinkType())
 	for packet := range packetSource.Packets() {
 		// Process packet here
-		fmt.Println("caught u:", packet)
+		// fmt.Println("caught u:", packet)
 
 		//pak分层
-		printPacketInfo(packet)
+		// printPacketInfo(packet)
 		
 		//识别策略
 		RunPolicy(packet)
-		
 
 		w.WritePacket(packet.Metadata().CaptureInfo, packet.Data())
 		packetCount++
 
 		// Only capture 100 and then stop
-		if packetCount > 100 {
+		if packetCount > 1000 {
 			break
 		}
 	}
