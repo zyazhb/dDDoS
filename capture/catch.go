@@ -2,7 +2,7 @@ package capture
 
 import (
 	"fmt"
-	"log"
+	// "log"
 	"os"
 	"time"
 
@@ -38,18 +38,27 @@ func CapturePacket() {
 	defer handle.Close()
 
 	// Set filter
-	filter := "tcp and port 8080"
-	err = handle.SetBPFFilter(filter)
-	if err != nil {
-		log.Fatal(err)
-	}
-	fmt.Println("Only capturing TCP port 8080 packets.")
+	//https://biot.com/capstats/bpf.html
+	// filter := "tcp and port 8080"
+	// err = handle.SetBPFFilter(filter)
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
+	// fmt.Println("Only capturing TCP port 8080 packets.")
 
 	// Start processing packets
 	packetSource := gopacket.NewPacketSource(handle, handle.LinkType())
 	for packet := range packetSource.Packets() {
 		// Process packet here
-		fmt.Println(packet)
+		fmt.Println("caught u:", packet)
+
+		//pak分层
+		printPacketInfo(packet)
+		
+		//识别策略
+		RunPolicy(packet)
+		
+
 		w.WritePacket(packet.Metadata().CaptureInfo, packet.Data())
 		packetCount++
 
