@@ -12,5 +12,4 @@ func main() {
 	go capture.CapturePacket()
 	go node.RunNode()
 	web.RunWeb()
-
 }

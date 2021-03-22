@@ -7,9 +7,7 @@ import (
 	"time"
 
 	"github.com/google/gopacket"
-	"github.com/google/gopacket/layers"
 	"github.com/google/gopacket/pcap"
-	"github.com/google/gopacket/pcapgo"
 )
 
 var (
@@ -19,16 +17,9 @@ var (
 	err         error
 	timeout     time.Duration = -1 * time.Second
 	handle      *pcap.Handle
-	packetCount int = 0
 )
 
 func CapturePacket() {
-	// Open output pcap file and write header
-	f, _ := os.Create("test.pcap")
-	w := pcapgo.NewWriter(f)
-	w.WriteFileHeader(uint32(snapshotLen), layers.LinkTypeEthernet)
-	defer f.Close()
-
 	// Open the device for capturing
 	handle, err = pcap.OpenLive(deviceName, snapshotLen, promiscuous, timeout)
 	if err != nil {
@@ -37,33 +28,10 @@ func CapturePacket() {
 	}
 	defer handle.Close()
 
-	// Set filter
-	//https://biot.com/capstats/bpf.html
-	// filter := "tcp and port 8080"
-	// err = handle.SetBPFFilter(filter)
-	// if err != nil {
-	// 	log.Fatal(err)
-	// }
-	// fmt.Println("Only capturing TCP port 8080 packets.")
-
 	// Start processing packets
 	packetSource := gopacket.NewPacketSource(handle, handle.LinkType())
 	for packet := range packetSource.Packets() {
-		// Process packet here
-		// fmt.Println("caught u:", packet)
-
-		//pak分层
-		// printPacketInfo(packet)
-		
 		//识别策略
 		RunPolicy(packet)
-
-		w.WritePacket(packet.Metadata().CaptureInfo, packet.Data())
-		packetCount++
-
-		// Only capture 100 and then stop
-		if packetCount > 1000 {
-			break
-		}
 	}
 }
