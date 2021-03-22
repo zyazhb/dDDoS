@@ -47,7 +47,7 @@ func SameSrcIp(packet gopacket.Packet) {
 			if len(ipLists) > 20 {
 				min := 10
 				var key string
-				for k, _ := range ipLists {
+				for k := range ipLists {
 					fmt.Printf("k:%s\n", k)
 					if ipLists[k] < min {
 						min = ipLists[k]
