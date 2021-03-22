@@ -1,37 +1,19 @@
 package capture
 
 import (
-	"fmt"
-	"net"
-
 	"github.com/google/gopacket"
 	"github.com/google/gopacket/layers"
 )
 
-var localip string
 var ipLists = make(map[string]int)
 var ipTime = make(map[string]int64)
 
-func RunPolicy(packet gopacket.Packet) {
-	SameSrcIp(packet)
+func RunPolicy(packet gopacket.Packet, localip string) {
+	SameSrcIp(packet, localip, 1, 10, 3)
 }
 
-func SameSrcIp(packet gopacket.Packet) {
-	//获取本机 ip
-	addrs, err := net.InterfaceAddrs()
-	if err != nil {
-		fmt.Println(err)
-		return
-	} else {
-		for _, value := range addrs {
-			if ipnet, ok := value.(*net.IPNet); ok && !ipnet.IP.IsLoopback() {
-				if ipnet.IP.To4() != nil {
-					localip = ipnet.IP.String()
-				}
-			}
-		}
-	}
-
+// WT最小检测时间 CON最大连接数 CT最短清空时间
+func SameSrcIp(packet gopacket.Packet, localip string, WT int64, CON int, CT int64) {
 	ipLayer := packet.Layer(layers.LayerTypeIPv4)
 	if ipLayer != nil {
 		ip, _ := ipLayer.(*layers.IPv4)
@@ -51,14 +33,13 @@ func SameSrcIp(packet gopacket.Packet) {
 				ipTime[srcip] = packet.Metadata().Timestamp.Unix()
 			} else {
 				ipLists[srcip] += 1
-				if ipLists[srcip] > 30 {
+				if ipLists[srcip] > CON {
 					time := packet.Metadata().Timestamp.Unix()
-					// fmt.Printf("%v\n", time-ipTime[srcip])
-					if time-ipTime[srcip] <= 1 {
+					if time-ipTime[srcip] <= WT {
 						//Detected DDoS
 						DetectedDDoS("Too many Same SrcIp")
 						delete(ipLists, srcip)
-					} else if time-ipTime[srcip] > 3 {
+					} else if time-ipTime[srcip] > CT {
 						delete(ipLists, srcip)
 					}
 				}
