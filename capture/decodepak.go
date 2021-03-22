@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-func printPacketInfo(packet gopacket.Packet) {
+func PrintPacketInfo(packet gopacket.Packet) {
 	// Let's see if the packet is an ethernet packet
 	ethernetLayer := packet.Layer(layers.LayerTypeEthernet)
 	if ethernetLayer != nil {
