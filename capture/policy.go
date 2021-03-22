@@ -34,42 +34,36 @@ func SameSrcIp(packet gopacket.Packet) {
 
 	ipLayer := packet.Layer(layers.LayerTypeIPv4)
 	if ipLayer != nil {
-		// fmt.Println("[*]--IPv4 layer detected.--")
-		fmt.Printf("[-] detect localip %s\n", localip)
 		ip, _ := ipLayer.(*layers.IPv4)
-		// fmt.Printf("From %s to %s\n", ip.SrcIP, ip.DstIP)
-		// fmt.Printf("[+] %s ---------->%s\n", ip.SrcIP, ip.DstIP)
-		if ip.SrcIP.String() != localip {
-			fmt.Println("[-]--IPv4 layer detected.--")
-			fmt.Printf("[-]From %s to %s\n", ip.SrcIP, ip.DstIP)
-			_, ok := ipLists[ip.SrcIP.String()]
-			fmt.Printf("-------------ok:%v------------\n", ok)
+		srcip := ip.SrcIP.String()
+		if srcip != localip {
+			_, ok := ipLists[srcip]
 			if len(ipLists) > 20 {
-				min := 10
-				var key string
 				for k := range ipLists {
-					fmt.Printf("k:%s\n", k)
-					if ipLists[k] < min {
-						min = ipLists[k]
-						key = k
+					if packet.Metadata().Timestamp.Unix()-ipTime[k] > 1 {
+						delete(ipLists, k)
+						delete(ipTime, k)
 					}
 				}
-				delete(ipLists, key)
-				delete(ipTime, key)
 			}
 			if !ok {
-				ipLists[ip.SrcIP.String()] = 1
-				ipTime[ip.SrcIP.String()] = packet.Metadata().Timestamp.Unix()
+				ipLists[srcip] = 1
+				ipTime[srcip] = packet.Metadata().Timestamp.Unix()
 			} else {
-				ipLists[ip.SrcIP.String()] += 1
-				if ipLists[ip.SrcIP.String()] > 100 {
+				ipLists[srcip] += 1
+				if ipLists[srcip] > 30 {
 					time := packet.Metadata().Timestamp.Unix()
-					fmt.Printf("%v\n", time-ipTime[ip.SrcIP.String()])
-					if time-ipTime[ip.SrcIP.String()] <= 10 {
-						fmt.Println("[+] detect dddos attack!")
+					// fmt.Printf("%v\n", time-ipTime[srcip])
+					if time-ipTime[srcip] <= 1 {
+						//Detected DDoS
+						DetectedDDoS("Too many Same SrcIp")
+						delete(ipLists, srcip)
+					} else if time-ipTime[srcip] > 3 {
+						delete(ipLists, srcip)
 					}
 				}
 			}
+
 		}
 	}
 }
