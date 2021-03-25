@@ -18,6 +18,7 @@ var (
 	err         error
 	timeout     time.Duration = -1 * time.Second
 	handle      *pcap.Handle
+	localip     string
 )
 
 func CapturePacket() {
@@ -28,12 +29,12 @@ func CapturePacket() {
 		os.Exit(1)
 	}
 	defer handle.Close()
-	localip := GetLocalIp()
+	localip = GetLocalIp()
 	// Start processing packets
 	packetSource := gopacket.NewPacketSource(handle, handle.LinkType())
 	for packet := range packetSource.Packets() {
 		//识别策略
-		RunPolicy(packet, localip)
+		RunPolicy(packet)
 	}
 }
 

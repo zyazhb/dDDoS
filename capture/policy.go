@@ -8,17 +8,17 @@ import (
 var ipLists = make(map[string]int)
 var ipTime = make(map[string]int64)
 
-func RunPolicy(packet gopacket.Packet, localip string) {
-	SameSrcIp(packet, localip, 1, 10, 3)
+func RunPolicy(packet gopacket.Packet) {
+	SameSrcIp(packet, 1, 10, 3)
 }
 
 // WT最小检测时间 CON最大连接数 CT最短清空时间
-func SameSrcIp(packet gopacket.Packet, localip string, WT int64, CON int, CT int64) {
+func SameSrcIp(packet gopacket.Packet, WT int64, CON int, CT int64) {
 	ipLayer := packet.Layer(layers.LayerTypeIPv4)
 	if ipLayer != nil {
 		ip, _ := ipLayer.(*layers.IPv4)
 		srcip := ip.SrcIP.String()
-		if srcip != localip {
+		if srcip != localip && srcip != "127.0.0.1" {
 			_, ok := ipLists[srcip]
 			if len(ipLists) > 20 {
 				for k := range ipLists {
@@ -37,7 +37,8 @@ func SameSrcIp(packet gopacket.Packet, localip string, WT int64, CON int, CT int
 					time := packet.Metadata().Timestamp.Unix()
 					if time-ipTime[srcip] <= WT {
 						//Detected DDoS
-						DetectedDDoS("Too many Same SrcIp")
+						reason := "Too many Same SrcIp: " + srcip
+						DetectedDDoS(reason)
 						delete(ipLists, srcip)
 					} else if time-ipTime[srcip] > CT {
 						delete(ipLists, srcip)
