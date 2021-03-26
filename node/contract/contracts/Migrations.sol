@@ -1,4 +1,4 @@
-pragma solidity ^0.4.26;
+pragma solidity >=0.4.26 <0.9.0;
 
 pragma experimental ABIEncoderV2;
 
@@ -28,7 +28,7 @@ contract Auther {
         _;
     }
 
-    function register(address addr) public onlyChairman returns(bool) {
+    function register(address addr) public onlyChairman {
         require(!nodes[addr], "The node has been registed!");
 
         nodes[addr] = true;
@@ -36,7 +36,7 @@ contract Auther {
 }
 
 contract DDoS is Auther {
-    event msgConn(bytes32 eventID, address addr, string typeName, string name);
+    event msgConn(uint eventID, address addr, string typeName, string name);
 
     struct Rconn {
         address commiterAddr;
@@ -44,37 +44,36 @@ contract DDoS is Auther {
         string targetIP;
         uint speed;
         string timestamp;
-        string description;
         bool isDDoS;
 
         bool isUsed;
     }
 
-    mapping(bytes32 => Rconn) rconns;
+    mapping(uint => Rconn) rconns;
 
-    function insertRconn(bytes32 eventID, address addr, uint sp, bool ddos, string[] rconn) public onlyRegisted {
+    function insertRconn(uint eventID, address addr, uint sp, string[] memory rconn) public onlyRegisted {
         require(!rconns[eventID].isUsed , "This eventID has been used , can't insert into rconns");
 
         rconns[eventID].commiterAddr = addr;
         rconns[eventID].fromIP = rconn[0];
         rconns[eventID].targetIP = rconn[1];
         rconns[eventID].speed = sp;
-        rconns[eventID].timestamp = rconn[3];
-        rconns[eventID].description = rconn[4];
+        rconns[eventID].timestamp = rconn[2];
 
-        rconns[eventID].isDDoS = ddos;
+        rconns[eventID].isDDoS = false;
+        rconns[eventID].isUsed = true;
 
         emit msgConn(eventID, addr, "insert", "Rconn");
     }
 
-    function indexRconn(bytes32 eventID) public view returns(Rconn) {
+    function indexRconn(uint eventID) public view onlyRegisted returns(Rconn memory) {
         return rconns[eventID];
     }
 
-    mapping(bytes32 => Rconn) rddoses;
-    bytes32[] public events;
+    mapping(uint => Rconn) rddoses;
+    uint[] public events;
 
-    function insertRddos(bytes32 eventID) public {
+    function insertRddos(uint eventID) onlyRegisted public {
         require(!rconns[eventID].isUsed, "This eventID has been used , can't insert into rddoses!");
 
         events.push(eventID);
@@ -82,3 +81,8 @@ contract DDoS is Auther {
         delete rconns[eventID];
     }
 }
+
+// 0x3100000000000000000000000000000000000000000000000000000000000000
+// 0x14723a09acff6d2a60dcdf7aa4aff308fddc160c
+// 123
+// ["1.1.1.1", "2.2.2.2", "123123", "adasdsa"]

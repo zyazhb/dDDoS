@@ -13,3 +13,4 @@ func main() {
 	go node.RunNode()
 	web.RunWeb()
 }
+
