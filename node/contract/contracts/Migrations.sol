@@ -56,15 +56,11 @@ contract DDoS is Auther {
         rconns[eventID].commiterAddr = addr;
         rconns[eventID].targetIP = rconn[0];
         rconns[eventID].speed = sp;
-<<<<<<< HEAD
 <<<<<<< HEAD:node/contract/contracts/Ddos.sol
         rconns[eventID].timestamp = rconn[1];
 =======
         rconns[eventID].timestamp = rconn[2];
 >>>>>>> 515b151 (初步完成链与流量监测的连接):node/contract/contracts/Migrations.sol
-=======
-        rconns[eventID].timestamp = rconn[1];
->>>>>>> 515b151 (初步完成链与流量监测的连接)
 
         rconns[eventID].isDDoS = false;
         rconns[eventID].isUsed = true;
@@ -89,3 +85,8 @@ contract DDoS is Auther {
         emit msgConn(eventID, rddoses[eventID].commiterAddr, "insert", "Rddos");
     }
 }
+
+// 0x3100000000000000000000000000000000000000000000000000000000000000
+// 0x14723a09acff6d2a60dcdf7aa4aff308fddc160c
+// 123
+// ["1.1.1.1", "2.2.2.2", "123123", "adasdsa"]
