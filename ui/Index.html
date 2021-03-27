@@ -1,3 +1,4 @@
+{{ define "index.html" }}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,21 +8,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>dDDos</title>
     <!-- CSS -->
-    <link href="assets/css/fonts/fontawesome/all.min.css" rel="stylesheet">
-    <link href="assets/css/fonts/beid.css" rel="stylesheet">
-    <link href="assets/css/main.css" rel="stylesheet">
-    <link href="assets/css/styles.css" rel="stylesheet">
+    <link href="/css/fonts/fontawesome/all.min.css" rel="stylesheet">
+    <link href="/css/fonts/beid.css" rel="stylesheet">
+    <link href="/css/main.css" rel="stylesheet">
+    <link href="/css/styles.css" rel="stylesheet">
     <!-- JQVMAP -->
-    <link href="assets/plugins/jqvmap/jqvmap.min.css" rel="stylesheet">
+    <link href="/plugins/jqvmap/jqvmap.min.css" rel="stylesheet">
     <!-- dateRangePicker -->
-    <link href="assets/plugins/daterangepicker/daterangepicker.css" rel="stylesheet">
+    <link href="/plugins/daterangepicker/daterangepicker.css" rel="stylesheet">
     <!-- Favicons -->
-    <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
-    <link rel="icon" href="assets/img/favicon.png">
+    <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+    <link rel="icon" href="/img/favicon.png">
     <!-- Fonts -->
-    <link href="assets/fonts/inter/inter.css" rel="stylesheet">
-    <link href="assets/css/css1.css" rel="stylesheet">
-    <link href="assets/css/css2.css" rel="stylesheet">
+    <link href="/fonts/inter/inter.css" rel="stylesheet">
+    <link href="/css/css1.css" rel="stylesheet">
+    <link href="/css/css2.css" rel="stylesheet">
     <!--[if lt IE 9]><script src="http://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script><script src="http://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
 </head>
 
@@ -31,14 +32,14 @@
         <!-- nav --> 
         <nav class="main-navbar navbar navbar-expand-lg navbar-light shadow-2">
             <div class="lnav-box d-flex">
-                <div class="logo-wrapper px-3 d-none d-md-flex"><img src="assets/img/logo.png" alt="Logo"></div>
+                <div class="logo-wrapper px-3 d-none d-md-flex"><img src="/img/logo.png" alt="Logo"></div>
                 <div class="sidebar-toggler-wrapper ml-auto"><button class="p-collapsing-sidebar-toggler sidebar-toggler-secondary transition rounded-circle" data-collapsing="partially" data-collapsing-target="#adminNav" type="button"><img src="./home.svg" style="display:block;width:330px;height:240px" /></span></button></div>
             </div>
             <div class="d-none d-lg-block ml-0 mr-auto pl-4">
             </div>
             <div class="pr-6">
                 <ul class="nav sec-nav navbar-nav flex-row">
-                    <li class="user-item nav-item dropdown"><a class="user-link nav-link d-inline-flex align-items-center h-100 small-1 pl-1 pl-sm-3 pr-0" href="#" id="dropdownAdmin_02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="user-avatar rounded-circle mr-sm-3" src="assets/img/Hunter.jpg" alt="Avatar"><div class="d-none d-sm-block lh-1"><div class="lh-5">Hello Admin</div><span class="small-3">Online</span></div></a>
+                    <li class="user-item nav-item dropdown"><a class="user-link nav-link d-inline-flex align-items-center h-100 small-1 pl-1 pl-sm-3 pr-0" href="#" id="dropdownAdmin_02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="user-avatar rounded-circle mr-sm-3" src="/img/Hunter.jpg" alt="Avatar"><div class="d-none d-sm-block lh-1"><div class="lh-5">Hello Admin</div><span class="small-3">Online</span></div></a>
                         <div
                             class="dropdown-menu dropdown-menu-right shadow-1 py-3 position-absolute mt-2" aria-labelledby="dropdownAdmin"><a class="dropdown-item" href="#"><span class="icon-messenger-user-avatar mr-2"></span>My Profile</a><a class="dropdown-item" href="#"><span class="icon-closed-envelope-email mr-2"></span>Messages</a><a class="dropdown-item" href="#"><span class="icon-options-gear mr-2"></span>Settings</a>
                             <a
@@ -97,7 +98,7 @@
                                     <div class="d-flex align-items-center justify-content-center w-100">
                                         <div id="reportrange" class="py-2 px-6"><span></span>&nbsp; </div>
                                     </div>
-                                </div><a href="#" class="mt-4 mt-sm-0 ml-sm-4 reportrange-btn btn btn-sm btn-circle warning-gradient lead-1 text-secondary"><img src="./assets/img/svg/calender.svg" style="display:block;width:20px;height:20px" /></a></div>
+                                </div><a href="#" class="mt-4 mt-sm-0 ml-sm-4 reportrange-btn btn btn-sm btn-circle warning-gradient lead-1 text-secondary"><img src="./img/svg/calender.svg" style="display:block;width:20px;height:20px" /></a></div>
                         </div>
                     </div>
                 </div>
@@ -120,7 +121,7 @@
                                                 href="#collapseUsersInfo" role="button"
                                                 aria-expanded="false" aria-controls="collapseUsersInfo"
                                                 class="nav-item mr-3"></a><a
-                                                data-toggle="refresh" class="nav-item mr-3"><img src="./assets/img/svg/refresh.svg" style="display:block;width:20px;height:20px" /></a></div>
+                                                data-toggle="refresh" class="nav-item mr-3"><img src="./img/svg/refresh.svg" style="display:block;width:20px;height:20px" /></a></div>
                                     </header>
                                     <div class="collapse show" id="collapseUsersInfo">
                                         <div class="panel-body py-6">
@@ -128,7 +129,7 @@
                                                 <div>
                                                     <div class="d-flex align-items-center mb-6">
                                                         <div class="mr-3"><span
-                                                                class="d-block small-8 text-primary text-glow-primary"><img src="./assets/img/svg/point.svg" style="display:block;width:20px;height:20px" /></span></div>
+                                                                class="d-block small-8 text-primary text-glow-primary"><img src="./img/svg/point.svg" style="display:block;width:20px;height:20px" /></span></div>
                                                         <div>
                                                             <h3 class="mb-0 lh-1">114</h3><span
                                                                 class="small-2 fw-600">Machine</span>
@@ -136,7 +137,7 @@
                                                     </div>
                                                     <div class="d-flex align-items-center mb-6">
                                                         <div class="mr-3"><span
-                                                                class="d-block small-8 text-warning text-glow-warning"><img src="./assets/img/svg/point.svg" style="display:block;width:20px;height:20px" /></span></div>
+                                                                class="d-block small-8 text-warning text-glow-warning"><img src="./img/svg/point.svg" style="display:block;width:20px;height:20px" /></span></div>
                                                         <div>
                                                             <h3 class="mb-0 lh-1">514</h3><span
                                                                 class="small-2 fw-600">Tickets</span>
@@ -144,7 +145,7 @@
                                                     </div>
                                                     <div class="d-flex align-items-center">
                                                         <div class="mr-3"><span
-                                                                class="d-block small-8 text-danger text-glow-danger"><img src="./assets/img/svg/point.svg" style="display:block;width:20px;height:20px" /></span></div>
+                                                                class="d-block small-8 text-danger text-glow-danger"><img src="./img/svg/point.svg" style="display:block;width:20px;height:20px" /></span></div>
                                                         <div>
                                                             <h3 class="mb-0 lh-1">1919</h3><span
                                                                 class="small-2 fw-600">Source IP</span>
@@ -184,7 +185,7 @@
                                                 aria-expanded="false"
                                                 aria-controls="collapseActivityTimeline"
                                                 class="nav-item mr-3"></a><a
-                                                data-toggle="refresh" class="nav-item mr-3"><img src="./assets/img/svg/refresh.svg" style="display:block;width:20px;height:20px" /></a></div>
+                                                data-toggle="refresh" class="nav-item mr-3"><img src="./img/svg/refresh.svg" style="display:block;width:20px;height:20px" /></a></div>
                                     </header>
                                     <div class="collapse show" id="collapseActivityTimeline">
                                         <div class="panel-body mb-0">
@@ -263,7 +264,7 @@
                                 <h5 class="title pe-a mb-0 d-inline">Real-Time Situation</h5>
                             </div>
                             <div class="p-relative ml-auto"><a href="#" data-toggle="fullscreen-btn"
-                                    class="lead-1"><img src="./assets/img/svg/bigger.svg" style="display:block;width:20px;height:20px" /></span></a>
+                                    class="lead-1"><img src="./img/svg/bigger.svg" style="display:block;width:20px;height:20px" /></span></a>
                             </div>
                         </div>
                         <div class="panel-body py-0 pl-0 pr-4">
@@ -286,7 +287,7 @@
                                                 href="#collapseAudienceBC" role="button"
                                                 aria-expanded="false" aria-controls="collapseAudienceBC"
                                                 class="nav-item mr-3"></a><a
-                                                data-toggle="refresh" class="nav-item mr-3"><img src="./assets/img/svg/refresh.svg" style="display:block;width:20px;height:20px" /></a></div>
+                                                data-toggle="refresh" class="nav-item mr-3"><img src="./img/svg/refresh.svg" style="display:block;width:20px;height:20px" /></a></div>
                                     </header>
                                     <div class="collapse show" id="collapseAudienceBC">
                                         <div class="panel-body pt-0">
@@ -335,7 +336,7 @@
                             <div class="panel-header-nav ml-auto"><a data-toggle="collapse"
                                     href="#collapseRecentOrders" role="button" aria-expanded="false"
                                     aria-controls="collapseRecentOrders" class="nav-item mr-3"></a><a data-toggle="refresh"
-                                    class="nav-item mr-3"><img src="./assets/img/svg/refresh.svg" style="display:block;width:20px;height:20px" /></a></div>
+                                    class="nav-item mr-3"><img src="./img/svg/refresh.svg" style="display:block;width:20px;height:20px" /></a></div>
                         </div>
                         <div class="collapse show" id="collapseRecentOrders">
                             <div class="panel-body pl-6">
@@ -371,7 +372,7 @@
                                                                     class="btn text-warning dropdown-toggle no-carret bc-t p-0"
                                                                     type="button" data-toggle="dropdown"
                                                                     aria-haspopup="true"
-                                                                    aria-expanded="false"><img src="./assets/img/svg/more.svg" style="display:block;width:20px;height:20px" /></button>
+                                                                    aria-expanded="false"><img src="./img/svg/more.svg" style="display:block;width:20px;height:20px" /></button>
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -392,7 +393,7 @@
                                                                     class="btn text-warning dropdown-toggle no-carret bc-t p-0"
                                                                     type="button" data-toggle="dropdown"
                                                                     aria-haspopup="true"
-                                                                    aria-expanded="false"><img src="./assets/img/svg/more.svg" style="display:block;width:20px;height:20px" /></button>
+                                                                    aria-expanded="false"><img src="./img/svg/more.svg" style="display:block;width:20px;height:20px" /></button>
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -413,7 +414,7 @@
                                                                     class="btn text-warning dropdown-toggle no-carret bc-t p-0"
                                                                     type="button" data-toggle="dropdown"
                                                                     aria-haspopup="true"
-                                                                    aria-expanded="false"><img src="./assets/img/svg/more.svg" style="display:block;width:20px;height:20px" /></button>
+                                                                    aria-expanded="false"><img src="./img/svg/more.svg" style="display:block;width:20px;height:20px" /></button>
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -434,7 +435,7 @@
                                                                     class="btn text-warning dropdown-toggle no-carret bc-t p-0"
                                                                     type="button" data-toggle="dropdown"
                                                                     aria-haspopup="true"
-                                                                    aria-expanded="false"><img src="./assets/img/svg/more.svg" style="display:block;width:20px;height:20px" /></button>
+                                                                    aria-expanded="false"><img src="./img/svg/more.svg" style="display:block;width:20px;height:20px" /></button>
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -455,7 +456,7 @@
                                                                     class="btn text-warning dropdown-toggle no-carret bc-t p-0"
                                                                     type="button" data-toggle="dropdown"
                                                                     aria-haspopup="true"
-                                                                    aria-expanded="false"><img src="./assets/img/svg/more.svg" style="display:block;width:20px;height:20px" /></button>
+                                                                    aria-expanded="false"><img src="./img/svg/more.svg" style="display:block;width:20px;height:20px" /></button>
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -485,31 +486,32 @@
     <!-- preloader -->
     <div class="preloaderWrapper"></div>
     <!-- jQuery -->
-    <script src="assets/js/jquery.min.js"></script>
+    <script src="/js/jquery.min.js"></script>
     <!-- Bootstrap -->
-    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
     <!-- Chart.js -->
-    <script src="assets/plugins/chart/Chart.min.js" id="_chartJS_min"></script>
-    <script src="assets/plugins/chart/Chart.bundle.min.js"></script>
-    <script src="assets/plugins/chart/chartjs-plugin-annotation.js"></script>
-    <script src="assets/plugins/chart/chartjs-plugin-labels.js"></script>
+    <script src="/plugins/chart/Chart.min.js" id="_chartJS_min"></script>
+    <script src="/plugins/chart/Chart.bundle.min.js"></script>
+    <script src="/plugins/chart/chartjs-plugin-annotation.js"></script>
+    <script src="/plugins/chart/chartjs-plugin-labels.js"></script>
     <!-- apexcharts -->
-    <script src="assets/plugins/apexcharts/apexcharts.min.js"></script>
+    <script src="/plugins/apexcharts/apexcharts.min.js"></script>
     <!-- RangeSlider -->
-    <script src="assets/plugins/rangeslider/rangeslider.min.js" id="_rangeJS_min"></script>
+    <script src="/plugins/rangeslider/rangeslider.min.js" id="_rangeJS_min"></script>
     <!-- Moment -->
-    <script src="assets/plugins/lib/moment/moment.min.js"></script>
+    <script src="/plugins/lib/moment/moment.min.js"></script>
     <!-- JQVMAP -->
-    <script src="assets/plugins/jqvmap/jquery.vmap.min.js" id="_JQVMAP"></script>
-    <script src="assets/plugins/jqvmap/maps/jquery.vmap.world.js"></script>
+    <script src="/plugins/jqvmap/jquery.vmap.min.js" id="_JQVMAP"></script>
+    <script src="/plugins/jqvmap/maps/jquery.vmap.world.js"></script>
     <!-- dateRangePicker -->
-    <script src="assets/plugins/daterangepicker/daterangepicker.js" id="_DateRangeJS_min"></script>
+    <script src="/plugins/daterangepicker/daterangepicker.js" id="_DateRangeJS_min"></script>
     <!-- User JS -->
-    <script src="assets/js/scripts.js"></script>
+    <script src="/js/scripts.js"></script>
     <!-- Main JS -->
-    <script src="assets/js/main.js" id="_mainJS" data-plugins="load"></script>
+    <script src="/js/main.js" id="_mainJS" data-plugins="load"></script>
     <!-- Modules -->
-    <script src="assets/js/modules.js"></script>
+    <script src="/js/modules.js"></script>
 </body>
 
 </html>
+{{ end }}
