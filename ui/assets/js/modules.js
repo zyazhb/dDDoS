@@ -1989,10 +1989,10 @@ function chartJSInit() {
                                 },
                                 total: {
                                     show: true,
-                                    label: 'Total',
+                                    label: '总在线设备数',
                                     color: 'rgba(255,255,255, .98)',
                                     formatter: function(w) {
-                                        return 249
+                                        return 86
                                     }
                                 }
                             }
@@ -2012,11 +2012,11 @@ function chartJSInit() {
                             stops: [0, 100]
                         }
                     },
-                    series: [79, 67, 61],
+                    series: [98, 19.7, 80],
                     stroke: {
                         lineCap: 'round'
                     },
-                    labels: ['Vimeo', 'Messenger', 'Facebook'],
+                    labels: ['全期抵御成功率', '正在遭受攻击率', '正在防御数'],
                     responsive: [{
                         breakpoint: 480,
                         options: {
@@ -2099,7 +2099,7 @@ function chartJSInit() {
                             stops: [0, 100]
                         }
                     },
-                    series: [75],
+                    series: [98],
                     stroke: {
                         lineCap: 'round'
                     }
