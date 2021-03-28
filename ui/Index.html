@@ -8,12 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>dDDos</title>
     <!-- CSS -->
-    <link href="/css/fonts/fontawesome/all.min.css" rel="stylesheet">
-    <link href="/css/fonts/beid.css" rel="stylesheet">
     <link href="/css/main.css" rel="stylesheet">
     <link href="/css/styles.css" rel="stylesheet">
-    <!-- JQVMAP -->
-    <link href="/plugins/jqvmap/jqvmap.min.css" rel="stylesheet">
     <!-- dateRangePicker -->
     <link href="/plugins/daterangepicker/daterangepicker.css" rel="stylesheet">
     <!-- Favicons -->
@@ -33,7 +29,7 @@
         <nav class="main-navbar navbar navbar-expand-lg navbar-light shadow-2">
             <div class="lnav-box d-flex">
                 <div class="logo-wrapper px-3 d-none d-md-flex"><img src="/img/logo.png" alt="Logo"></div>
-                <div class="sidebar-toggler-wrapper ml-auto"><button class="p-collapsing-sidebar-toggler sidebar-toggler-secondary transition rounded-circle" data-collapsing="partially" data-collapsing-target="#adminNav" type="button"><img src="./home.svg" style="display:block;width:330px;height:240px" /></span></button></div>
+                <div class="sidebar-toggler-wrapper ml-auto"><button class="p-collapsing-sidebar-toggler sidebar-toggler-secondary transition rounded-circle" data-collapsing="partially" data-collapsing-target="#adminNav" type="button"><img src="./img/svg/home.svg" style="display:block;width:330px;height:240px" /></span></button></div>
             </div>
             <div class="d-none d-lg-block ml-0 mr-auto pl-4">
             </div>
@@ -160,12 +156,12 @@
                                             <div class="d-flex justify-content-center text-center"
                                                 style="height: 75px;">
                                                 <div class="px-6 lh-8">
-                                                    <h4 class="mb-0">2,646,021Mb</h4> Total <span
+                                                    <h4 class="mb-0">{{.Total_stream}}Mb</h4> Total <span
                                                         class="d-none d-md-inline">stream</span>
                                                 </div>
                                                 <hr class="panel-y-hr">
                                                 <div class="px-6 lh-8">
-                                                    <h4 class="mb-0">1024</h4> Clients
+                                                    <h4 class="mb-0"><span id="busuanzi_container_site_pv"></span><span id="busuanzi_value_site_pv"></span></h4>Clients
                                                 </div>
                                                 <hr class="panel-y-hr">
                                                 <div class="px-6 lh-8">
@@ -485,6 +481,8 @@
     <!-- /.offcanvas - search -->
     <!-- preloader -->
     <div class="preloaderWrapper"></div>
+    <!-- busuanzi -->
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     <!-- jQuery -->
     <script src="/js/jquery.min.js"></script>
     <!-- Bootstrap -->
@@ -500,9 +498,6 @@
     <script src="/plugins/rangeslider/rangeslider.min.js" id="_rangeJS_min"></script>
     <!-- Moment -->
     <script src="/plugins/lib/moment/moment.min.js"></script>
-    <!-- JQVMAP -->
-    <script src="/plugins/jqvmap/jquery.vmap.min.js" id="_JQVMAP"></script>
-    <script src="/plugins/jqvmap/maps/jquery.vmap.world.js"></script>
     <!-- dateRangePicker -->
     <script src="/plugins/daterangepicker/daterangepicker.js" id="_DateRangeJS_min"></script>
     <!-- User JS -->

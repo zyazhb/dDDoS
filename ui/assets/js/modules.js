@@ -34,6 +34,11 @@ const glowLineLightColor = "#ffffff",
     glowLineWarningColor = "#2af270",
     glowLinePrimaryColor = "#2e6ee2";
 
+function all(w) {
+    w = 1
+    return w
+}
+
 /* [ charts ] */
 function chartJSInit() {
 
@@ -1992,7 +1997,8 @@ function chartJSInit() {
                                     label: '总在线设备数',
                                     color: 'rgba(255,255,255, .98)',
                                     formatter: function(w) {
-                                        return 86
+                                        w = 1
+                                        return w
                                     }
                                 }
                             }
@@ -2012,7 +2018,7 @@ function chartJSInit() {
                             stops: [0, 100]
                         }
                     },
-                    series: [98, 19.7, 80],
+                    series: [98, 19.7, 70],
                     stroke: {
                         lineCap: 'round'
                     },
