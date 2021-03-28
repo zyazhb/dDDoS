@@ -495,20 +495,6 @@ function initChart(chartItems) {
             document.body.insertBefore(countdown_js, _mainJS);
         }
 
-        // Scrollbar
-        if (document.querySelector('[data-scrollbar]')) {
-            var nicescroll_js = document.createElement("script");
-            nicescroll_js.src = 'assets/plugins/scrollbar/jquery.nicescroll.min.js';
-            document.body.insertBefore(nicescroll_js, _mainJS);
-        }
-
-        // Carousel
-        if ((document.querySelector('[data-carousel="owl-carousel"]')) || (document.getElementsByClassName('owl-carousel'))) {
-            var owl_carousel_js = document.createElement("script");
-            owl_carousel_js.src = 'assets/plugins/owl.carousel/owl.carousel.min.js';
-            document.body.insertBefore(owl_carousel_js, _mainJS);
-        }
-
     }
 
     //----------- Google Map ---------- ������ȫ��õ�Bootstrapģ�壺http://www.bootstrapMB.com
