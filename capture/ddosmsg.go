@@ -8,8 +8,8 @@ import (
 	"main/node"
 )
 
-const (
-	eventID = iota
+var (
+	eventID = 1
 )
 
 func DetectedDDoS(Reason, srcip string, speed int) {
@@ -23,8 +23,9 @@ func DetectedDDoS(Reason, srcip string, speed int) {
 	//TO-DO 区块链交互
 
 	rconn := []string{srcip, now.String()}
+	eventID += 1
 
-	_, err := node.Instance.InsertRconn(node.Auth, big.NewInt(eventID), node.SenderAddr, big.NewInt(int64(speed)), rconn)
+	_, err := node.Instance.InsertRconn(node.Auth, big.NewInt(int64(eventID)), node.SenderAddr, big.NewInt(int64(speed)), rconn)
 	if err != nil {
 		log.Fatal(err)
 	} else {

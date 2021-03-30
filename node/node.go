@@ -5,9 +5,13 @@ import (
 	"crypto/ecdsa"
 	"log"
 	"math/big"
+	"strings"
 
+	"github.com/ethereum/go-ethereum"
+	"github.com/ethereum/go-ethereum/accounts/abi"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
+	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/crypto"
 	_ "github.com/ethereum/go-ethereum/eth/gasprice"
 	"github.com/ethereum/go-ethereum/ethclient"
@@ -25,18 +29,22 @@ var (
 	FromAddress common.Address
 )
 
+const (
+	ContractAddr = "0xB3785f7f25d7eCd60D30539CeB0096B137D0EE07"
+)
+
 func RunNode() {
 	// client, err := ethclient.Dial("http://172.30.64.1:8545")
-	client, err := ethclient.Dial("http://127.0.0.1:8545")
+	client, err := ethclient.Dial("wss://ropsten.infura.io/ws/v3/41357bf55fa74db5b4fed634eee82886")
 	if err != nil {
 		log.Println(err)
 	}
 	log.Println("we have a connection to ethereum")
 
 	Client = client // we'll use this in the upcoming sections
-	Auth = consultWithNode("3caae8750cce4ba03ca9a6facae9f07002dd437e26a50ac3956c277b19a92066")
-	Instance = connectToContract("0x743297738dDb117757601E6a9d0D703fD28CfC45")
-	SenderAddr = common.HexToAddress("0x7908Db97714e1E223bc65BcBF3fC03c63d5b4013")
+	Auth = consultWithNode("b74629fb3ea5cbd5b1dabb170080ba752d16bc5151f107b60dc891025f62a0ce") // msg.sender private key
+	Instance = connectToContract(ContractAddr)
+	SenderAddr = common.HexToAddress("0x8548D0fA2250aE400Ec2aA31Dbd6294239FB97D0")
 }
 
 // ConsultWithNode 获取身份认证
@@ -85,4 +93,46 @@ func connectToContract(contractAddr string) *contract.Contract {
 
 func UpdateNonce() (uint64, error) {
 	return Client.PendingNonceAt(context.Background(), FromAddress)
+}
+
+func getMessage() {
+	contractAddress := common.HexToAddress(ContractAddr)
+	query := ethereum.FilterQuery{
+		Addresses: []common.Address{contractAddress},
+	}
+
+	logs := make(chan types.Log)
+	sub, err := Client.SubscribeFilterLogs(context.Background(), query, logs)
+	if err != nil {
+		log.Println(err)
+	}
+
+	contractAbi, err := abi.JSON(strings.NewReader(string(contract.ContractABI)))
+	if err != nil {
+        log.Fatal(err)
+    }
+
+	receiveMap := map[string]interface{}{}
+
+	for {
+        select {
+        case err := <-sub.Err():
+            log.Fatal(err)
+        case vLog := <-logs:
+			err := contractAbi.UnpackIntoMap(receiveMap, "msgConn", vLog.Data)
+			if err != nil {
+				log.Fatal(err)
+			}
+
+			if receiveMap["name"].(string) == "Rconn" {
+				// recheck here
+				log.Println("test")
+			} else if receiveMap["name"].(string) == "Rddos" {
+				// update here
+				log.Println("test")
+			} else {
+				log.Fatalln("Invaild message!")
+			}
+        }
+    }
 }

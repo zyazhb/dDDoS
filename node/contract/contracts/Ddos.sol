@@ -77,5 +77,7 @@ contract DDoS is Auther {
         events.push(eventID);
         rddoses[eventID] = rconns[eventID];
         delete rconns[eventID];
+
+        emit msgConn(eventID, rddoses[eventID].commiterAddr, "insert", "Rddos");
     }
 }
