@@ -145,7 +145,7 @@
     height: 24px;
     line-height: 24px;
     font-size: 12px;
-    border-radius: 0px;
+    border-radius: 0;
     border: 1px solid transparent;
     white-space: nowrap;
     cursor: pointer;
@@ -189,7 +189,7 @@
     background-color: #171625;
     border-color: transparent;
     color: #2af270;
-    text-shadow: 0px 0px 2px #2af270;
+    text-shadow: 0 0 2px #2af270;
     border-radius: 0;
 }
 
@@ -265,7 +265,7 @@
 
 .daterangepicker .calendar-time {
     text-align: center;
-    margin: 4px auto 0 auto;
+    margin: 4px auto 0;
     line-height: 30px;
     position: relative;
 }
@@ -422,5 +422,3 @@
     background: -webkit-linear-gradient(left, #24C9F6, #2af270);
     background: linear-gradient(to right, #24C9F6, #2af270);
 }
-
-/*# sourceMappingURL=daterangepicker.css.map */
