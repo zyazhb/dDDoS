@@ -36,7 +36,6 @@ def SYN_Flood(dstIP,dstPort,counter):
 
 
 def info():
-	os.system("clear")
 	dstIP = input("\nTarget IP : ")
 	dstPort = input("Target Port : ")
 	
