@@ -31,6 +31,7 @@ func CapturePacket() {
 	defer handle.Close()
 	localip = GetLocalIp()
 	// Start processing packets
+
 	packetSource := gopacket.NewPacketSource(handle, handle.LinkType())
 	for packet := range packetSource.Packets() {
 		//识别策略
