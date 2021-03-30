@@ -42,7 +42,7 @@ func SameSrcIp(packet gopacket.Packet, WT int64, CON int, CT int64) {
 					if time-ipTime[srcip] <= WT {
 						//Detected DDoS
 						reason := "Too many Same SrcIp: " + srcip
-						DetectedDDoS(reason)
+						DetectedDDoS(reason, srcip, ipLists[srcip])
 						delete(ipLists, srcip)
 					} else if time-ipTime[srcip] > CT {
 						delete(ipLists, srcip)
@@ -85,5 +85,3 @@ func SynFlood(packet gopacket.Packet) {
 func UdpFlood() {}
 
 func Other() {}
-
-
