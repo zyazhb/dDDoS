@@ -1,7 +1,7 @@
 package capture
 
 import (
-	"fmt"
+	// "fmt"
 	"github.com/google/gopacket"
 	"github.com/google/gopacket/layers"
 )
@@ -57,11 +57,11 @@ func SameSrcIp(packet gopacket.Packet, WT int64, CON int, CT int64) {
 func SynFlood(packet gopacket.Packet) {
 	tcpLayer := packet.Layer(layers.LayerTypeTCP)
 	ipLayer := packet.Layer(layers.LayerTypeIPv4)
-	ip, ok1 := ipLayer.(*layers.IPv4)
-	tcp, ok2 := tcpLayer.(*layers.TCP)
-	if ok1 && ok2 && ip.SrcIP.String() != localip {
-		fmt.Println("[-]--TCP layer detected.--")
-		fmt.Printf("src:%v seq:%v SYn:%v ack:%v to dst:%v port:%v seq:%v ack:%v\n", ip.SrcIP, tcp.Seq, tcp.SYN, tcp.ACK, ip.DstIP, tcp.DstPort, tcp.Seq, tcp.Ack)
+	ip, ipok := ipLayer.(*layers.IPv4)
+	tcp, tcpok := tcpLayer.(*layers.TCP)
+	if ipok && tcpok && ip.SrcIP.String() != localip && ip.SrcIP.String() != "127.0.0.1" {
+		// fmt.Println("[-]--TCP layer detected.--")
+		// fmt.Printf("src:%v seq:%v SYn:%v ack:%v to dst:%v port:%v seq:%v ack:%v\n", ip.SrcIP, tcp.Seq, tcp.SYN, tcp.ACK, ip.DstIP, tcp.DstPort, tcp.Seq, tcp.Ack)
 		_, ok := synip[ip.SrcIP.String()]
 		if !ok {
 			synip[ip.SrcIP.String()] = 0
@@ -76,7 +76,8 @@ func SynFlood(packet gopacket.Packet) {
 			}
 		}
 		if len(synip) > 50 {
-			fmt.Println("detect syn flood!!!")
+			reason := "Syn flood: " + ip.SrcIP.String()
+			DetectedDDoS(reason)
 		}
 	}
 }
