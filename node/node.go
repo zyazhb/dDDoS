@@ -95,7 +95,7 @@ func UpdateNonce() (uint64, error) {
 	return Client.PendingNonceAt(context.Background(), FromAddress)
 }
 
-func getMessage() {
+func WatchMessage() {
 	contractAddress := common.HexToAddress(ContractAddr)
 	query := ethereum.FilterQuery{
 		Addresses: []common.Address{contractAddress},
@@ -124,12 +124,23 @@ func getMessage() {
 				log.Fatal(err)
 			}
 
+			eventID := big.NewInt(receiveMap["eventID"].(int64))
+
 			if receiveMap["name"].(string) == "Rconn" {
-				// recheck here
-				log.Println("test")
+				IntanceRconn, err := Instance.IndexRconn(nil, eventID)
+				if err != nil {
+					log.Fatalln(err)
+				}
+
+				_, err = Instance.ReCheckDDos(Auth, IntanceRconn, big.NewInt(100))
+				if err != nil {
+					log.Fatalln(err)
+				}
 			} else if receiveMap["name"].(string) == "Rddos" {
-				// update here
-				log.Println("test")
+				_, err = Instance.InsertRddos(Auth, eventID)
+				if err != nil {
+					log.Fatalln(err)
+				}
 			} else {
 				log.Fatalln("Invaild message!")
 			}

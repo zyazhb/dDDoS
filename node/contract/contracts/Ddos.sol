@@ -2,23 +2,16 @@ pragma solidity >=0.4.26 <0.9.0;
 
 pragma experimental ABIEncoderV2;
 
-// Should fix yet —> OpenZeppelin -> ^0.8.0
-// import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol";
-// import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/Context.sol";
-
-// import "https://gist.githubusercontent.com/ageyev/779797061490f5be64fb02e978feb6ac/raw/dbd08a23531b784186bc4bfffcadefcb23db88e9/StringsAndBytes.sol";
-
 contract Auther {
     /*
-        address: Fringe node -> Account address
-        bool: isRegist
+    **  address: Fringe node -> Account address
+    **  bool: isRegist
     */
     mapping(address => bool) nodes;
     address[] public nodesAddr;
-
     address private chairman;
 
-    constructor() public {
+    constructor() {
         chairman = msg.sender;
         nodes[chairman] = true;
     }
@@ -95,7 +88,7 @@ contract DDoS is Auther {
 
     mapping(address => bool) valids;
 
-    constructor() public {
+    constructor() {
         for (uint i = 0; i < nodesAddr.length; i++) {
             valids[nodesAddr[i]] = false;
         }
