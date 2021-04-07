@@ -1,2 +1,8 @@
 vendor/
 *.pcap
+node/contract/build/
+node/contract/makefile/*.bin
+node/contract/makefile/*.abi
+node/contract/migrations/
+node/contract/test/
+node/contract/truffle-config.js

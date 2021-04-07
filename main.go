@@ -11,5 +11,7 @@ func main() {
 	go mitm.Run()
 	go capture.CapturePacket()
 	go node.RunNode()
+	go node.WatchMessage()
 	web.RunWeb()
 }
+
