@@ -59,25 +59,26 @@ func SynFlood(packet gopacket.Packet) {
 	ipLayer := packet.Layer(layers.LayerTypeIPv4)
 	ip, ipok := ipLayer.(*layers.IPv4)
 	tcp, tcpok := tcpLayer.(*layers.TCP)
-	if ipok && tcpok && ip.SrcIP.String() != localip && ip.SrcIP.String() != "127.0.0.1" {
+	srcip := ip.SrcIP.String()
+	if ipok && tcpok && srcip != localip && srcip != "127.0.0.1" {
 		// fmt.Println("[-]--TCP layer detected.--")
 		// fmt.Printf("src:%v seq:%v SYn:%v ack:%v to dst:%v port:%v seq:%v ack:%v\n", ip.SrcIP, tcp.Seq, tcp.SYN, tcp.ACK, ip.DstIP, tcp.DstPort, tcp.Seq, tcp.Ack)
-		_, ok := synip[ip.SrcIP.String()]
+		_, ok := synip[srcip]
 		if !ok {
-			synip[ip.SrcIP.String()] = 0
+			synip[srcip] = 0
 			if tcp.SYN && tcp.ACK {
-				ipseq[ip.SrcIP.String()] = int(tcp.Seq)
+				ipseq[srcip] = int(tcp.Seq)
 			}
 		} else {
-			if ipseq[ip.SrcIP.String()]+1 == int(tcp.Seq) {
-				synip[ip.SrcIP.String()] = 1
-				delete(synip, ip.SrcIP.String())
-				delete(ipseq, ip.SrcIP.String())
+			if ipseq[srcip]+1 == int(tcp.Seq) {
+				synip[srcip] = 1
+				delete(synip, srcip)
+				delete(ipseq, srcip)
 			}
 		}
 		if len(synip) > 50 {
-			reason := "Syn flood: " + ip.SrcIP.String()
-			DetectedDDoS(reason)
+			reason := "Syn flood: " + srcip
+			DetectedDDoS(reason, srcip, len(synip))
 		}
 	}
 }
@@ -85,5 +86,3 @@ func SynFlood(packet gopacket.Packet) {
 func UdpFlood() {}
 
 func Other() {}
-
-
