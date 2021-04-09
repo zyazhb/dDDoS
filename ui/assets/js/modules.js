@@ -1894,7 +1894,7 @@ function chartJSInit() {
                 var canvas = document.getElementById('canvas');
                 var stage = new JTopo.Stage(canvas);
                 //显示工具栏
-                showJTopoToobar(stage);
+                //showJTopoToobar(stage);
                 var scene = new JTopo.Scene();
                 stage.add(scene);
                 scene.background = '/bg.jpg';

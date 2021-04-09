@@ -152,16 +152,16 @@ label{
   border-bottom: 4px dotted rgba(255,0,0,1);
 }
 .exchanger{
-  background: url("/imgs/exchanger_icon.png") no-repeat center center;
+  background: url(../imgs/exchanger_icon.png) no-repeat center center;
 }
 .node{
-  background: url("/imgs/node_icon.png") no-repeat center center;
+  background: url(../imgs/node_icon.png) no-repeat center center;
 }
 .server{
-  background: url("/imgs/server_icon.png") no-repeat center center;
+  background: url(../imgs/server_icon.png) no-repeat center center;
 }
 .subnetwork{
-  background: url("/imgs/subnetwork_icon.png") no-repeat center center;
+  background: url(../imgs/subnetwork_icon.png) no-repeat center center;
 }  
 
 #contextmenu, #linemenu, #detail {
