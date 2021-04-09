@@ -19,6 +19,8 @@
     <link href="/fonts/inter/inter.css" rel="stylesheet">
     <link href="/css/css1.css" rel="stylesheet">
     <link href="/css/css2.css" rel="stylesheet">
+
+    <link href="/css/base.css" rel="stylesheet">
     <!--[if lt IE 9]><script src="http://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script><script src="http://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
 </head>
 
@@ -263,12 +265,12 @@
                                     class="lead-1"><img src="./img/svg/bigger.svg" style="display:block;width:20px;height:20px" /></span></a>
                             </div>
                         </div>
-                        <div class="panel-body py-0 pl-0 pr-4">
-                            <!-- apexchartLine -->
-                            <div id="achart-line"></div><!-- /.apexchartLine -->
-                            <!-- apexchartBar -->
-                            <div id="achart-bar"></div><!-- /.apexchartBar -->
-                        </div>
+                        <div class="span10">  
+                            <canvas width="1100" height="420" id="target"></canvas>  
+                                                 
+                          </div>
+                        <!-- apexchartLine -->
+                        <div id="achart-line"></div><!-- /.apexchartLine -->   
                     </div><!-- /.panel -->
                     <!-- panel -->
                     <div class="panel panel-orders">
@@ -506,6 +508,9 @@
     <script src="/js/main.js" id="_mainJS" data-plugins="load"></script>
     <!-- Modules -->
     <script src="/js/modules.js"></script>
+    <!-- JTopo -->
+    <script type="text/javascript" src="/js/jtopo-min.js"></script>
+    <script type="text/javascript" src="/js/toolbar.js"></script>   
 </body>
 
 </html>
