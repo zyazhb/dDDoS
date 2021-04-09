@@ -30,21 +30,21 @@ var (
 )
 
 const (
-	ContractAddr = "0xB3785f7f25d7eCd60D30539CeB0096B137D0EE07"
+	ContractAddr = "0x5B972e65381B1FC754f05F4A88115d5053B25461"
 )
 
 func RunNode() {
 	// client, err := ethclient.Dial("http://172.30.64.1:8545")
-	client, err := ethclient.Dial("wss://ropsten.infura.io/ws/v3/41357bf55fa74db5b4fed634eee82886")
+	client, err := ethclient.Dial("ws://127.0.0.1:8545")
 	if err != nil {
 		log.Println(err)
 	}
 	log.Println("we have a connection to ethereum")
 
 	Client = client // we'll use this in the upcoming sections
-	Auth = consultWithNode("b74629fb3ea5cbd5b1dabb170080ba752d16bc5151f107b60dc891025f62a0ce") // msg.sender private key
+	Auth = consultWithNode("e612bb6989ccb48c5ab378be6ecf53412a0c4182d67700d0a9a66bf21e498c4a") // msg.sender private key
 	Instance = connectToContract(ContractAddr)
-	SenderAddr = common.HexToAddress("0x8548D0fA2250aE400Ec2aA31Dbd6294239FB97D0")
+	SenderAddr = common.HexToAddress("0x73300dcF4779618ec07b6C1211B92eF09FC5e1D0")
 }
 
 // ConsultWithNode 获取身份认证
@@ -124,10 +124,13 @@ func WatchMessage() {
 				log.Fatal(err)
 			}
 
-			eventID := big.NewInt(receiveMap["eventID"].(int64))
+			eventID := receiveMap["eventID"].(*big.Int)
+			newNonce, _ := UpdateNonce()
+			Auth.Nonce = big.NewInt(int64(newNonce))
 
 			if receiveMap["name"].(string) == "Rconn" {
-				IntanceRconn, err := Instance.IndexRconn(nil, eventID)
+				// IntanceRconn, err := Instance.IndexRconn(nil, eventID)
+				IntanceRconn := big.NewInt(102)
 				if err != nil {
 					log.Fatalln(err)
 				}
@@ -136,11 +139,13 @@ func WatchMessage() {
 				if err != nil {
 					log.Fatalln(err)
 				}
-			} else if receiveMap["name"].(string) == "Rddos" {
+
 				_, err = Instance.InsertRddos(Auth, eventID)
 				if err != nil {
 					log.Fatalln(err)
 				}
+			} else if receiveMap["name"].(string) == "Rddos" {
+				log.Println("Have beeb ddosed")
 			} else {
 				log.Fatalln("Invaild message!")
 			}
