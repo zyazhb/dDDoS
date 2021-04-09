@@ -2,7 +2,7 @@ $(document).ready(function(){
   var canvas = document.getElementById('target');
   var stage  = new JTopo.Stage(canvas);
   //显示工具栏
-  showJTopoToobar(stage);
+  // showJTopoToobar(stage);
   var scene = new JTopo.Scene(stage);
   // var colors = ['0,0,255','144,238,144','255,165,0','255,0,0']; //蓝色、绿色、橙色、红色
   var currentNode = null;
