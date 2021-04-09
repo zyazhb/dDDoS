@@ -8,21 +8,33 @@ import (
 	"main/node"
 )
 
+type upInfo struct {
+	Now time.Time
+	Reason string
+}
+
 var (
-	eventID = 1
+	eventID = 135423
+
+	UpChan = make(chan upInfo, 1024)
 )
 
-func DetectedDDoS(Reason, srcip string, speed int) {
-	now := time.Now()
+func DetectedDDoS(reason, srcip string, speed int) {
+	info := upInfo{
+		Now: time.Now(),
+		Reason: reason,
+	}
+
+	UpChan <- info
 
 	log.Println("--------------------------")
 	log.Println("[+] detected DDoS attack!")
-	log.Println("Time:", now)
-	log.Println("Reason:", Reason)
+	log.Println("Time:", info.Now)
+	log.Println("Reason:", info.Reason)
 	log.Println("--------------------------")
 	//TO-DO 区块链交互
 
-	rconn := []string{srcip, now.String()}
+	rconn := []string{srcip, info.Now.String(), info.Reason}
 	eventID += 1
 
 	_, err := node.Instance.InsertRconn(node.Auth, big.NewInt(int64(eventID)), node.SenderAddr, big.NewInt(int64(speed)), rconn)
@@ -32,7 +44,6 @@ func DetectedDDoS(Reason, srcip string, speed int) {
 		log.Println("Insert into chain successfully!")
 	}
 
-	newNonce, _ := node.UpdateNonce()
-
+	newNonce, err := node.UpdateNonce()
 	node.Auth.Nonce = big.NewInt(int64(newNonce))
 }
