@@ -20,6 +20,8 @@
     <link href="/css/css1.css" rel="stylesheet">
     <link href="/css/css2.css" rel="stylesheet">
     <!--[if lt IE 9]><script src="http://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script><script src="http://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+    <!-- jQuery -->
+    <script src="/js/jquery.min.js"></script>
 </head>
 
 <body class="body">
@@ -29,17 +31,32 @@
         <nav class="main-navbar navbar navbar-expand-lg navbar-light shadow-2">
             <div class="lnav-box d-flex">
                 <div class="logo-wrapper px-3 d-none d-md-flex"><img src="/img/logo.png" alt="Logo"></div>
-                <div class="sidebar-toggler-wrapper ml-auto"><button class="p-collapsing-sidebar-toggler sidebar-toggler-secondary transition rounded-circle" data-collapsing="partially" data-collapsing-target="#adminNav" type="button"><img src="./img/svg/home.svg" style="display:block;width:330px;height:240px" /></span></button></div>
+                <div class="sidebar-toggler-wrapper ml-auto"><button
+                        class="p-collapsing-sidebar-toggler sidebar-toggler-secondary transition rounded-circle"
+                        data-collapsing="partially" data-collapsing-target="#adminNav" type="button"><img
+                            src="./img/svg/home.svg" style="display:block;width:330px;height:240px" /></span></button>
+                </div>
             </div>
             <div class="d-none d-lg-block ml-0 mr-auto pl-4">
             </div>
             <div class="pr-6">
                 <ul class="nav sec-nav navbar-nav flex-row">
-                    <li class="user-item nav-item dropdown"><a class="user-link nav-link d-inline-flex align-items-center h-100 small-1 pl-1 pl-sm-3 pr-0" href="#" id="dropdownAdmin_02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="user-avatar rounded-circle mr-sm-3" src="/img/Hunter.jpg" alt="Avatar"><div class="d-none d-sm-block lh-1"><div class="lh-5">Hello Admin</div><span class="small-3">Online</span></div></a>
-                        <div
-                            class="dropdown-menu dropdown-menu-right shadow-1 py-3 position-absolute mt-2" aria-labelledby="dropdownAdmin"><a class="dropdown-item" href="#"><span class="icon-messenger-user-avatar mr-2"></span>My Profile</a><a class="dropdown-item" href="#"><span class="icon-closed-envelope-email mr-2"></span>Messages</a><a class="dropdown-item" href="#"><span class="icon-options-gear mr-2"></span>Settings</a>
-                            <a
-                                class="dropdown-item" href="#"><span class="icon-power-on-buton mr-2"></span>Logout</a>
+                    <li class="user-item nav-item dropdown"><a
+                            class="user-link nav-link d-inline-flex align-items-center h-100 small-1 pl-1 pl-sm-3 pr-0"
+                            href="#" id="dropdownAdmin_02" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false"><img class="user-avatar rounded-circle mr-sm-3" src="/img/Hunter.jpg"
+                                alt="Avatar">
+                            <div class="d-none d-sm-block lh-1">
+                                <div class="lh-5">Hello Admin</div><span class="small-3">Online</span>
+                            </div>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right shadow-1 py-3 position-absolute mt-2"
+                            aria-labelledby="dropdownAdmin"><a class="dropdown-item" href="#"><span
+                                    class="icon-messenger-user-avatar mr-2"></span>My Profile</a><a
+                                class="dropdown-item" href="#"><span
+                                    class="icon-closed-envelope-email mr-2"></span>Messages</a><a class="dropdown-item"
+                                href="#"><span class="icon-options-gear mr-2"></span>Settings</a>
+                            <a class="dropdown-item" href="#"><span class="icon-power-on-buton mr-2"></span>Logout</a>
                         </div>
                     </li>
                 </ul>
@@ -53,21 +70,32 @@
         <nav id="adminNav" class="main-sidebar p-collapsing-sidebar sidebar-fixed sidebar-left d-flex flex-column">
             <div class="main-sidebar-inner" data-scrollbar="sidebar">
                 <ul class="sidebar-nav sidebar-nav-light-hover list-unstyled text-unset small-3 fw-600 content-list">
-                    <li class="nav-item text-light transition active"><a href="" aria-expanded="false" data-toggle="collapse" class="sbr-collapse nav-link nav-link-border collapsed collapser collapser-active"><span class="p-collapsing-title">Dashboard</span></a>
+                    <li class="nav-item text-light transition active"><a href="" aria-expanded="false"
+                            data-toggle="collapse"
+                            class="sbr-collapse nav-link nav-link-border collapsed collapser collapser-active"><span
+                                class="p-collapsing-title">Dashboard</span></a>
                         <div class="collapse nav-collapse collapse show">
                             <ul class="list-unstyled">
-                                <li class="nav-item active"><a href="index.html" class="p-collapsing-title nav-link"><span>Home</span></a></li>
+                                <li class="nav-item active"><a href="/index"
+                                        class="p-collapsing-title nav-link"><span>Home</span></a></li>
                             </ul>
                         </div>
                     </li>
-                    <li class="nav-item text-light transition"><a href="" aria-expanded="false" data-toggle="collapse" class="sbr-collapse nav-link nav-link-border collapser collapser-active open"></i><span class="p-collapsing-title">Contributor pages</span></a>
+                    <li class="nav-item text-light transition"><a href="" aria-expanded="false" data-toggle="collapse"
+                            class="sbr-collapse nav-link nav-link-border collapser collapser-active open"></i><span
+                                class="p-collapsing-title">Contributor pages</span></a>
                         <div class="collapse nav-collapse collapse show">
                             <ul class="list-unstyled">
-                                <li class="nav-item"><a href="https://zyazhb.github.io/" class="p-collapsing-title nav-link"><span>ZYA</span></a></li>
-                                <li class="nav-item"><a href="https://mashiro01.github.io/" class="p-collapsing-title nav-link"><span>Autorora</span></a></li>
-                                <li class="nav-item"><a href="http://blog.dizzyk.top/" class="p-collapsing-title nav-link"><span>DizzyK</span></a></li>
-                                <li class="nav-item"><a href="https://windy810.github.io/" class="p-collapsing-title nav-link"><span>Windy</span></a></li>
-                                <li class="nav-item"><a href="https://yueqsun.github.io/" class="p-collapsing-title nav-link"><span>F1oat</span></a></li>
+                                <li class="nav-item"><a href="https://zyazhb.github.io/"
+                                        class="p-collapsing-title nav-link"><span>ZYA</span></a></li>
+                                <li class="nav-item"><a href="https://mashiro01.github.io/"
+                                        class="p-collapsing-title nav-link"><span>Autorora</span></a></li>
+                                <li class="nav-item"><a href="http://blog.dizzyk.top/"
+                                        class="p-collapsing-title nav-link"><span>DizzyK</span></a></li>
+                                <li class="nav-item"><a href="https://windy810.github.io/"
+                                        class="p-collapsing-title nav-link"><span>Windy</span></a></li>
+                                <li class="nav-item"><a href="https://yueqsun.github.io/"
+                                        class="p-collapsing-title nav-link"><span>F1oat</span></a></li>
                             </ul>
                         </div>
                     </li>
@@ -90,363 +118,425 @@
                         </div>
                         <div class="col-12 col-lg-auto">
                             <div class="d-flex flex-wrap">
-                                <div class="w-100 w-sm-auto reportrange-btn d-flex align-items-center warning-gradient rounded-4 c-pointer">
+                                <div
+                                    class="w-100 w-sm-auto reportrange-btn d-flex align-items-center warning-gradient rounded-4 c-pointer">
                                     <div class="d-flex align-items-center justify-content-center w-100">
                                         <div id="reportrange" class="py-2 px-6"><span></span>&nbsp; </div>
                                     </div>
-                                </div><a href="#" class="mt-4 mt-sm-0 ml-sm-4 reportrange-btn btn btn-sm btn-circle warning-gradient lead-1 text-secondary"><img src="./img/svg/calender.svg" style="display:block;width:20px;height:20px" /></a></div>
+                                </div><a href="#"
+                                    class="mt-4 mt-sm-0 ml-sm-4 reportrange-btn btn btn-sm btn-circle warning-gradient lead-1 text-secondary"><img
+                                        src="./img/svg/calender.svg" style="display:block;width:20px;height:20px" /></a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        <!-- panel -->
-        <div class="panel panel-orders">
-            <div class="panel-row row no-gutters">
-                <div class="panel-col col-xl-6 col-lp-4 panel-pt-col">
-                    <!-- panel -->
-                    <div class="panel panel-pt">
-                        <div class="panel-row row no-gutters">
-                            <div class="panel-col col-xl-12">
-                                <!-- welcome panel -->
-                                <div class="panel">
-                                    <header class="panel-header align-items-center">
-                                        <div>
-                                            <h5 class="title mb-0">Total information</h5>
-                                        </div>
-                                        <div class="panel-header-nav ml-auto"><a data-toggle="collapse"
-                                                href="#collapseUsersInfo" role="button"
-                                                aria-expanded="false" aria-controls="collapseUsersInfo"
-                                                class="nav-item mr-3"></a><a
-                                                data-toggle="refresh" class="nav-item mr-3"><img src="./img/svg/refresh.svg" style="display:block;width:20px;height:20px" /></a></div>
-                                    </header>
-                                    <div class="collapse show" id="collapseUsersInfo">
-                                        <div class="panel-body py-6">
-                                            <div class="d-flex align-items-center">
-                                                <div>
-                                                    <div class="d-flex align-items-center mb-6">
-                                                        <div class="mr-3"><span
-                                                                class="d-block small-8 text-primary text-glow-primary"><img src="./img/svg/point.svg" style="display:block;width:20px;height:20px" /></span></div>
-                                                        <div>
-                                                            <h3 class="mb-0 lh-1">5</h3><span
-                                                                class="small-2 fw-600">Machine</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="d-flex align-items-center mb-6">
-                                                        <div class="mr-3"><span
-                                                                class="d-block small-8 text-warning text-glow-warning"><img src="./img/svg/point.svg" style="display:block;width:20px;height:20px" /></span></div>
-                                                        <div>
-                                                            <h3 class="mb-0 lh-1">34</h3><span
-                                                                class="small-2 fw-600">Tickets</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="mr-3"><span
-                                                                class="d-block small-8 text-danger text-glow-danger"><img src="./img/svg/point.svg" style="display:block;width:20px;height:20px" /></span></div>
-                                                        <div>
-                                                            <h3 class="mb-0 lh-1">17</h3><span
-                                                                class="small-2 fw-600">Source IP</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="flex-1">
-                                                    <div id="chart-rb"></div>
-                                                    <!-- modules.js -->
-                                                </div>
-                                            </div>
-                                            <div class="d-flex justify-content-center text-center"
-                                                style="height: 75px;">
-                                                <div class="px-6 lh-8">
-                                                    <h4 class="mb-0">{{.Total_stream}}Mb</h4> Total <span
-                                                        class="d-none d-md-inline">stream</span>
-                                                </div>
-                                                <hr class="panel-y-hr">
-                                                <div class="px-6 lh-8">
-                                                    <h4 class="mb-0"><span id="busuanzi_container_site_pv"></span><span id="busuanzi_value_site_pv"></span></h4>Clients
-                                                </div>
-                                                <hr class="panel-y-hr">
-                                                <div class="px-6 lh-8">
-                                                    <h4 class="mb-0">03</h4> Countries
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div><!-- /.welcome panel -->
-                                <div class="panel">
-                                    <header class="panel-header align-items-center">
-                                        <div>
-                                            <h5 class="title mb-0">Activity Timeline</h5>
-                                        </div>
-                                        <div class="panel-header-nav ml-auto"><a data-toggle="collapse"
-                                                href="#collapseActivityTimeline" role="button"
-                                                aria-expanded="false"
-                                                aria-controls="collapseActivityTimeline"
-                                                class="nav-item mr-3"></a><a
-                                                data-toggle="refresh" class="nav-item mr-3"><img src="./img/svg/refresh.svg" style="display:block;width:20px;height:20px" /></a></div>
-                                    </header>
-                                    <div class="collapse show" id="collapseActivityTimeline">
-                                        <div class="panel-body mb-0">
-                                            <div class="pl-3">
-                                                <!-- item -->
+            <!-- panel -->
+            <div class="panel panel-orders">
+                <div class="panel-row row no-gutters">
+                    <div class="panel-col col-xl-5 col-lp-4 panel-pt-col">
+                        <!-- panel -->
+                        <div class="panel panel-pt">
+                            <div class="panel-row row no-gutters">
+                                <div class="panel-col col-xl-12">
+                                    <!-- welcome panel -->
+                                    <div class="panel">
 
-                                                <!-- item -->
-                                                <div id="c1" class="timeline-item" data-time="22 Mar 2021 14:24"
-                                                    data-icon="&#xe901;">
-                                                    <div class="timeline-item-inner">
-                                                        <h6 class="d-inline-block fw-500 text-warning mb-1">
-                                                            Error</h6>
-                                                        <p id="d1" class="small-3 lh-5 mb-0">{"CommiterID": "0xcd12E46fe6bdf4Eb73a96c1a775590719c69c706","TargetIP": "219.217.199.15","Description": "IP:219.217.199.15(智能微波炉)正在遭受攻击"}</p>
+                                        <div class="panel-header align-items-center p-relative">
+                                            <div class="position-absolute w-100 l-5 l-sm-0 pe-n text-sm-center">
+                                                <h5 class="title pe-a mb-0 d-inline">Total information</h5>
+                                            </div>
+                                            <div class="p-relative ml-auto"><a href="#" class="lead-1"><img
+                                                        src="./img/svg/refresh.svg"
+                                                        style="display:block;width:20px;height:20px"></a>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="collapse show" id="collapseUsersInfo">
+                                            <div class="panel-body py-6">
+                                                <div class="d-flex align-items-center">
+                                                    <div>
+                                                        <div class="d-flex align-items-center mb-6">
+                                                            <div class="mr-3"><span
+                                                                    class="d-block small-8 text-primary text-glow-primary"><img
+                                                                        src="./img/svg/point.svg"
+                                                                        style="display:block;width:20px;height:20px" /></span>
+                                                            </div>
+                                                            <div>
+                                                                <h3 class="mb-0 lh-1">5</h3><span
+                                                                    class="small-2 fw-600">Machine</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-flex align-items-center mb-6">
+                                                            <div class="mr-3"><span
+                                                                    class="d-block small-8 text-warning text-glow-warning"><img
+                                                                        src="./img/svg/point.svg"
+                                                                        style="display:block;width:20px;height:20px" /></span>
+                                                            </div>
+                                                            <div>
+                                                                <h3 class="mb-0 lh-1">34</h3><span
+                                                                    class="small-2 fw-600">Tickets</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="mr-3"><span
+                                                                    class="d-block small-8 text-danger text-glow-danger"><img
+                                                                        src="./img/svg/point.svg"
+                                                                        style="display:block;width:20px;height:20px" /></span>
+                                                            </div>
+                                                            <div>
+                                                                <h3 class="mb-0 lh-1">17</h3><span
+                                                                    class="small-2 fw-600">Source IP</span>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div><!-- /.item -->
-                                                <!-- item -->
-                                                <div  class="timeline-item" data-time="22 Mar 2021 14:25"
-                                                    data-icon="&#xe927;">
-                                                    <div class="timeline-item-inner">
-                                                        <h6 class="d-inline-block fw-500 text-warning mb-1">
-                                                            Warning</h6>
-                                                        <p class="small-3 lh-5 mb-0">{"CommiterID": "0x91e03AfEE54DD2D4B441BDcFC428f9611e109546","TargetIP": "219.217.199.16","Description": "IP:219.217.199.16(物联网空调)正在遭受攻击"}
-                                                        </p>
+                                                    <div class="flex-1">
+                                                        <div id="chart-rb"></div>
+                                                        <!-- modules.js -->
                                                     </div>
-                                                </div><!-- /.item -->
-                                                <!-- item -->
-                                                <div class="timeline-item" data-time="22 Mar 2021 14:32"
-                                                    data-icon="&#xe901;">
-                                                    <div class="timeline-item-inner">
-                                                        <h6 class="d-inline-block fw-500 text-warning mb-1">
-                                                            Error</h6>
-                                                        <p class="small-3 lh-5 mb-0">{"CommiterID": "0x91e03AfEE54DD2D4B441BDcFC428f9611e109546","Description": "IP:219.217.199.16(物联网空调)已停运"}</p>
+                                                </div>
+                                                <div class="d-flex justify-content-center text-center"
+                                                    style="height: 75px;">
+                                                    <div class="px-6 lh-8">
+                                                        <h4 class="mb-0">{{.Total_stream}}Mb</h4> Total <span
+                                                            class="d-none d-md-inline">stream</span>
                                                     </div>
-                                                </div><!-- /.item -->
+                                                    <hr class="panel-y-hr">
+                                                    <div class="px-6 lh-8">
+                                                        <h4 class="mb-0"><span
+                                                                id="busuanzi_container_site_pv"></span><span
+                                                                id="busuanzi_value_site_pv"></span></h4>Clients
+                                                    </div>
+                                                    <hr class="panel-y-hr">
+                                                    <div class="px-6 lh-8">
+                                                        <h4 class="mb-0">03</h4> Countries
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div><!-- /.welcome panel -->
+                                    <div class="panel">
+                                        <div class="panel-header align-items-center p-relative">
+                                            <div class="position-absolute w-100 l-5 l-sm-0 pe-n text-sm-center">
+                                                <h5 class="title pe-a mb-0 d-inline">Activity Timeline</h5>
+                                            </div>
+                                            <div class="p-relative ml-auto"><a href="#" class="lead-1"><img
+                                                        src="./img/svg/refresh.svg"
+                                                        style="display:block;width:20px;height:20px"></a>
+                                            </div>
+                                        </div>
+                                        <div class="collapse show" id="collapseActivityTimeline">
+                                            <div class="panel-body mb-0">
+                                                <div class="pl-3">
+                                                    <!-- item -->
+
+                                                    <!-- item -->
+                                                    <div id="c1" class="timeline-item" data-time="22 Mar 2021 14:24"
+                                                        data-icon="&#xe901;">
+                                                        <div class="timeline-item-inner">
+                                                            <h6 class="d-inline-block fw-500 text-danger mb-1">
+                                                                Error</h6>
+                                                            <p id="d1" class="small-3 lh-5 mb-0">
+                                                                {"CommiterID":"0xcd12E46fe6bdf4Eb73a96c1a775590719c69c706",
+                                                            </p>
+                                                            "TargetIP":"219.217.199.15",
+                                                            "Description":"IP:219.217.199.15(智能微波炉)正在遭受攻击"}
+                                                        </div>
+                                                    </div><!-- /.item -->
+                                                    <!-- item -->
+                                                    <div class="timeline-item" data-time="22 Mar 2021 14:25"
+                                                        data-icon="&#xe927;">
+                                                        <div class="timeline-item-inner">
+                                                            <h6 class="d-inline-block fw-500 text-warning mb-1">
+                                                                Warning</h6>
+                                                            <p class="small-3 lh-5 mb-0">
+                                                                {"CommiterID":"0x91e03AfEE54DD2D4B441BDcFC428f9611e109546",
+                                                            </p>
+                                                            "TargetIP":"219.217.199.16",
+                                                            "Description":"IP:219.217.199.16(物联网空调)正在遭受攻击"}
+                                                        </div>
+                                                    </div><!-- /.item -->
+                                                    <!-- item -->
+                                                    <div class="timeline-item" data-time="22 Mar 2021 14:32"
+                                                        data-icon="&#xe901;">
+                                                        <div class="timeline-item-inner">
+                                                            <h6 class="d-inline-block fw-500 text-danger mb-1">
+                                                                Error</h6>
+                                                            <p class="small-3 lh-5 mb-0">
+                                                                {"CommiterID":"0x91e03AfEE54DD2D4B441BDcFC428f9611e109546",
+                                                            </p>
+                                                            "Description":"IP:219.217.199.16(物联网空调)已停运"}</p>
+                                                        </div>
+                                                    </div><!-- /.item -->
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div><!-- panel-col -->
+                    </div><!-- panel-col -->
 
-                <div class="panel-col col-xl-6 col-lp-8 panel-pt-col">
-                    <!-- panel -->
-                    <div class="panel">
-                        <div class="panel-header align-items-center p-relative">
-                            <div class="position-absolute w-100 l-5 l-sm-0 pe-n text-sm-center">
-                                <h5 class="title pe-a mb-0 d-inline">Real-Time Situation</h5>
+                    <div class="panel-col col-xl-7 col-lp-8 panel-pt-col">
+                        <!-- panel -->
+                        <div class="panel">
+                            <div class="panel-header align-items-center p-relative">
+                                <div class="position-absolute w-100 l-5 l-sm-0 pe-n text-sm-center">
+                                    <h5 class="title pe-a mb-0 d-inline">Real-Time Situation</h5>
+                                </div>
+                                <div class="p-relative ml-auto"><a href="#" class="lead-1"><img
+                                            src="./img/svg/bigger.svg" style="display:block;width:20px;height:20px"
+                                            id="bigger" /></span></a>
+                                </div>
                             </div>
-                            <div class="p-relative ml-auto"><a href="#" data-toggle="fullscreen-btn"
-                                    class="lead-1"><img src="./img/svg/bigger.svg" style="display:block;width:20px;height:20px" /></span></a>
+                            <script>
+                                $(function () {
+                                    $("img[id='2gif']").hide();
+                                    $("img[id='bigger']").click(function () {
+                                        $("img[id='2gif']").toggle();
+                                        $("img[id='1gif']").toggle();
+                                    })
+                                })
+
+                            </script>
+                            <div class="panel-body py-0 pl-0 pr-4" id="switchgif">
+                                <img id="1gif" src="/img/1.gif">
+                                <img id="2gif" src="/img/2.gif">
                             </div>
-                        </div>
-                        <div class="panel-body py-0 pl-0 pr-4">
-                            <img src="/img/1.gif">
-                            <img src="/img/2.gif">
-                        </div>
-                    </div><!-- /.panel -->
-                    <!-- panel -->
-                    <div class="panel panel-orders">
-                        <div class="panel-row row no-gutters">
-                            <div class="panel-col col-lp-6">
-                                <div class="panel">
-                                    <header class="panel-header align-items-center">
-                                        <div>
-                                            <h5 class="title mb-0">DDos Condition</h5>
+                        </div><!-- /.panel -->
+                        <!-- panel -->
+                        <div class="panel panel-orders">
+                            <div class="panel-row row no-gutters">
+                                <div class="panel-col col-lp-6">
+                                    <div class="panel">
+                                        <div class="panel-header align-items-center p-relative">
+                                            <div class="position-absolute w-100 l-5 l-sm-0 pe-n text-sm-center">
+                                                <h5 class="title pe-a mb-0 d-inline">DDOS CONDITION</h5>
+                                            </div>
+                                            <div class="p-relative ml-auto"><a href="#" class="lead-1"><img
+                                                        src="./img/svg/refresh.svg"
+                                                        style="display:block;width:20px;height:20px"></a>
+                                            </div>
                                         </div>
-                                        <div class="panel-header-nav ml-auto"><a data-toggle="collapse"
-                                                href="#collapseAudienceBC" role="button"
-                                                aria-expanded="false" aria-controls="collapseAudienceBC"
-                                                class="nav-item mr-3"></a><a
-                                                data-toggle="refresh" class="nav-item mr-3"><img src="./img/svg/refresh.svg" style="display:block;width:20px;height:20px" /></a></div>
-                                    </header>
-                                    <div class="collapse show" id="collapseAudienceBC">
-                                        <div class="panel-body pt-0">
-                                            <div id="chart-radialBar_B"></div>
-                                            <!-- modules.js -->
-                                            <div class="d-flex align-items-center justify-content-center">
-                                                <div class="text-center px-6"><span
-                                                        class="d-block small-8 text-warning text-glow-white"></span>
-                                                    <h3 class="mb-0">2</h3><span
-                                                        class="fw-600 text-white text-glow-white-sm">Under
-                                                        Attack</span>
-                                                </div>
-                                                <div class="text-center px-6"><span
-                                                        class="d-block small-8 text-warning text-glow-warning"></span>
-                                                    <h3 class="mb-0">86</h3><span
-                                                        class="fw-600 text-warning text-glow-warning-sm">All
-                                                        Machine</span>
-                                                </div>
-                                                <div class="text-center px-6"><span
-                                                        class="d-block small-8 text-warning text-glow-danger"></span>
-                                                    <h3 class="mb-0">79</h3><span
-                                                        class="fw-600 text-danger text-glow-danger-sm">Normal
-                                                        Operation
+                                        <div class="collapse show" id="collapseAudienceBC">
+                                            <div class="panel-body pt-0">
+                                                <div id="chart-radialBar_B"></div>
+                                                <!-- modules.js -->
+                                                <div class="d-flex align-items-center justify-content-center">
+                                                    <div class="text-center px-6"><span
+                                                            class="d-block small-8 text-warning text-glow-white"></span>
+                                                        <h3 class="mb-0">2</h3><span
+                                                            class="fw-600 text-white text-glow-white-sm">Under
+                                                            Attack</span>
+                                                    </div>
+                                                    <div class="text-center px-6"><span
+                                                            class="d-block small-8 text-warning text-glow-warning"></span>
+                                                        <h3 class="mb-0">86</h3><span
+                                                            class="fw-600 text-warning text-glow-warning-sm">All
+                                                            Machine</span>
+                                                    </div>
+                                                    <div class="text-center px-6"><span
+                                                            class="d-block small-8 text-warning text-glow-danger"></span>
+                                                        <h3 class="mb-0">79</h3><span
+                                                            class="fw-600 text-danger text-glow-danger-sm">Normal
+                                                            Operation
                                                         </span>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="text-center">
-                                                <hr class="panel-hr my-6">
-                                                <div class="w-lg-75 mx-auto">
-                                                    <p class="mb-0 lead-1"><span
-                                                            class="text-warning fw-600">+9.2%</span>与七天前相比</p>
+                                                <div class="text-center">
+                                                    <hr class="panel-hr my-6">
+                                                    <div class="w-lg-75 mx-auto">
+                                                        <p class="mb-0 lead-1"><span
+                                                                class="text-warning fw-600">+9.2%</span>与七天前相比</p>
+                                                    </div>
+                                                    <hr class="panel-hr mt-6 mb-0">
                                                 </div>
-                                                <hr class="panel-hr mt-6 mb-0">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="panel-col col-lp-6">
-                                <!-- panel -->
-                    <div class="panel">
-                        <div class="panel-header align-items-center">
-                            <div>
-                                <h5 class="title mb-0">Machine Condition</h5>
-                            </div>
-                            <div class="panel-header-nav ml-auto"><a data-toggle="collapse"
-                                    href="#collapseRecentOrders" role="button" aria-expanded="false"
-                                    aria-controls="collapseRecentOrders" class="nav-item mr-3"></a><a data-toggle="refresh"
-                                    class="nav-item mr-3"><img src="./img/svg/refresh.svg" style="display:block;width:20px;height:20px" /></a></div>
-                        </div>
-                        <div class="collapse show" id="collapseRecentOrders">
-                            <div class="panel-body pl-6">
-                                <div>
-                                    <div class="panel-list-sc list-unstyled" data-scrollbar="scroll">
-                                        <div class="pr-10">
-                                            <table class="table table-borderless mb-0">
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col" class="pt-0">#</th>
-                                                        <th scope="col" class="pt-0">ID</th>
-                                                        <th scope="col" class="pt-0">Name</th>
-                                                        <th scope="col" class="pt-0">IP</th>
-                                                        <th scope="col" class="pt-0">Status</th>
-                                                        <th scope="col" class="pt-0"></th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <th scope="row">1</th>
-                                                        <td>
-                                                            <div class="d-flex align-items-center"><small
-                                                                    class="ml-3 small-2">2021001</small></div>
-                                                        </td>
-                                                        <td>空气净化器</td>
-                                                        <td>219.217.199.12</td>
-                                                        <td><a href=""
-                                                                class="btn btn-sm btn-outline-warning btn-round px-4" id="test1">Run</a>
-                                                        </td>
-                                                        <td>
-                                                            <div class="panel-dropdown-menu dropdown">
-                                                                <button
-                                                                    class="btn text-warning dropdown-toggle no-carret bc-t p-0"
-                                                                    type="button" data-toggle="dropdown"
-                                                                    aria-haspopup="true"
-                                                                    aria-expanded="false"><img src="./img/svg/more.svg" style="display:block;width:20px;height:20px" /></button>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">2</th>
-                                                        <td>
-                                                            <div class="d-flex align-items-center"><small
-                                                                    class="ml-3 small-2">2021002</small></div>
-                                                        </td>
-                                                        <td>扫地机器人</td>
-                                                        <td>219.217.199.13</td>
-                                                        <td><a href=""
-                                                            class="btn btn-sm btn-outline-warning btn-round px-4" id="test2">Run</a>
-                                                    </td>
-                                                        <td>
-                                                            <div class="panel-dropdown-menu dropdown">
-                                                                <button
-                                                                    class="btn text-warning dropdown-toggle no-carret bc-t p-0"
-                                                                    type="button" data-toggle="dropdown"
-                                                                    aria-haspopup="true"
-                                                                    aria-expanded="false"><img src="./img/svg/more.svg" style="display:block;width:20px;height:20px" /></button>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">3</th>
-                                                        <td>
-                                                            <div class="d-flex align-items-center"><small
-                                                                    class="ml-3 small-2">2021003</small></div>
-                                                        </td>
-                                                        <td>智能灯具</td>
-                                                        <td>219.217.199.14</td>
-                                                        <td><a href=""
-                                                                class="btn btn-sm btn-outline-danger btn-round px-4" id="test3">Run</a>
-                                                        </td>
-                                                        <td>
-                                                            <div class="panel-dropdown-menu dropdown">
-                                                                <button
-                                                                    class="btn text-warning dropdown-toggle no-carret bc-t p-0"
-                                                                    type="button" data-toggle="dropdown"
-                                                                    aria-haspopup="true"
-                                                                    aria-expanded="false"><img src="./img/svg/more.svg" style="display:block;width:20px;height:20px" /></button>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">4</th>
-                                                        <td>
-                                                            <div class="d-flex align-items-center"><small
-                                                                    class="ml-3 small-2">2021004</small></div>
-                                                        </td>
-                                                        <td>智能微波炉</td>
-                                                        <td>219.217.199.15</td>
-                                                        <td><a href=""
-                                                            class="btn btn-sm btn-outline-warning btn-round px-4" id="test4">Under Attack</a>
-                                                        </td>
-                                                        <td>
-                                                            <div class="panel-dropdown-menu dropdown">
-                                                                <button
-                                                                    class="btn text-warning dropdown-toggle no-carret bc-t p-0"
-                                                                    type="button" data-toggle="dropdown"
-                                                                    aria-haspopup="true"
-                                                                    aria-expanded="false"><img src="./img/svg/more.svg" style="display:block;width:20px;height:20px" /></button>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">5</th>
-                                                        <td>
-                                                            <div class="d-flex align-items-center"><small
-                                                                    class="ml-3 small-2">2021004</small></div>
-                                                        </td>
-                                                        <td>物联网空调</td>
-                                                        <td>219.217.199.16</td>
-                                                        <td><a href=""
-                                                            class="btn btn-sm btn-outline-success btn-round px-4" id="test5">Offline</a>
-                                                        </td>
-                                                        <td>
-                                                            <div class="panel-dropdown-menu dropdown">
-                                                                <button
-                                                                    class="btn text-warning dropdown-toggle no-carret bc-t p-0"
-                                                                    type="button" data-toggle="dropdown"
-                                                                    aria-haspopup="true"
-                                                                    aria-expanded="false"><img src="./img/svg/more.svg" style="display:block;width:20px;height:20px" /></button>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+                                <div class="panel-col col-lp-6">
+                                    <!-- panel -->
+                                    <div class="panel">
+                                        <div class="panel-header align-items-center p-relative">
+                                            <div class="position-absolute w-100 l-5 l-sm-0 pe-n text-sm-center">
+                                                <h5 class="title pe-a mb-0 d-inline">MACHINE CONDITION</h5>
+                                            </div>
+                                            <div class="p-relative ml-auto"><a href="#" class="lead-1"><img
+                                                        src="./img/svg/refresh.svg"
+                                                        style="display:block;width:20px;height:20px"></a>
+                                            </div>
                                         </div>
-                                    </div>
+                                        <div class="collapse show" id="collapseRecentOrders">
+                                            <div class="panel-body pl-6">
+                                                <div>
+                                                    <div class="panel-list-sc list-unstyled" data-scrollbar="scroll">
+                                                        <div class="pr-10">
+                                                            <table class="table table-borderless mb-0">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th scope="col" class="pt-0">#</th>
+                                                                        <th scope="col" class="pt-0">ID</th>
+                                                                        <th scope="col" class="pt-0">Name</th>
+                                                                        <th scope="col" class="pt-0">IP</th>
+                                                                        <th scope="col" class="pt-0">Status</th>
+                                                                        <th scope="col" class="pt-0"></th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <th scope="row">1</th>
+                                                                        <td>
+                                                                            <div class="d-flex align-items-center">
+                                                                                <small
+                                                                                    class="ml-3 small-2">2021001</small>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>空气净化器</td>
+                                                                        <td>219.217.199.12</td>
+                                                                        <td><a href=""
+                                                                                class="btn btn-sm btn-outline-warning btn-round px-4"
+                                                                                id="test1">Run</a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div class="panel-dropdown-menu dropdown">
+                                                                                <button
+                                                                                    class="btn text-warning dropdown-toggle no-carret bc-t p-0"
+                                                                                    type="button" data-toggle="dropdown"
+                                                                                    aria-haspopup="true"
+                                                                                    aria-expanded="false"><img
+                                                                                        src="./img/svg/more.svg"
+                                                                                        style="display:block;width:20px;height:20px" /></button>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row">2</th>
+                                                                        <td>
+                                                                            <div class="d-flex align-items-center">
+                                                                                <small
+                                                                                    class="ml-3 small-2">2021002</small>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>扫地机器人</td>
+                                                                        <td>219.217.199.13</td>
+                                                                        <td><a href=""
+                                                                                class="btn btn-sm btn-outline-warning btn-round px-4"
+                                                                                id="test2">Run</a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div class="panel-dropdown-menu dropdown">
+                                                                                <button
+                                                                                    class="btn text-warning dropdown-toggle no-carret bc-t p-0"
+                                                                                    type="button" data-toggle="dropdown"
+                                                                                    aria-haspopup="true"
+                                                                                    aria-expanded="false"><img
+                                                                                        src="./img/svg/more.svg"
+                                                                                        style="display:block;width:20px;height:20px" /></button>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row">3</th>
+                                                                        <td>
+                                                                            <div class="d-flex align-items-center">
+                                                                                <small
+                                                                                    class="ml-3 small-2">2021003</small>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>智能灯具</td>
+                                                                        <td>219.217.199.14</td>
+                                                                        <td><a href=""
+                                                                                class="btn btn-sm btn-outline-danger btn-round px-4"
+                                                                                id="test3">Run</a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div class="panel-dropdown-menu dropdown">
+                                                                                <button
+                                                                                    class="btn text-warning dropdown-toggle no-carret bc-t p-0"
+                                                                                    type="button" data-toggle="dropdown"
+                                                                                    aria-haspopup="true"
+                                                                                    aria-expanded="false"><img
+                                                                                        src="./img/svg/more.svg"
+                                                                                        style="display:block;width:20px;height:20px" /></button>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row">4</th>
+                                                                        <td>
+                                                                            <div class="d-flex align-items-center">
+                                                                                <small
+                                                                                    class="ml-3 small-2">2021004</small>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>智能微波炉</td>
+                                                                        <td>219.217.199.15</td>
+                                                                        <td><a href=""
+                                                                                class="btn btn-sm btn-outline-warning btn-round px-4"
+                                                                                id="test4">Under Attack</a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div class="panel-dropdown-menu dropdown">
+                                                                                <button
+                                                                                    class="btn text-warning dropdown-toggle no-carret bc-t p-0"
+                                                                                    type="button" data-toggle="dropdown"
+                                                                                    aria-haspopup="true"
+                                                                                    aria-expanded="false"><img
+                                                                                        src="./img/svg/more.svg"
+                                                                                        style="display:block;width:20px;height:20px" /></button>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row">5</th>
+                                                                        <td>
+                                                                            <div class="d-flex align-items-center">
+                                                                                <small
+                                                                                    class="ml-3 small-2">2021004</small>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>物联网空调</td>
+                                                                        <td>219.217.199.16</td>
+                                                                        <td><a href=""
+                                                                                class="btn btn-sm btn-outline-success btn-round px-4"
+                                                                                id="test5">Offline</a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div class="panel-dropdown-menu dropdown">
+                                                                                <button
+                                                                                    class="btn text-warning dropdown-toggle no-carret bc-t p-0"
+                                                                                    type="button" data-toggle="dropdown"
+                                                                                    aria-haspopup="true"
+                                                                                    aria-expanded="false"><img
+                                                                                        src="./img/svg/more.svg"
+                                                                                        style="display:block;width:20px;height:20px" /></button>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div><!-- /.panel -->
                                 </div>
                             </div>
-                        </div>
-                    </div><!-- /.panel -->
-                            </div>
-                        </div>
-                    </div><!-- /.panel -->
-                </div><!-- ./panel-col -->
-            </div>
-        </div><!-- /.panel -->
+                        </div><!-- /.panel -->
+                    </div><!-- ./panel-col -->
+                </div>
+            </div><!-- /.panel -->
     </main>
     <!-- /.main -->
     <!-- offcanvas - search -->
     <div id="offcanvas-search" class="offcanvas h-100 py-8" data-animation="fadeDown" data-scrollbar="offcanvas">
         <div class="row">
-            <div class="col-sm-1 order-sm-last"><button type="button" data-toggle="offcanvas-close" class="close float-right mr-lg-6 text-light o-1 lead-2 fw-100" data-dismiss="offcanvas" aria-label="Close"><span aria-hidden="true" class="icon-close"></span></button></div>
+            <div class="col-sm-1 order-sm-last"><button type="button" data-toggle="offcanvas-close"
+                    class="close float-right mr-lg-6 text-light o-1 lead-2 fw-100" data-dismiss="offcanvas"
+                    aria-label="Close"><span aria-hidden="true" class="icon-close"></span></button></div>
         </div>
     </div>
     <!-- /.offcanvas - search -->
@@ -454,8 +544,7 @@
     <div class="preloaderWrapper"></div>
     <!-- busuanzi -->
     <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    <!-- jQuery -->
-    <script src="/js/jquery.min.js"></script>
+
     <!-- Bootstrap -->
     <script src="/js/bootstrap.min.js"></script>
     <!-- Chart.js -->
@@ -483,7 +572,7 @@
     for (let index = 0; index < 5; index++) {
         let name = "#test".concat(index);
 
-        $(name).click(function() {
+        $(name).click(function () {
             if ($(this).hasClass("btn-outline-warning")) {
                 $(this).removeClass("btn-outline-warning");
                 $(this).addClass("btn-outline-danger");
