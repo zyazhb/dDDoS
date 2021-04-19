@@ -30,7 +30,7 @@ var (
 )
 
 const (
-	ContractAddr = "0x5B972e65381B1FC754f05F4A88115d5053B25461"
+	ContractAddr = "0x657cf5e313e707A5982dAfEe4571e0a22892E692"
 )
 
 func RunNode() {
@@ -42,9 +42,9 @@ func RunNode() {
 	log.Println("we have a connection to ethereum")
 
 	Client = client // we'll use this in the upcoming sections
-	Auth = consultWithNode("e612bb6989ccb48c5ab378be6ecf53412a0c4182d67700d0a9a66bf21e498c4a") // msg.sender private key
+	Auth = consultWithNode("b19d149fd8a64a048c69b11055cb92f866703a93ee06cbb63d58d6e7f6185eb0") // msg.sender private key
 	Instance = connectToContract(ContractAddr)
-	SenderAddr = common.HexToAddress("0x73300dcF4779618ec07b6C1211B92eF09FC5e1D0")
+	SenderAddr = common.HexToAddress("0x551B7dbaB1197B5956c5B33FE5e6cf8A06049924")
 }
 
 // ConsultWithNode 获取身份认证
