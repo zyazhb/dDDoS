@@ -8,19 +8,19 @@ import (
 	"main/node"
 )
 
-type upInfo struct {
+type UpInfo struct {
 	Now time.Time
 	Reason string
 }
 
 var (
-	eventID = 135423
+	eventID = 1700064
 
-	UpChan = make(chan upInfo, 1024)
+	UpChan = make(chan UpInfo, 1024)
 )
 
 func DetectedDDoS(reason, srcip string, speed int) {
-	info := upInfo{
+	info := UpInfo{
 		Now: time.Now(),
 		Reason: reason,
 	}
