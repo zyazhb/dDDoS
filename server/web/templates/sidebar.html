@@ -1,0 +1,45 @@
+{{define "/sidebar"}}
+<nav id="adminNav" class="main-sidebar p-collapsing-sidebar sidebar-fixed sidebar-left d-flex flex-column">
+    <div class="main-sidebar-inner" data-scrollbar="sidebar">
+        <ul class="sidebar-nav sidebar-nav-light-hover list-unstyled text-unset small-3 fw-600 content-list">
+            <li class="nav-item text-light transition active"><a href="" aria-expanded="false"
+                    data-toggle="collapse"
+                    class="sbr-collapse nav-link nav-link-border collapsed collapser collapser-active"><span
+                        class="p-collapsing-title">模拟环境</span></a>
+                <div class="collapse nav-collapse collapse show">
+                    <ul class="list-unstyled">
+                        <li class="nav-item active"><a href="/index"
+                                class="p-collapsing-title nav-link"><span>物联网演示环境A</span></a></li>
+                    </ul>
+                </div>
+                <div class="collapse nav-collapse collapse show">
+                    <ul class="list-unstyled">
+                        <li class="nav-item active"><a href="/indexb"
+                                class="p-collapsing-title nav-link"><span>物联网演示环境B</span></a></li>
+                    </ul>
+                </div>
+            </li>
+            <li class="nav-item text-light transition"><a href="" aria-expanded="false" data-toggle="collapse"
+                    class="sbr-collapse nav-link nav-link-border collapser collapser-active open"></i><span
+                        class="p-collapsing-title">控制面板</span></a>
+                <div class="collapse nav-collapse collapse show">
+                    <ul class="list-unstyled">
+                        <li class="nav-item"><a href="/home"
+                                class="p-collapsing-title nav-link"><span>物联网设备实景渲染图</span></a></li>
+                        <li class="nav-item"><a href="https://mashiro01.github.io/"
+                                class="p-collapsing-title nav-link"><span>物联网设备控制器</span></a></li>
+                        <li class="nav-item"><a href="http://blog.dizzyk.top/"
+                                class="p-collapsing-title nav-link"><span>流量统计图</span></a></li>
+                        <li class="nav-item"><a href="https://windy810.github.io/"
+                                class="p-collapsing-title nav-link"><span>安全态势感知图</span></a></li>
+                        <li class="nav-item"><a href="https://yueqsun.github.io/"
+                                class="p-collapsing-title nav-link"><span>防御日志</span></a></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- /.sidebar -->
+{{end}}

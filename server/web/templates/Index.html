@@ -1,115 +1,35 @@
 {{ define "index.html" }}
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>dDDos</title>
+        <!-- CSS -->
+        <link href="/css/main.css" rel="stylesheet">
+        <link href="/css/styles.css" rel="stylesheet">
+        <!-- dateRangePicker -->
+        <link href="/plugins/daterangepicker/daterangepicker.css" rel="stylesheet">
+        <!-- Favicons -->
+        <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+        <link rel="icon" href="/img/favicon.png">
+        <!-- Fonts -->
+        <link href="/fonts/inter/inter.css" rel="stylesheet">
+        <link href="/css/css1.css" rel="stylesheet">
+        <link href="/css/css2.css" rel="stylesheet">
+        <!--[if lt IE 9]><script src="http://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script><script src="http://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        <!-- jQuery -->
+        <script src="/js/jquery.min.js"></script>
+    </head>
+    <body class="body">
+        <!-- include header -->
+    {{template "/header" .}}
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>dDDos</title>
-    <!-- CSS -->
-    <link href="/css/main.css" rel="stylesheet">
-    <link href="/css/styles.css" rel="stylesheet">
-    <!-- dateRangePicker -->
-    <link href="/plugins/daterangepicker/daterangepicker.css" rel="stylesheet">
-    <!-- Favicons -->
-    <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
-    <link rel="icon" href="/img/favicon.png">
-    <!-- Fonts -->
-    <link href="/fonts/inter/inter.css" rel="stylesheet">
-    <link href="/css/css1.css" rel="stylesheet">
-    <link href="/css/css2.css" rel="stylesheet">
-    <!--[if lt IE 9]><script src="http://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script><script src="http://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
-    <!-- jQuery -->
-    <script src="/js/jquery.min.js"></script>
-</head>
-
-<body class="body">
-    <!-- header -->
-    <header class="main-header">
-        <!-- nav -->
-        <nav class="main-navbar navbar navbar-expand-lg navbar-light shadow-2">
-            <div class="lnav-box d-flex">
-                <div class="logo-wrapper px-3 d-none d-md-flex"><img src="/img/logo.png" alt="Logo"></div>
-                <div class="sidebar-toggler-wrapper ml-auto"><button
-                        class="p-collapsing-sidebar-toggler sidebar-toggler-secondary transition rounded-circle"
-                        data-collapsing="partially" data-collapsing-target="#adminNav" type="button"><img
-                            src="./img/svg/home.svg" style="display:block;width:330px;height:240px" /></span></button>
-                </div>
-            </div>
-            <div class="d-none d-lg-block ml-0 mr-auto pl-4">
-            </div>
-            <div class="pr-6">
-                <ul class="nav sec-nav navbar-nav flex-row">
-                    <li class="user-item nav-item dropdown"><a
-                            class="user-link nav-link d-inline-flex align-items-center h-100 small-1 pl-1 pl-sm-3 pr-0"
-                            href="#" id="dropdownAdmin_02" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false"><img class="user-avatar rounded-circle mr-sm-3" src="/img/Hunter.jpg"
-                                alt="Avatar">
-                            <div class="d-none d-sm-block lh-1">
-                                <div class="lh-5">Hello Admin</div><span class="small-3">Online</span>
-                            </div>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right shadow-1 py-3 position-absolute mt-2"
-                            aria-labelledby="dropdownAdmin"><a class="dropdown-item" href="#"><span
-                                    class="icon-messenger-user-avatar mr-2"></span>My Profile</a><a
-                                class="dropdown-item" href="#"><span
-                                    class="icon-closed-envelope-email mr-2"></span>Messages</a><a class="dropdown-item"
-                                href="#"><span class="icon-options-gear mr-2"></span>Settings</a>
-                            <a class="dropdown-item" href="#"><span class="icon-power-on-buton mr-2"></span>Logout</a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-        <!-- /.nav -->
-    </header>
-    <!-- /.header -->
     <!-- main -->
     <main>
-        <nav id="adminNav" class="main-sidebar p-collapsing-sidebar sidebar-fixed sidebar-left d-flex flex-column">
-            <div class="main-sidebar-inner" data-scrollbar="sidebar">
-                <ul class="sidebar-nav sidebar-nav-light-hover list-unstyled text-unset small-3 fw-600 content-list">
-                    <li class="nav-item text-light transition active"><a href="" aria-expanded="false"
-                            data-toggle="collapse"
-                            class="sbr-collapse nav-link nav-link-border collapsed collapser collapser-active"><span
-                                class="p-collapsing-title">模拟环境</span></a>
-                        <div class="collapse nav-collapse collapse show">
-                            <ul class="list-unstyled">
-                                <li class="nav-item active"><a href="/index"
-                                        class="p-collapsing-title nav-link"><span>物联网演示环境A</span></a></li>
-                            </ul>
-                        </div>
-                        <div class="collapse nav-collapse collapse show">
-                            <ul class="list-unstyled">
-                                <li class="nav-item active"><a href="/indexb"
-                                        class="p-collapsing-title nav-link"><span>物联网演示环境B</span></a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="nav-item text-light transition"><a href="" aria-expanded="false" data-toggle="collapse"
-                            class="sbr-collapse nav-link nav-link-border collapser collapser-active open"></i><span
-                                class="p-collapsing-title">控制面板</span></a>
-                        <div class="collapse nav-collapse collapse show">
-                            <ul class="list-unstyled">
-                                <li class="nav-item"><a href="/home"
-                                        class="p-collapsing-title nav-link"><span>物联网设备实景渲染图</span></a></li>
-                                <li class="nav-item"><a href="https://mashiro01.github.io/"
-                                        class="p-collapsing-title nav-link"><span>物联网设备控制器</span></a></li>
-                                <li class="nav-item"><a href="http://blog.dizzyk.top/"
-                                        class="p-collapsing-title nav-link"><span>流量统计图</span></a></li>
-                                <li class="nav-item"><a href="https://windy810.github.io/"
-                                        class="p-collapsing-title nav-link"><span>安全态势感知图</span></a></li>
-                                <li class="nav-item"><a href="https://yueqsun.github.io/"
-                                        class="p-collapsing-title nav-link"><span>防御日志</span></a></li>
-                            </ul>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-
-        <!-- /.sidebar -->
+        <!-- include sidebar -->
+        {{template "/sidebar" .}}
         <!-- main content -->
         <div class="main-container">
             <div class="overflow-hidden">
