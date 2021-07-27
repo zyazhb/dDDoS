@@ -3,6 +3,7 @@ package node
 import (
 	"context"
 	"crypto/ecdsa"
+	"fmt"
 	"log"
 	"math/big"
 	"strings"
@@ -24,30 +25,29 @@ var (
 
 	Instance   *contract.Contract
 	Auth       *bind.TransactOpts
-	SenderAddr common.Address
 
 	FromAddress common.Address
 )
 
-const (
-	ContractAddr = "0x657cf5e313e707A5982dAfEe4571e0a22892E692"
-)
+// RunNode 连接到geth节点，完成配置初始化
+func RunNode() error {
+	fullURL := fmt.Sprintf("ws://%s:%d", Conf.chainAddress, Conf.chainPort)
 
-func RunNode() {
-	// client, err := ethclient.Dial("http://172.30.64.1:8545")
-	client, err := ethclient.Dial("ws://127.0.0.1:8545")
+	client, err := ethclient.Dial(fullURL)
 	if err != nil {
 		log.Println(err)
+		return err
 	}
-	log.Println("we have a connection to ethereum")
+	log.Println("We have a connection to ethereum")
 
-	Client = client // we'll use this in the upcoming sections
-	Auth = consultWithNode("b19d149fd8a64a048c69b11055cb92f866703a93ee06cbb63d58d6e7f6185eb0") // msg.sender private key
-	Instance = connectToContract(ContractAddr)
-	SenderAddr = common.HexToAddress("0x551B7dbaB1197B5956c5B33FE5e6cf8A06049924")
+	Client = client
+	Auth = consultWithNode(Conf.Client.clientAddr)
+	Instance = connectToContract(Conf.Server.contractAddr)
+
+	return nil
 }
 
-// ConsultWithNode 获取身份认证
+// ConsultWithNode 依据用户私钥获取身份认证
 func consultWithNode(privateKeys string) *bind.TransactOpts {
 	privateKey, err := crypto.HexToECDSA(privateKeys)
 	if err != nil {
@@ -81,6 +81,7 @@ func consultWithNode(privateKeys string) *bind.TransactOpts {
 	return auth
 }
 
+// ConnectToContract 依据合约地址连接到私链上的合约
 func connectToContract(contractAddr string) *contract.Contract {
 	address := common.HexToAddress(contractAddr)
 	instances, err := contract.NewContract(address, Client)
@@ -91,10 +92,12 @@ func connectToContract(contractAddr string) *contract.Contract {
 	return instances
 }
 
+// UpdateNonce 更新Nonce高度
 func UpdateNonce() (uint64, error) {
 	return Client.PendingNonceAt(context.Background(), FromAddress)
 }
 
+// WatchMessage 监听链上message信息
 func WatchMessage() {
 	contractAddress := common.HexToAddress(ContractAddr)
 	query := ethereum.FilterQuery{
