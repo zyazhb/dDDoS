@@ -9,6 +9,7 @@ import joblib
  
 # 获取数据
 origin_data = pd.read_csv('test.csv')
+# origin_data=origin_data.iloc[10000:,]
 
 # 处理时间数据
 import time
@@ -24,19 +25,22 @@ for i in timestamp:
 #处理标签数据
 # labelname=origin_data.iloc[:,79].unique() #['Benign','FTP-BruteForce']
 labelname=origin_data.iloc[:,79]
-for i in range(99):
+for i in range(5290):
+    print(i)
     if((origin_data.iloc[i:,79]=='Benign').item):
         origin_data.iloc[i:,79]=0
     if((origin_data.iloc[i:,79]=='FTP-BruteForce').item):
         origin_data.iloc[i:,79]=1
+    if((origin_data.iloc[i:,79]=='SSH-Bruteforce').item):
+        origin_data.iloc[i:,79]=2
 
-X = origin_data.iloc[:,:].values
+X = origin_data.iloc[:,:79].values
 Y = origin_data.iloc[:,79].values
 # print(type(Y))
 # print(type(Y.values))
 
 # 总特征  按照特征的重要性排序的所有特征
-all_feature = [57, 55, 67, 75, 39, 56, 43, 29, 44, 19, 35, 20, 48, 16, 49, 34, 47, 63, 71, 66, 79, 68, 74, 72, 65, 77, 69, 31, 21, 25, 30, 27, 22, 1, 3, 4, 59, 60, 64, 62, 17, 45, 52, 41, 38, 9, 23, 10, 51, 24, 11, 12, 13, 18, 50, 40, 53, 14, 8, 6, 5, 7, 15, 32, 42, 58, 37, 54, 46, 36, 61, 33, 2, 28, 26, 73, 70, 78, 76, 0]
+all_feature = [57, 55, 67, 75, 39, 56, 43, 29, 44, 19, 35, 20, 48, 16, 49, 34, 47, 63, 71, 66, 68, 74, 72, 65, 77, 69, 31, 21, 25, 30, 27, 22, 1, 3, 4, 59, 60, 64, 62, 17, 45, 52, 41, 38, 9, 23, 10, 51, 24, 11, 12, 13, 18, 50, 40, 53, 14, 8, 6, 5, 7, 15, 32, 42, 58, 37, 54, 46, 36, 61, 33, 2, 28, 26, 73, 70, 78, 76, 0]
 # 这里我们选取前三个特征
 topN_feature = all_feature[:30]
 print(topN_feature)
