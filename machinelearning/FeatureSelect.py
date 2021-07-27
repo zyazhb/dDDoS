@@ -4,6 +4,7 @@ from scipy.sparse import data
 from sklearn.ensemble import RandomForestClassifier
 
 data=pd.read_csv(r'test.csv')
+data=data.iloc[:10000,]
 
 # 处理时间数据
 import time
@@ -19,11 +20,13 @@ for i in timestamp:
 #处理标签数据
 # labelname=data.iloc[:,79].unique() #['Benign','FTP-BruteForce']
 labelname=data.iloc[:,79]
-for i in range(99):
+for i in range(5287):
     if((data.iloc[i:,79]=='Benign').item):
         data.iloc[i:,79]=0
     if((data.iloc[i:,79]=='FTP-BruteForce').item):
         data.iloc[i:,79]=1
+    if((data.iloc[i:,79]=='SSH-Bruteforce').item):
+        data.iloc[i:,79]=2
 
 from sklearn.model_selection import train_test_split
 # print(data.shape[1]) #一共80列
