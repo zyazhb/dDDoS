@@ -6,3 +6,4 @@ node/contract/makefile/*.abi
 node/contract/migrations/
 node/contract/test/
 node/contract/truffle-config.js
+02-14-2018.csv
