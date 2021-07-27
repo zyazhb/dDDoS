@@ -1,0 +1,527 @@
+{{ define "indexb.html" }}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>dDDos</title>
+        <!-- CSS -->
+        <link href="/css/main.css" rel="stylesheet">
+        <link href="/css/styles.css" rel="stylesheet">
+        <!-- dateRangePicker -->
+        <link href="/plugins/daterangepicker/daterangepicker.css" rel="stylesheet">
+        <!-- Favicons -->
+        <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+        <link rel="icon" href="/img/favicon.png">
+        <!-- Fonts -->
+        <link href="/fonts/inter/inter.css" rel="stylesheet">
+        <link href="/css/css1.css" rel="stylesheet">
+        <link href="/css/css2.css" rel="stylesheet">
+        <!--[if lt IE 9]><script src="http://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script><script src="http://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        <!-- jQuery -->
+        <script src="/js/jquery.min.js"></script>
+    </head>
+    <body class="body">
+        <!-- include header -->
+    {{template "/header" .}}
+
+    <!-- main -->
+    <main>
+        <!-- include sidebar -->
+        {{template "/sidebar" .}}
+        <!-- main content -->
+        <div class="main-container">
+            <div class="overflow-hidden">
+                <div id="dashboard">
+                    <!-- content-header -->
+                    <div class="row flex-wrap align-items-center px-6 py-5">
+                        <div class="col">
+                            <div class="text-light pb-5 pb-lg-0 mr-auto">
+                                <h2 class="fw-100 mb-0">dDDos安全态势感知平台</h2>
+                                <p class="mb-0">基于区块链及分布式机器学习的物联网设备安全态势感知及控制平台</p>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-auto">
+                            <div class="d-flex flex-wrap">
+                                <div
+                                    class="w-100 w-sm-auto reportrange-btn d-flex align-items-center warning-gradient rounded-4 c-pointer">
+                                    <div class="d-flex align-items-center justify-content-center w-100">
+                                        <div id="reportrange" class="py-2 px-6"><span></span>&nbsp; </div>
+                                    </div>
+                                </div><a href="#"
+                                    class="mt-4 mt-sm-0 ml-sm-4 reportrange-btn btn btn-sm btn-circle warning-gradient lead-1 text-secondary"><img
+                                        src="./img/svg/calender.svg" style="display:block;width:20px;height:20px" /></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- panel -->
+            <div class="panel panel-orders">
+                <div class="panel-row row no-gutters">
+                    <div class="panel-col col-xl-5 col-lp-4 panel-pt-col">
+                        <!-- panel -->
+                        <div class="panel panel-pt">
+                            <div class="panel-row row no-gutters">
+                                <div class="panel-col col-xl-12">
+                                    <!-- welcome panel -->
+                                    <div class="panel">
+
+                                        <div class="panel-header align-items-center p-relative">
+                                            <div class="position-absolute w-100 l-5 l-sm-0 pe-n text-sm-center">
+                                                <h5 class="title pe-a mb-0 d-inline">网络信息概览</h5>
+                                            </div>
+                                            <div class="p-relative ml-auto"><a href="#" class="lead-1"><img
+                                                        src="./img/svg/refresh.svg"
+                                                        style="display:block;width:20px;height:20px"></a>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="collapse show" id="collapseUsersInfo">
+                                            <div class="panel-body py-6">
+                                                <div class="d-flex align-items-center">
+                                                    <div>
+                                                        <div class="d-flex align-items-center mb-6">
+                                                            <div class="mr-3"><span
+                                                                    class="d-block small-8 text-primary text-glow-primary"><img
+                                                                        src="./img/svg/point.svg"
+                                                                        style="display:block;width:20px;height:20px" /></span>
+                                                            </div>
+                                                            <div>
+                                                                <h3 class="mb-0 lh-1">5</h3><span
+                                                                    class="small-2 fw-600">设备数</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-flex align-items-center mb-6">
+                                                            <div class="mr-3"><span
+                                                                    class="d-block small-8 text-warning text-glow-warning"><img
+                                                                        src="./img/svg/point.svg"
+                                                                        style="display:block;width:20px;height:20px" /></span>
+                                                            </div>
+                                                            <div>
+                                                                <h3 class="mb-0 lh-1">34</h3><span
+                                                                    class="small-2 fw-600">总连接数</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="mr-3"><span
+                                                                    class="d-block small-8 text-danger text-glow-danger"><img
+                                                                        src="./img/svg/point.svg"
+                                                                        style="display:block;width:20px;height:20px" /></span>
+                                                            </div>
+                                                            <div>
+                                                                <h3 class="mb-0 lh-1">17</h3><span
+                                                                    class="small-2 fw-600">源IP数</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex-1">
+                                                        <div id="chart-rb"></div>
+                                                        <!-- modules.js -->
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex justify-content-center text-center"
+                                                    style="height: 75px;">
+                                                    <div class="px-6 lh-8">
+                                                        <h4 class="mb-0">{{.Total_stream}}Mb</h4> 总 <span
+                                                            class="d-none d-md-inline">流量</span>
+                                                    </div>
+                                                    <hr class="panel-y-hr">
+                                                    <div class="px-6 lh-8">
+                                                        <h4 class="mb-0"><span
+                                                                id="busuanzi_container_site_pv"></span><span
+                                                                id="busuanzi_value_site_pv"></span></h4>区块链节点数
+                                                    </div>
+                                                    <hr class="panel-y-hr">
+                                                    <div class="px-6 lh-8">
+                                                        <h4 class="mb-0">3</h4> IP所属国家数
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div><!-- /.welcome panel -->
+                                    <div class="panel">
+                                        <div class="panel-header align-items-center p-relative">
+                                            <div class="position-absolute w-100 l-5 l-sm-0 pe-n text-sm-center">
+                                                <h5 class="title pe-a mb-0 d-inline">防御日志</h5>
+                                            </div>
+                                            <div class="p-relative ml-auto"><a href="#" class="lead-1"><img
+                                                        src="./img/svg/refresh.svg"
+                                                        style="display:block;width:20px;height:20px"></a>
+                                            </div>
+                                        </div>
+                                        <div class="collapse show" id="collapseActivityTimeline">
+                                            <div class="panel-body mb-0">
+                                                <div class="pl-3">
+                                                    <!-- item -->
+
+                                                    <!-- item -->
+                                                    <div id="c1" class="timeline-item" data-time="22 Mar 2021 14:24"
+                                                        data-icon="&#xe901;">
+                                                        <div class="timeline-item-inner">
+                                                            <h6 class="d-inline-block fw-500 text-danger mb-1">
+                                                                Error</h6>
+                                                            <p id="d1" class="small-3 lh-5 mb-0">
+                                                                {"CommiterID":"0xcd12E46fe6bdf4Eb73a96c1a775590719c69c706",
+                                                            </p>
+                                                            "TargetIP":"219.217.199.15",
+                                                            "Description":"IP:219.217.199.15(智能微波炉)正在遭受攻击"}
+                                                        </div>
+                                                    </div><!-- /.item -->
+                                                    <!-- item -->
+                                                    <div class="timeline-item" data-time="22 Mar 2021 14:25"
+                                                        data-icon="&#xe927;">
+                                                        <div class="timeline-item-inner">
+                                                            <h6 class="d-inline-block fw-500 text-warning mb-1">
+                                                                Warning</h6>
+                                                            <p class="small-3 lh-5 mb-0">
+                                                                {"CommiterID":"0x91e03AfEE54DD2D4B441BDcFC428f9611e109546",
+                                                            </p>
+                                                            "TargetIP":"219.217.199.16",
+                                                            "Description":"IP:219.217.199.16(物联网空调)正在遭受攻击"}
+                                                        </div>
+                                                    </div><!-- /.item -->
+                                                    <!-- item -->
+                                                    <div class="timeline-item" data-time="22 Mar 2021 14:32"
+                                                        data-icon="&#xe901;">
+                                                        <div class="timeline-item-inner">
+                                                            <h6 class="d-inline-block fw-500 text-danger mb-1">
+                                                                Error</h6>
+                                                            <p class="small-3 lh-5 mb-0">
+                                                                {"CommiterID":"0x91e03AfEE54DD2D4B441BDcFC428f9611e109546",
+                                                            </p>
+                                                            "Description":"IP:219.217.199.16(物联网空调)已停运"}</p>
+                                                        </div>
+                                                    </div><!-- /.item -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- panel-col -->
+
+                    <div class="panel-col col-xl-7 col-lp-8 panel-pt-col">
+                        <!-- panel -->
+                        <div class="panel">
+                            <div class="panel-header align-items-center p-relative">
+                                <div class="position-absolute w-100 l-5 l-sm-0 pe-n text-sm-center">
+                                    <h5 class="title pe-a mb-0 d-inline">实景图渲染</h5>
+                                </div>
+                                <div class="p-relative ml-auto"><a href="#" class="lead-1"><img
+                                            src="./img/svg/bigger.svg" style="display:block;width:20px;height:20px"
+                                            id="bigger" /></span></a>
+                                </div>
+                            </div>
+                            <script>
+                                $(function () {
+                                    $("img[id='2gif']").hide();
+                                    $("img[id='bigger']").click(function () {
+                                        $("img[id='2gif']").toggle();
+                                        $("img[id='1gif']").toggle();
+                                    })
+                                })
+
+                            </script>
+                            <div class="panel-body py-0 pl-0 pr-4" id="switchgif">
+                                <img id="1gif" src="/img/1.gif">
+                                <img id="2gif" src="/img/2.gif">
+                            </div>
+                        </div><!-- /.panel -->
+                        <!-- panel -->
+                        <div class="panel panel-orders">
+                            <div class="panel-row row no-gutters">
+                                <div class="panel-col col-lp-6">
+                                    <div class="panel">
+                                        <div class="panel-header align-items-center p-relative">
+                                            <div class="position-absolute w-100 l-5 l-sm-0 pe-n text-sm-center">
+                                                <h5 class="title pe-a mb-0 d-inline">全网防御情况</h5>
+                                            </div>
+                                            <div class="p-relative ml-auto"><a href="#" class="lead-1"><img
+                                                        src="./img/svg/refresh.svg"
+                                                        style="display:block;width:20px;height:20px"></a>
+                                            </div>
+                                        </div>
+                                        <div class="collapse show" id="collapseAudienceBC">
+                                            <div class="panel-body pt-0">
+                                                <div id="chart-radialBar_B"></div>
+                                                <!-- modules.js -->
+                                                <div class="d-flex align-items-center justify-content-center">
+                                                    <div class="text-center px-6"><span
+                                                            class="d-block small-8 text-warning text-glow-white"></span>
+                                                        <h3 class="mb-0">2</h3><span
+                                                            class="fw-600 text-white text-glow-danger-sm">正遭受攻击数</span>
+                                                    </div>
+                                                    <div class="text-center px-6"><span
+                                                            class="d-block small-8 text-warning text-glow-warning"></span>
+                                                        <h3 class="mb-0">86</h3><span
+                                                            class="fw-600 text-warning text-glow-warning-sm">全网总设备数</span>
+                                                    </div>
+                                                    <div class="text-center px-6"><span
+                                                            class="d-block small-8 text-warning text-glow-danger"></span>
+                                                        <h3 class="mb-0">79</h3><span
+                                                            class="fw-600 text-danger text-glow-white-sm">正常运行数
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="text-center">
+                                                    <hr class="panel-hr my-6">
+                                                    <div class="w-lg-75 mx-auto">
+                                                        <p class="mb-0 lead-1"><span
+                                                                class="text-warning fw-600">+9.2%</span>与七天前相比</p>
+                                                    </div>
+                                                    <hr class="panel-hr mt-6 mb-0">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel-col col-lp-6">
+                                    <!-- panel -->
+                                    <div class="panel">
+                                        <div class="panel-header align-items-center p-relative">
+                                            <div class="position-absolute w-100 l-5 l-sm-0 pe-n text-sm-center">
+                                                <h5 class="title pe-a mb-0 d-inline">物联网设备状态概览</h5>
+                                            </div>
+                                            <div class="p-relative ml-auto"><a href="#" class="lead-1"><img
+                                                        src="./img/svg/refresh.svg"
+                                                        style="display:block;width:20px;height:20px"></a>
+                                            </div>
+                                        </div>
+                                        <div class="collapse show" id="collapseRecentOrders">
+                                            <div class="panel-body pl-6">
+                                                <div>
+                                                    <div class="panel-list-sc list-unstyled" data-scrollbar="scroll">
+                                                        <div class="pr-10">
+                                                            <table class="table table-borderless mb-0">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th scope="col" class="pt-0">#</th>
+                                                                        <th scope="col" class="pt-0">ID</th>
+                                                                        <th scope="col" class="pt-0">Name</th>
+                                                                        <th scope="col" class="pt-0">IP</th>
+                                                                        <th scope="col" class="pt-0">Status</th>
+                                                                        <th scope="col" class="pt-0"></th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <th scope="row">1</th>
+                                                                        <td>
+                                                                            <div class="d-flex align-items-center">
+                                                                                <small
+                                                                                    class="ml-3 small-2">2021001</small>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>空气净化器</td>
+                                                                        <td>219.217.199.12</td>
+                                                                        <td><a href=""
+                                                                                class="btn btn-sm btn-outline-warning btn-round px-4"
+                                                                                id="test1">Run</a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div class="panel-dropdown-menu dropdown">
+                                                                                <button
+                                                                                    class="btn text-warning dropdown-toggle no-carret bc-t p-0"
+                                                                                    type="button" data-toggle="dropdown"
+                                                                                    aria-haspopup="true"
+                                                                                    aria-expanded="false"><img
+                                                                                        src="./img/svg/more.svg"
+                                                                                        style="display:block;width:20px;height:20px" /></button>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row">2</th>
+                                                                        <td>
+                                                                            <div class="d-flex align-items-center">
+                                                                                <small
+                                                                                    class="ml-3 small-2">2021002</small>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>扫地机器人</td>
+                                                                        <td>219.217.199.13</td>
+                                                                        <td><a href=""
+                                                                                class="btn btn-sm btn-outline-warning btn-round px-4"
+                                                                                id="test2">Run</a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div class="panel-dropdown-menu dropdown">
+                                                                                <button
+                                                                                    class="btn text-warning dropdown-toggle no-carret bc-t p-0"
+                                                                                    type="button" data-toggle="dropdown"
+                                                                                    aria-haspopup="true"
+                                                                                    aria-expanded="false"><img
+                                                                                        src="./img/svg/more.svg"
+                                                                                        style="display:block;width:20px;height:20px" /></button>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row">3</th>
+                                                                        <td>
+                                                                            <div class="d-flex align-items-center">
+                                                                                <small
+                                                                                    class="ml-3 small-2">2021003</small>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>智能灯具</td>
+                                                                        <td>219.217.199.14</td>
+                                                                        <td><a href=""
+                                                                                class="btn btn-sm btn-outline-danger btn-round px-4"
+                                                                                id="test3">Run</a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div class="panel-dropdown-menu dropdown">
+                                                                                <button
+                                                                                    class="btn text-warning dropdown-toggle no-carret bc-t p-0"
+                                                                                    type="button" data-toggle="dropdown"
+                                                                                    aria-haspopup="true"
+                                                                                    aria-expanded="false"><img
+                                                                                        src="./img/svg/more.svg"
+                                                                                        style="display:block;width:20px;height:20px" /></button>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row">4</th>
+                                                                        <td>
+                                                                            <div class="d-flex align-items-center">
+                                                                                <small
+                                                                                    class="ml-3 small-2">2021004</small>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>智能微波炉</td>
+                                                                        <td>219.217.199.15</td>
+                                                                        <td><a href=""
+                                                                                class="btn btn-sm btn-outline-warning btn-round px-4"
+                                                                                id="test4">Under Attack</a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div class="panel-dropdown-menu dropdown">
+                                                                                <button
+                                                                                    class="btn text-warning dropdown-toggle no-carret bc-t p-0"
+                                                                                    type="button" data-toggle="dropdown"
+                                                                                    aria-haspopup="true"
+                                                                                    aria-expanded="false"><img
+                                                                                        src="./img/svg/more.svg"
+                                                                                        style="display:block;width:20px;height:20px" /></button>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row">5</th>
+                                                                        <td>
+                                                                            <div class="d-flex align-items-center">
+                                                                                <small
+                                                                                    class="ml-3 small-2">2021004</small>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>物联网空调</td>
+                                                                        <td>219.217.199.16</td>
+                                                                        <td><a href=""
+                                                                                class="btn btn-sm btn-outline-success btn-round px-4"
+                                                                                id="test5">Offline</a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div class="panel-dropdown-menu dropdown">
+                                                                                <button
+                                                                                    class="btn text-warning dropdown-toggle no-carret bc-t p-0"
+                                                                                    type="button" data-toggle="dropdown"
+                                                                                    aria-haspopup="true"
+                                                                                    aria-expanded="false"><img
+                                                                                        src="./img/svg/more.svg"
+                                                                                        style="display:block;width:20px;height:20px" /></button>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div><!-- /.panel -->
+                                </div>
+                            </div>
+                        </div><!-- /.panel -->
+                    </div><!-- ./panel-col -->
+                </div>
+            </div><!-- /.panel -->
+    </main>
+    <!-- /.main -->
+    <!-- offcanvas - search -->
+    <div id="offcanvas-search" class="offcanvas h-100 py-8" data-animation="fadeDown" data-scrollbar="offcanvas">
+        <div class="row">
+            <div class="col-sm-1 order-sm-last"><button type="button" data-toggle="offcanvas-close"
+                    class="close float-right mr-lg-6 text-light o-1 lead-2 fw-100" data-dismiss="offcanvas"
+                    aria-label="Close"><span aria-hidden="true" class="icon-close"></span></button></div>
+        </div>
+    </div>
+    <!-- /.offcanvas - search -->
+    <!-- preloader -->
+    <div class="preloaderWrapper"></div>
+    <!-- busuanzi -->
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="/js/bootstrap.min.js"></script>
+    <!-- Chart.js -->
+    <script src="/plugins/chart/Chart.min.js" id="_chartJS_min"></script>
+    <script src="/plugins/chart/Chart.bundle.min.js"></script>
+    <script src="/plugins/chart/chartjs-plugin-annotation.js"></script>
+    <script src="/plugins/chart/chartjs-plugin-labels.js"></script>
+    <!-- apexcharts -->
+    <script src="/plugins/apexcharts/apexcharts.min.js"></script>
+    <!-- RangeSlider -->
+    <script src="/plugins/rangeslider/rangeslider.min.js" id="_rangeJS_min"></script>
+    <!-- Moment -->
+    <script src="/plugins/lib/moment/moment.min.js"></script>
+    <!-- dateRangePicker -->
+    <script src="/plugins/daterangepicker/daterangepicker.js" id="_DateRangeJS_min"></script>
+    <!-- User JS -->
+    <script src="/js/scripts.js"></script>
+    <!-- Main JS -->
+    <script src="/js/main.js" id="_mainJS" data-plugins="load"></script>
+    <!-- Modules -->
+    <script src="/js/modules.js"></script>
+</body>
+
+<script>
+    for (let index = 0; index < 5; index++) {
+        let name = "#test".concat(index);
+
+        $(name).click(function () {
+            if ($(this).hasClass("btn-outline-warning")) {
+                $(this).removeClass("btn-outline-warning");
+                $(this).addClass("btn-outline-danger");
+
+                $(this).text("UNDER ATTACK");
+
+                return false;
+            } else if ($(this).hasClass("btn-outline-danger")) {
+                $(this).removeClass("btn-outline-danger");
+                $(this).addClass("btn-outline-success");
+
+                $(this).text("OFFLINE");
+                return false;
+            } else if ($(this).hasClass("btn-outline-success")) {
+                $(this).removeClass("btn-outline-success");
+                $(this).addClass("btn-outline-warning");
+
+                $(this).text("RUN");
+                return false;
+            } else {
+                console.log("Failed to change the style!");
+            }
+        });
+    }
+
+</script>
+
+</html>
+{{ end }}
