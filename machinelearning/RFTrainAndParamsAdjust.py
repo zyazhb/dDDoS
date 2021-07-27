@@ -116,3 +116,10 @@ if __name__=='__main__':
     defaultTest(x,y,newdata)
     paramsAdjustTest(x,y,newdata)
     ExtraTreeTest(x,y)
+
+# 输出结果：
+# 未调参交叉验证得分: 0.999852
+# ['未调参时预测结果为：FTP-BruteForce']
+# 调参后交叉验证得分: 0.999803
+# ['调参后预测结果为：FTP-BruteForce']
+# ExtraTree分类器集合得分: 0.999852
