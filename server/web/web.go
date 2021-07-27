@@ -21,7 +21,19 @@ func RunWeb() {
 
 		c.HTML(http.StatusOK, "index.html", gin.H{
 			"title":        "Main website",
-			"Total_stream": "5",
+			"Total_stream": "56",
+			"time":         nowInfo.Now.String(),
+			"reason":       nowInfo.Reason,
+		})
+	})
+
+	router.GET("/indexb", func(c *gin.Context) {
+
+		c.HTML(http.StatusOK, "indexb.html", gin.H{
+			"title":        "Main website2",
+			"Total_stream": "44",
+			"time":         nowInfo.Now.String(),
+			"reason":       nowInfo.Reason,
 		})
 	})
 
@@ -32,4 +44,13 @@ func RunWeb() {
 	})
 
 	router.Run(":80")
+}
+
+func GetMsg() {
+	for {
+		select {
+		case <-time.Tick(1 * time.Second):
+			nowInfo = <-capture.UpChan
+		}
+	}
 }
