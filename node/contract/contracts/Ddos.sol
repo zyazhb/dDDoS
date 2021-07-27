@@ -56,7 +56,3 @@ contract trafficStation {
         return traffics[msg.sender][trafficID];
     }
 }
-
-
-
-

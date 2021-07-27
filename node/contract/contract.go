@@ -26,11 +26,26 @@ var (
 	_ = event.NewSubscription
 )
 
+// trafficStationupchainTrafficInfo is an auto generated low-level Go binding around an user-defined struct.
+type trafficStationupchainTrafficInfo struct {
+	TrafficID   *big.Int
+	SourceAddr  common.Address
+	TrafficInfo string
+}
+
+// trafficStationvoteInfo is an auto generated low-level Go binding around an user-defined struct.
+type trafficStationvoteInfo struct {
+	SourceAddr common.Address
+	VoteAddr   common.Address
+	TrafficID  *big.Int
+	State      bool
+}
+
 // ContractABI is the input ABI used to generate the binding from.
-const ContractABI = "[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"eventID\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"addr\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"typeName\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"}],\"name\":\"msgConn\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"events\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"eventID\",\"type\":\"uint256\"}],\"name\":\"indexRconn\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"eventID\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"addr\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"sp\",\"type\":\"uint256\"},{\"internalType\":\"string[]\",\"name\":\"rconn\",\"type\":\"string[]\"}],\"name\":\"insertRconn\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"eventID\",\"type\":\"uint256\"}],\"name\":\"insertRddos\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"nodesAddr\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"rconnSpeed\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"threshold\",\"type\":\"uint256\"}],\"name\":\"reCheckDDos\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"addr\",\"type\":\"address\"}],\"name\":\"register\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]"
+const ContractABI = "[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"trafficID\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"sourceAddr\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"trafficInfo\",\"type\":\"string\"}],\"name\":\"trafficTrans\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"sourceAddr\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"voteAddr\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"trafficID\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"bool\",\"name\":\"state\",\"type\":\"bool\"}],\"name\":\"voteTrans\",\"type\":\"event\"},{\"inputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"trafficID\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"sourceAddr\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"trafficInfo\",\"type\":\"string\"}],\"internalType\":\"structtrafficStation.upchainTrafficInfo\",\"name\":\"uti\",\"type\":\"tuple\"}],\"name\":\"emitTrafficTrans\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"sourceAddr\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"voteAddr\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"trafficID\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"state\",\"type\":\"bool\"}],\"internalType\":\"structtrafficStation.voteInfo\",\"name\":\"vi\",\"type\":\"tuple\"}],\"name\":\"emitVoteTrans\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"trafficID\",\"type\":\"uint256\"}],\"name\":\"getTrafficInfoByID\",\"outputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"trafficID\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"sourceAddr\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"trafficInfo\",\"type\":\"string\"}],\"internalType\":\"structtrafficStation.upchainTrafficInfo\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"trafficID\",\"type\":\"uint256\"}],\"name\":\"getVoteInfoByID\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]"
 
 // ContractBin is the compiled bytecode used for deploying new contracts.
-var ContractBin = "0x6080604052348015620000125760006000fd5b505b5b33600260006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550600160006000506000600260009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff0219169083151502179055505b6000600090505b600160005080549050811015620001ca5760006006600050600060016000508481548110151562000135577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b906000526020600020900160005b9054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff0219169083151502179055505b8080620001c190620001e2565b915050620000db565b505b620002635662000262565b60008190505b919050565b6000620001ef82620001d7565b91507fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff82141562000225576200022462000231565b5b6001820190505b919050565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052601160045260246000fd5b565b5b6115fe80620002736000396000f3fe60806040523480156100115760006000fd5b50600436106100825760003560e01c80634420e4861161005c5780634420e4861461010457806346db51a914610120578063b8b7db1b1461013c578063f495ae8c1461015857610082565b806306db1fd4146100885780630b791430146100a45780631161840f146100d457610082565b60006000fd5b6100a2600480360381019061009d9190610f00565b610188565b005b6100be60048036038101906100b99190610ed5565b6104ac565b6040516100cb919061117b565b60405180910390f35b6100ee60048036038101906100e99190610ed5565b6104d5565b6040516100fb91906110db565b60405180910390f35b61011e60048036038101906101199190610eaa565b61051b565b005b61013a60048036038101906101359190610ed5565b6106d2565b005b61015660048036038101906101519190610f80565b610a21565b005b610172600480360381019061016d9190610ed5565b610b79565b60405161017f919061117b565b60405180910390f35b600060005060003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff1615156101e45760006000fd5b6003600050600085815260200190815260200160002060005060050160009054906101000a900460ff16151515610250576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004016102479061115a565b60405180910390fd5b826003600050600086815260200190815260200160002060005060000160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550816003600050600086815260200190815260200160002060005060020160005081909090555080600081518110151561030d577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b6020026020010151600360005060008681526020019081526020016000206000506001016000509080519060200190610347929190610c04565b50806001815181101515610384577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b60200260200101516003600050600086815260200190815260200160002060005060030160005090805190602001906103be929190610c04565b508060028151811015156103fb577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b6020026020010151600360005060008681526020019081526020016000206000506004016000509080519060200190610435929190610c04565b5060016003600050600086815260200190815260200160002060005060050160006101000a81548160ff0219169083151502179055507f15e0c0bad37064a057c88d56e6913f20bacef4e5264629992fe52ad599d1c4a4848460405161049c9291906111e7565b60405180910390a15b5b50505050565b600560005081815481106104bf57600080fd5b906000526020600020900160005b915090505481565b600160005081815481106104e857600080fd5b906000526020600020900160005b9150909054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b600260009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415156105785760006000fd5b600060005060008273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff1615151561060a576040517f08c379a0000000000000000000000000000000000000000000000000000000008152600401610601906110f7565b60405180910390fd5b6001600060005060008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff021916908315150217905550600160005081908060018154018082558091505060019003906000526020600020900160005b9091909190916101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055505b5b50565b600060005060003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff16151561072e5760006000fd5b6003600050600082815260200190815260200160002060005060050160009054906101000a900460ff1615151561079a576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040161079190611139565b60405180910390fd5b600560005081908060018154018082558091505060019003906000526020600020900160005b9091909190915090905560036000506000828152602001908152602001600020600050600460005060008381526020019081526020016000206000506000820160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff168160000160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550600182016000508160010160005090805461087d9061131e565b610888929190610c8f565b5060028201600050548160020160005090905560038201600050816003016000509080546108b59061131e565b6108c0929190610c8f565b5060048201600050816004016000509080546108db9061131e565b6108e6929190610c8f565b506005820160009054906101000a900460ff168160050160006101000a81548160ff0219169083151502179055509050506003600050600082815260200190815260200160002060006000820160006101000a81549073ffffffffffffffffffffffffffffffffffffffff02191690556001820160006109669190610d1c565b60028201600050600090556003820160006109819190610d1c565b6004820160006109919190610d1c565b6005820160006101000a81549060ff021916905550507f15e0c0bad37064a057c88d56e6913f20bacef4e5264629992fe52ad599d1c4a4816004600050600084815260200190815260200160002060005060000160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16604051610a14929190611197565b60405180910390a15b5b50565b600060005060003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff161515610a7d5760006000fd5b600060005060003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff161515610b0e576040517f08c379a0000000000000000000000000000000000000000000000000000000008152600401610b0590611118565b60405180910390fd5b8082101515610b73576001600660005060003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff0219169083151502179055505b5b5b5050565b6000600060005060003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff161515610bd75760006000fd5b60036000506000838152602001908152602001600020600050600201600050549050610bfe565b5b919050565b828054610c109061131e565b90600052602060002090601f016020900481019282610c325760008555610c7e565b82601f10610c4b57805160ff1916838001178555610c7e565b82800160010185558215610c7e579182015b82811115610c7d5782518260005090905591602001919060010190610c5d565b5b509050610c8b9190610d5c565b5090565b828054610c9b9061131e565b90600052602060002090601f016020900481019282610cbd5760008555610d0b565b82601f10610cce5780548555610d0b565b82800160010185558215610d0b57600052602060002091601f016020900482015b82811115610d0a578254825591600101919060010190610cef565b5b509050610d189190610d5c565b5090565b508054610d289061131e565b6000825580601f10610d3a5750610d59565b601f016020900490600052602060002090810190610d589190610d5c565b5b50565b610d61565b80821115610d7b5760008181506000905550600101610d61565b5090566115c7565b6000610d96610d918461125e565b611237565b9050808382526020820190508260005b85811015610dd75781358501610dbc8882610e66565b8452602084019350602083019250505b600181019050610da6565b5050505b9392505050565b6000610df5610df08461128b565b611237565b905082815260208101848484011115610e0e5760006000fd5b610e1984828561130e565b505b9392505050565b600081359050610e3181611591565b5b92915050565b600082601f8301121515610e4c5760006000fd5b8135610e5c848260208601610d83565b9150505b92915050565b600082601f8301121515610e7a5760006000fd5b8135610e8a848260208601610de2565b9150505b92915050565b600081359050610ea3816115ac565b5b92915050565b600060208284031215610ebd5760006000fd5b6000610ecb84828501610e22565b9150505b92915050565b600060208284031215610ee85760006000fd5b6000610ef684828501610e94565b9150505b92915050565b600060006000600060808587031215610f195760006000fd5b6000610f2787828801610e94565b9450506020610f3887828801610e22565b9350506040610f4987828801610e94565b925050606085013567ffffffffffffffff811115610f675760006000fd5b610f7387828801610e38565b9150505b92959194509250565b6000600060408385031215610f955760006000fd5b6000610fa385828601610e94565b9250506020610fb485828601610e94565b9150505b9250929050565b610fc8816112cf565b82525b5050565b6000610fdc6005836112bd565b9150610fe7826113f9565b6020820190505b919050565b60006110006005836112bd565b915061100b82611423565b6020820190505b919050565b6000611024601b836112bd565b915061102f8261144d565b6020820190505b919050565b60006110486023836112bd565b915061105382611477565b6040820190505b919050565b600061106c6037836112bd565b9150611077826114c7565b6040820190505b919050565b60006110906035836112bd565b915061109b82611517565b6040820190505b919050565b60006110b46006836112bd565b91506110bf82611567565b6020820190505b919050565b6110d481611303565b82525b5050565b60006020820190506110f06000830184610fbf565b5b92915050565b6000602082019050818103600083015261111081611017565b90505b919050565b600060208201905081810360008301526111318161103b565b90505b919050565b600060208201905081810360008301526111528161105f565b90505b919050565b6000602082019050818103600083015261117381611083565b90505b919050565b600060208201905061119060008301846110cb565b5b92915050565b60006080820190506111ac60008301856110cb565b6111b96020830184610fbf565b81810360408301526111ca816110a7565b905081810360608301526111dd81610fcf565b90505b9392505050565b60006080820190506111fc60008301856110cb565b6112096020830184610fbf565b818103604083015261121a816110a7565b9050818103606083015261122d81610ff3565b90505b9392505050565b6000611241611253565b905061124d8282611353565b5b919050565b600060405190505b90565b600067ffffffffffffffff821115611279576112786113b6565b5b6020820290506020810190505b919050565b600067ffffffffffffffff8211156112a6576112a56113b6565b5b6112af826113e7565b90506020810190505b919050565b60008282526020820190505b92915050565b60006112da826112e2565b90505b919050565b600073ffffffffffffffffffffffffffffffffffffffff821690505b919050565b60008190505b919050565b828183376000838301525b505050565b60006002820490506001821680151561133857607f821691505b6020821081141561134c5761134b611385565b5b505b919050565b61135c826113e7565b810181811067ffffffffffffffff8211171561137b5761137a6113b6565b5b80604052505b5050565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052602260045260246000fd5b565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052604160045260246000fd5b565b6000601f19601f83011690505b919050565b7f5264646f7300000000000000000000000000000000000000000000000000000060008201525b50565b7f52636f6e6e00000000000000000000000000000000000000000000000000000060008201525b50565b7f546865206e6f646520686173206265656e20726567697374656421000000000060008201525b50565b7f546865206e6f646527732061646472657373206973206e6f742072656769737460008201527f656421000000000000000000000000000000000000000000000000000000000060208201525b50565b7f54686973206576656e74494420686173206265656e2075736564202c2063616e60008201527f277420696e7365727420696e746f207264646f7365732100000000000000000060208201525b50565b7f54686973206576656e74494420686173206265656e2075736564202c2063616e60008201527f277420696e7365727420696e746f2072636f6e6e73000000000000000000000060208201525b50565b7f696e73657274000000000000000000000000000000000000000000000000000060008201525b50565b61159a816112cf565b811415156115a85760006000fd5b5b50565b6115b581611303565b811415156115c35760006000fd5b5b50565bfea264697066735822122080afafa881436471b26192bb1369175c6601827739860ada4b68f0ad8da99c1964736f6c63430008020033"
+var ContractBin = "0x60806040523480156100115760006000fd5b50610017565b610c34806100266000396000f3fe60806040523480156100115760006000fd5b50600436106100515760003560e01c806314f6c7401461005757806367aad5fb14610087578063ab680e45146100b7578063e56816ee146100d357610051565b60006000fd5b610071600480360381019061006c919061072b565b6100ef565b60405161007e91906108d4565b60405180910390f35b6100a1600480360381019061009c919061072b565b610157565b6040516100ae91906108b1565b60405180910390f35b6100d160048036038101906100cc9190610700565b6102ca565b005b6100ed60048036038101906100e891906106bc565b6103e8565b005b6000600060005060003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206000506000838152602001908152602001600020600050549050610152565b919050565b61015f6104dd565b600160005060003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206000506000838152602001908152602001600020600050604051806060016040529081600082016000505481526020016001820160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200160028201600050805461023990610aa0565b80601f016020809104026020016040519081016040528092919081815260200182805461026590610aa0565b80156102b25780601f10610287576101008083540402835291602001916102b2565b820191906000526020600020905b81548152906001019060200180831161029557829003601f168201915b50505050508152602001505090506102c5565b919050565b600073ffffffffffffffffffffffffffffffffffffffff16816020015173ffffffffffffffffffffffffffffffffffffffff161415151561030b5760006000fd5b6001151581606001511515141561039757600160006000506000836000015173ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206000506000836040015181526020019081526020016000206000828282505461038d91906109b8565b9250508190909055505b7fe6d2d2c21284e671da4a773c628d519f81d37af2ae3950c34d207f567bb08f4e81600001518260200151836040015184606001516040516103dc949392919061086b565b60405180910390a15b50565b806020015173ffffffffffffffffffffffffffffffffffffffff16600073ffffffffffffffffffffffffffffffffffffffff16141515156104295760006000fd5b600060006000506000836020015173ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206000506000836000015181526020019081526020016000206000508190909055507f82a0cd03c34dff9e0879fd6d40cea94cdf58b4b4bbf4b2c8a3ebb91ca80075778160000151826020015183604001516040516104d1939291906108f0565b60405180910390a15b50565b604051806060016040528060008152602001600073ffffffffffffffffffffffffffffffffffffffff16815260200160608152602001509056610bfd565b600061052e61052984610956565b61092f565b9050828152602081018484840111156105475760006000fd5b610552848285610a5b565b505b9392505050565b60008135905061056a81610bac565b5b92915050565b60008135905061058081610bc7565b5b92915050565b600082601f830112151561059b5760006000fd5b81356105ab84826020860161051b565b9150505b92915050565b6000606082840312156105c85760006000fd5b6105d2606061092f565b905060006105e2848285016106a6565b60008301525060206105f68482850161055b565b602083015250604082013567ffffffffffffffff8111156106175760006000fd5b61062384828501610587565b6040830152505b92915050565b6000608082840312156106435760006000fd5b61064d608061092f565b9050600061065d8482850161055b565b60008301525060206106718482850161055b565b6020830152506040610685848285016106a6565b604083015250606061069984828501610571565b6060830152505b92915050565b6000813590506106b581610be2565b5b92915050565b6000602082840312156106cf5760006000fd5b600082013567ffffffffffffffff8111156106ea5760006000fd5b6106f6848285016105b5565b9150505b92915050565b6000608082840312156107135760006000fd5b600061072184828501610630565b9150505b92915050565b60006020828403121561073e5760006000fd5b600061074c848285016106a6565b9150505b92915050565b61075f81610a0f565b82525b5050565b61076f81610a0f565b82525b5050565b61077f81610a22565b82525b5050565b600061079182610988565b61079b8185610994565b93506107ab818560208601610a6b565b6107b481610b9a565b84019150505b92915050565b60006107cb82610988565b6107d581856109a6565b93506107e5818560208601610a6b565b6107ee81610b9a565b84019150505b92915050565b6000606083016000830151610812600086018261084b565b5060208301516108256020860182610756565b506040830151848203604086015261083d8282610786565b915050809150505b92915050565b61085481610a50565b82525b5050565b61086481610a50565b82525b5050565b60006080820190506108806000830187610766565b61088d6020830186610766565b61089a604083018561085b565b6108a76060830184610776565b5b95945050505050565b600060208201905081810360008301526108cb81846107fa565b90505b92915050565b60006020820190506108e9600083018461085b565b5b92915050565b6000606082019050610905600083018661085b565b6109126020830185610766565b818103604083015261092481846107c0565b90505b949350505050565b600061093961094b565b90506109458282610ad5565b5b919050565b600060405190505b90565b600067ffffffffffffffff82111561097157610970610b69565b5b61097a82610b9a565b90506020810190505b919050565b6000815190505b919050565b60008282526020820190505b92915050565b60008282526020820190505b92915050565b60006109c382610a50565b91506109ce83610a50565b9250827fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff03821115610a0357610a02610b07565b5b82820190505b92915050565b6000610a1a82610a2f565b90505b919050565b600081151590505b919050565b600073ffffffffffffffffffffffffffffffffffffffff821690505b919050565b60008190505b919050565b828183376000838301525b505050565b60005b83811015610a8a5780820151818401525b602081019050610a6e565b83811115610a99576000848401525b505b505050565b600060028204905060018216801515610aba57607f821691505b60208210811415610ace57610acd610b38565b5b505b919050565b610ade82610b9a565b810181811067ffffffffffffffff82111715610afd57610afc610b69565b5b80604052505b5050565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052601160045260246000fd5b565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052602260045260246000fd5b565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052604160045260246000fd5b565b6000601f19601f83011690505b919050565b610bb581610a0f565b81141515610bc35760006000fd5b5b50565b610bd081610a22565b81141515610bde5760006000fd5b5b50565b610beb81610a50565b81141515610bf95760006000fd5b5b50565bfea26469706673582212209ca6957911d6a0f253e641fff16042a1177000de656c150e8480b1465c0dab1964736f6c63430008020033"
 
 // DeployContract deploys a new Ethereum contract, binding an instance of Contract to it.
 func DeployContract(auth *bind.TransactOpts, backend bind.ContractBackend) (common.Address, *types.Transaction, *Contract, error) {
@@ -188,12 +203,43 @@ func (_Contract *ContractTransactorRaw) Transact(opts *bind.TransactOpts, method
 	return _Contract.Contract.contract.Transact(opts, method, params...)
 }
 
-// Events is a free data retrieval call binding the contract method 0x0b791430.
+// GetTrafficInfoByID is a free data retrieval call binding the contract method 0x67aad5fb.
 //
-// Solidity: function events(uint256 ) view returns(uint256)
-func (_Contract *ContractCaller) Events(opts *bind.CallOpts, arg0 *big.Int) (*big.Int, error) {
+// Solidity: function getTrafficInfoByID(uint256 trafficID) view returns((uint256,address,string))
+func (_Contract *ContractCaller) GetTrafficInfoByID(opts *bind.CallOpts, trafficID *big.Int) (trafficStationupchainTrafficInfo, error) {
 	var out []interface{}
-	err := _Contract.contract.Call(opts, &out, "events", arg0)
+	err := _Contract.contract.Call(opts, &out, "getTrafficInfoByID", trafficID)
+
+	if err != nil {
+		return *new(trafficStationupchainTrafficInfo), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(trafficStationupchainTrafficInfo)).(*trafficStationupchainTrafficInfo)
+
+	return out0, err
+
+}
+
+// GetTrafficInfoByID is a free data retrieval call binding the contract method 0x67aad5fb.
+//
+// Solidity: function getTrafficInfoByID(uint256 trafficID) view returns((uint256,address,string))
+func (_Contract *ContractSession) GetTrafficInfoByID(trafficID *big.Int) (trafficStationupchainTrafficInfo, error) {
+	return _Contract.Contract.GetTrafficInfoByID(&_Contract.CallOpts, trafficID)
+}
+
+// GetTrafficInfoByID is a free data retrieval call binding the contract method 0x67aad5fb.
+//
+// Solidity: function getTrafficInfoByID(uint256 trafficID) view returns((uint256,address,string))
+func (_Contract *ContractCallerSession) GetTrafficInfoByID(trafficID *big.Int) (trafficStationupchainTrafficInfo, error) {
+	return _Contract.Contract.GetTrafficInfoByID(&_Contract.CallOpts, trafficID)
+}
+
+// GetVoteInfoByID is a free data retrieval call binding the contract method 0x14f6c740.
+//
+// Solidity: function getVoteInfoByID(uint256 trafficID) view returns(uint256)
+func (_Contract *ContractCaller) GetVoteInfoByID(opts *bind.CallOpts, trafficID *big.Int) (*big.Int, error) {
+	var out []interface{}
+	err := _Contract.contract.Call(opts, &out, "getVoteInfoByID", trafficID)
 
 	if err != nil {
 		return *new(*big.Int), err
@@ -205,169 +251,65 @@ func (_Contract *ContractCaller) Events(opts *bind.CallOpts, arg0 *big.Int) (*bi
 
 }
 
-// Events is a free data retrieval call binding the contract method 0x0b791430.
+// GetVoteInfoByID is a free data retrieval call binding the contract method 0x14f6c740.
 //
-// Solidity: function events(uint256 ) view returns(uint256)
-func (_Contract *ContractSession) Events(arg0 *big.Int) (*big.Int, error) {
-	return _Contract.Contract.Events(&_Contract.CallOpts, arg0)
+// Solidity: function getVoteInfoByID(uint256 trafficID) view returns(uint256)
+func (_Contract *ContractSession) GetVoteInfoByID(trafficID *big.Int) (*big.Int, error) {
+	return _Contract.Contract.GetVoteInfoByID(&_Contract.CallOpts, trafficID)
 }
 
-// Events is a free data retrieval call binding the contract method 0x0b791430.
+// GetVoteInfoByID is a free data retrieval call binding the contract method 0x14f6c740.
 //
-// Solidity: function events(uint256 ) view returns(uint256)
-func (_Contract *ContractCallerSession) Events(arg0 *big.Int) (*big.Int, error) {
-	return _Contract.Contract.Events(&_Contract.CallOpts, arg0)
+// Solidity: function getVoteInfoByID(uint256 trafficID) view returns(uint256)
+func (_Contract *ContractCallerSession) GetVoteInfoByID(trafficID *big.Int) (*big.Int, error) {
+	return _Contract.Contract.GetVoteInfoByID(&_Contract.CallOpts, trafficID)
 }
 
-// IndexRconn is a free data retrieval call binding the contract method 0xf495ae8c.
+// EmitTrafficTrans is a paid mutator transaction binding the contract method 0xe56816ee.
 //
-// Solidity: function indexRconn(uint256 eventID) view returns(uint256)
-func (_Contract *ContractCaller) IndexRconn(opts *bind.CallOpts, eventID *big.Int) (*big.Int, error) {
-	var out []interface{}
-	err := _Contract.contract.Call(opts, &out, "indexRconn", eventID)
-
-	if err != nil {
-		return *new(*big.Int), err
-	}
-
-	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
-
-	return out0, err
-
+// Solidity: function emitTrafficTrans((uint256,address,string) uti) returns()
+func (_Contract *ContractTransactor) EmitTrafficTrans(opts *bind.TransactOpts, uti trafficStationupchainTrafficInfo) (*types.Transaction, error) {
+	return _Contract.contract.Transact(opts, "emitTrafficTrans", uti)
 }
 
-// IndexRconn is a free data retrieval call binding the contract method 0xf495ae8c.
+// EmitTrafficTrans is a paid mutator transaction binding the contract method 0xe56816ee.
 //
-// Solidity: function indexRconn(uint256 eventID) view returns(uint256)
-func (_Contract *ContractSession) IndexRconn(eventID *big.Int) (*big.Int, error) {
-	return _Contract.Contract.IndexRconn(&_Contract.CallOpts, eventID)
+// Solidity: function emitTrafficTrans((uint256,address,string) uti) returns()
+func (_Contract *ContractSession) EmitTrafficTrans(uti trafficStationupchainTrafficInfo) (*types.Transaction, error) {
+	return _Contract.Contract.EmitTrafficTrans(&_Contract.TransactOpts, uti)
 }
 
-// IndexRconn is a free data retrieval call binding the contract method 0xf495ae8c.
+// EmitTrafficTrans is a paid mutator transaction binding the contract method 0xe56816ee.
 //
-// Solidity: function indexRconn(uint256 eventID) view returns(uint256)
-func (_Contract *ContractCallerSession) IndexRconn(eventID *big.Int) (*big.Int, error) {
-	return _Contract.Contract.IndexRconn(&_Contract.CallOpts, eventID)
+// Solidity: function emitTrafficTrans((uint256,address,string) uti) returns()
+func (_Contract *ContractTransactorSession) EmitTrafficTrans(uti trafficStationupchainTrafficInfo) (*types.Transaction, error) {
+	return _Contract.Contract.EmitTrafficTrans(&_Contract.TransactOpts, uti)
 }
 
-// NodesAddr is a free data retrieval call binding the contract method 0x1161840f.
+// EmitVoteTrans is a paid mutator transaction binding the contract method 0xab680e45.
 //
-// Solidity: function nodesAddr(uint256 ) view returns(address)
-func (_Contract *ContractCaller) NodesAddr(opts *bind.CallOpts, arg0 *big.Int) (common.Address, error) {
-	var out []interface{}
-	err := _Contract.contract.Call(opts, &out, "nodesAddr", arg0)
-
-	if err != nil {
-		return *new(common.Address), err
-	}
-
-	out0 := *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
-
-	return out0, err
-
+// Solidity: function emitVoteTrans((address,address,uint256,bool) vi) returns()
+func (_Contract *ContractTransactor) EmitVoteTrans(opts *bind.TransactOpts, vi trafficStationvoteInfo) (*types.Transaction, error) {
+	return _Contract.contract.Transact(opts, "emitVoteTrans", vi)
 }
 
-// NodesAddr is a free data retrieval call binding the contract method 0x1161840f.
+// EmitVoteTrans is a paid mutator transaction binding the contract method 0xab680e45.
 //
-// Solidity: function nodesAddr(uint256 ) view returns(address)
-func (_Contract *ContractSession) NodesAddr(arg0 *big.Int) (common.Address, error) {
-	return _Contract.Contract.NodesAddr(&_Contract.CallOpts, arg0)
+// Solidity: function emitVoteTrans((address,address,uint256,bool) vi) returns()
+func (_Contract *ContractSession) EmitVoteTrans(vi trafficStationvoteInfo) (*types.Transaction, error) {
+	return _Contract.Contract.EmitVoteTrans(&_Contract.TransactOpts, vi)
 }
 
-// NodesAddr is a free data retrieval call binding the contract method 0x1161840f.
+// EmitVoteTrans is a paid mutator transaction binding the contract method 0xab680e45.
 //
-// Solidity: function nodesAddr(uint256 ) view returns(address)
-func (_Contract *ContractCallerSession) NodesAddr(arg0 *big.Int) (common.Address, error) {
-	return _Contract.Contract.NodesAddr(&_Contract.CallOpts, arg0)
+// Solidity: function emitVoteTrans((address,address,uint256,bool) vi) returns()
+func (_Contract *ContractTransactorSession) EmitVoteTrans(vi trafficStationvoteInfo) (*types.Transaction, error) {
+	return _Contract.Contract.EmitVoteTrans(&_Contract.TransactOpts, vi)
 }
 
-// InsertRconn is a paid mutator transaction binding the contract method 0x06db1fd4.
-//
-// Solidity: function insertRconn(uint256 eventID, address addr, uint256 sp, string[] rconn) returns()
-func (_Contract *ContractTransactor) InsertRconn(opts *bind.TransactOpts, eventID *big.Int, addr common.Address, sp *big.Int, rconn []string) (*types.Transaction, error) {
-	return _Contract.contract.Transact(opts, "insertRconn", eventID, addr, sp, rconn)
-}
-
-// InsertRconn is a paid mutator transaction binding the contract method 0x06db1fd4.
-//
-// Solidity: function insertRconn(uint256 eventID, address addr, uint256 sp, string[] rconn) returns()
-func (_Contract *ContractSession) InsertRconn(eventID *big.Int, addr common.Address, sp *big.Int, rconn []string) (*types.Transaction, error) {
-	return _Contract.Contract.InsertRconn(&_Contract.TransactOpts, eventID, addr, sp, rconn)
-}
-
-// InsertRconn is a paid mutator transaction binding the contract method 0x06db1fd4.
-//
-// Solidity: function insertRconn(uint256 eventID, address addr, uint256 sp, string[] rconn) returns()
-func (_Contract *ContractTransactorSession) InsertRconn(eventID *big.Int, addr common.Address, sp *big.Int, rconn []string) (*types.Transaction, error) {
-	return _Contract.Contract.InsertRconn(&_Contract.TransactOpts, eventID, addr, sp, rconn)
-}
-
-// InsertRddos is a paid mutator transaction binding the contract method 0x46db51a9.
-//
-// Solidity: function insertRddos(uint256 eventID) returns()
-func (_Contract *ContractTransactor) InsertRddos(opts *bind.TransactOpts, eventID *big.Int) (*types.Transaction, error) {
-	return _Contract.contract.Transact(opts, "insertRddos", eventID)
-}
-
-// InsertRddos is a paid mutator transaction binding the contract method 0x46db51a9.
-//
-// Solidity: function insertRddos(uint256 eventID) returns()
-func (_Contract *ContractSession) InsertRddos(eventID *big.Int) (*types.Transaction, error) {
-	return _Contract.Contract.InsertRddos(&_Contract.TransactOpts, eventID)
-}
-
-// InsertRddos is a paid mutator transaction binding the contract method 0x46db51a9.
-//
-// Solidity: function insertRddos(uint256 eventID) returns()
-func (_Contract *ContractTransactorSession) InsertRddos(eventID *big.Int) (*types.Transaction, error) {
-	return _Contract.Contract.InsertRddos(&_Contract.TransactOpts, eventID)
-}
-
-// ReCheckDDos is a paid mutator transaction binding the contract method 0xb8b7db1b.
-//
-// Solidity: function reCheckDDos(uint256 rconnSpeed, uint256 threshold) returns()
-func (_Contract *ContractTransactor) ReCheckDDos(opts *bind.TransactOpts, rconnSpeed *big.Int, threshold *big.Int) (*types.Transaction, error) {
-	return _Contract.contract.Transact(opts, "reCheckDDos", rconnSpeed, threshold)
-}
-
-// ReCheckDDos is a paid mutator transaction binding the contract method 0xb8b7db1b.
-//
-// Solidity: function reCheckDDos(uint256 rconnSpeed, uint256 threshold) returns()
-func (_Contract *ContractSession) ReCheckDDos(rconnSpeed *big.Int, threshold *big.Int) (*types.Transaction, error) {
-	return _Contract.Contract.ReCheckDDos(&_Contract.TransactOpts, rconnSpeed, threshold)
-}
-
-// ReCheckDDos is a paid mutator transaction binding the contract method 0xb8b7db1b.
-//
-// Solidity: function reCheckDDos(uint256 rconnSpeed, uint256 threshold) returns()
-func (_Contract *ContractTransactorSession) ReCheckDDos(rconnSpeed *big.Int, threshold *big.Int) (*types.Transaction, error) {
-	return _Contract.Contract.ReCheckDDos(&_Contract.TransactOpts, rconnSpeed, threshold)
-}
-
-// Register is a paid mutator transaction binding the contract method 0x4420e486.
-//
-// Solidity: function register(address addr) returns()
-func (_Contract *ContractTransactor) Register(opts *bind.TransactOpts, addr common.Address) (*types.Transaction, error) {
-	return _Contract.contract.Transact(opts, "register", addr)
-}
-
-// Register is a paid mutator transaction binding the contract method 0x4420e486.
-//
-// Solidity: function register(address addr) returns()
-func (_Contract *ContractSession) Register(addr common.Address) (*types.Transaction, error) {
-	return _Contract.Contract.Register(&_Contract.TransactOpts, addr)
-}
-
-// Register is a paid mutator transaction binding the contract method 0x4420e486.
-//
-// Solidity: function register(address addr) returns()
-func (_Contract *ContractTransactorSession) Register(addr common.Address) (*types.Transaction, error) {
-	return _Contract.Contract.Register(&_Contract.TransactOpts, addr)
-}
-
-// ContractMsgConnIterator is returned from FilterMsgConn and is used to iterate over the raw logs and unpacked data for MsgConn events raised by the Contract contract.
-type ContractMsgConnIterator struct {
-	Event *ContractMsgConn // Event containing the contract specifics and raw log
+// ContractTrafficTransIterator is returned from FilterTrafficTrans and is used to iterate over the raw logs and unpacked data for TrafficTrans events raised by the Contract contract.
+type ContractTrafficTransIterator struct {
+	Event *ContractTrafficTrans // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -381,7 +323,7 @@ type ContractMsgConnIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *ContractMsgConnIterator) Next() bool {
+func (it *ContractTrafficTransIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -390,7 +332,7 @@ func (it *ContractMsgConnIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(ContractMsgConn)
+			it.Event = new(ContractTrafficTrans)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -405,7 +347,7 @@ func (it *ContractMsgConnIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(ContractMsgConn)
+		it.Event = new(ContractTrafficTrans)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -421,44 +363,43 @@ func (it *ContractMsgConnIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *ContractMsgConnIterator) Error() error {
+func (it *ContractTrafficTransIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *ContractMsgConnIterator) Close() error {
+func (it *ContractTrafficTransIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// ContractMsgConn represents a MsgConn event raised by the Contract contract.
-type ContractMsgConn struct {
-	EventID  *big.Int
-	Addr     common.Address
-	TypeName string
-	Name     string
-	Raw      types.Log // Blockchain specific contextual infos
+// ContractTrafficTrans represents a TrafficTrans event raised by the Contract contract.
+type ContractTrafficTrans struct {
+	TrafficID   *big.Int
+	SourceAddr  common.Address
+	TrafficInfo string
+	Raw         types.Log // Blockchain specific contextual infos
 }
 
-// FilterMsgConn is a free log retrieval operation binding the contract event 0x15e0c0bad37064a057c88d56e6913f20bacef4e5264629992fe52ad599d1c4a4.
+// FilterTrafficTrans is a free log retrieval operation binding the contract event 0x82a0cd03c34dff9e0879fd6d40cea94cdf58b4b4bbf4b2c8a3ebb91ca8007577.
 //
-// Solidity: event msgConn(uint256 eventID, address addr, string typeName, string name)
-func (_Contract *ContractFilterer) FilterMsgConn(opts *bind.FilterOpts) (*ContractMsgConnIterator, error) {
+// Solidity: event trafficTrans(uint256 trafficID, address sourceAddr, string trafficInfo)
+func (_Contract *ContractFilterer) FilterTrafficTrans(opts *bind.FilterOpts) (*ContractTrafficTransIterator, error) {
 
-	logs, sub, err := _Contract.contract.FilterLogs(opts, "msgConn")
+	logs, sub, err := _Contract.contract.FilterLogs(opts, "trafficTrans")
 	if err != nil {
 		return nil, err
 	}
-	return &ContractMsgConnIterator{contract: _Contract.contract, event: "msgConn", logs: logs, sub: sub}, nil
+	return &ContractTrafficTransIterator{contract: _Contract.contract, event: "trafficTrans", logs: logs, sub: sub}, nil
 }
 
-// WatchMsgConn is a free log subscription operation binding the contract event 0x15e0c0bad37064a057c88d56e6913f20bacef4e5264629992fe52ad599d1c4a4.
+// WatchTrafficTrans is a free log subscription operation binding the contract event 0x82a0cd03c34dff9e0879fd6d40cea94cdf58b4b4bbf4b2c8a3ebb91ca8007577.
 //
-// Solidity: event msgConn(uint256 eventID, address addr, string typeName, string name)
-func (_Contract *ContractFilterer) WatchMsgConn(opts *bind.WatchOpts, sink chan<- *ContractMsgConn) (event.Subscription, error) {
+// Solidity: event trafficTrans(uint256 trafficID, address sourceAddr, string trafficInfo)
+func (_Contract *ContractFilterer) WatchTrafficTrans(opts *bind.WatchOpts, sink chan<- *ContractTrafficTrans) (event.Subscription, error) {
 
-	logs, sub, err := _Contract.contract.WatchLogs(opts, "msgConn")
+	logs, sub, err := _Contract.contract.WatchLogs(opts, "trafficTrans")
 	if err != nil {
 		return nil, err
 	}
@@ -468,8 +409,8 @@ func (_Contract *ContractFilterer) WatchMsgConn(opts *bind.WatchOpts, sink chan<
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(ContractMsgConn)
-				if err := _Contract.contract.UnpackLog(event, "msgConn", log); err != nil {
+				event := new(ContractTrafficTrans)
+				if err := _Contract.contract.UnpackLog(event, "trafficTrans", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -490,12 +431,149 @@ func (_Contract *ContractFilterer) WatchMsgConn(opts *bind.WatchOpts, sink chan<
 	}), nil
 }
 
-// ParseMsgConn is a log parse operation binding the contract event 0x15e0c0bad37064a057c88d56e6913f20bacef4e5264629992fe52ad599d1c4a4.
+// ParseTrafficTrans is a log parse operation binding the contract event 0x82a0cd03c34dff9e0879fd6d40cea94cdf58b4b4bbf4b2c8a3ebb91ca8007577.
 //
-// Solidity: event msgConn(uint256 eventID, address addr, string typeName, string name)
-func (_Contract *ContractFilterer) ParseMsgConn(log types.Log) (*ContractMsgConn, error) {
-	event := new(ContractMsgConn)
-	if err := _Contract.contract.UnpackLog(event, "msgConn", log); err != nil {
+// Solidity: event trafficTrans(uint256 trafficID, address sourceAddr, string trafficInfo)
+func (_Contract *ContractFilterer) ParseTrafficTrans(log types.Log) (*ContractTrafficTrans, error) {
+	event := new(ContractTrafficTrans)
+	if err := _Contract.contract.UnpackLog(event, "trafficTrans", log); err != nil {
+		return nil, err
+	}
+	event.Raw = log
+	return event, nil
+}
+
+// ContractVoteTransIterator is returned from FilterVoteTrans and is used to iterate over the raw logs and unpacked data for VoteTrans events raised by the Contract contract.
+type ContractVoteTransIterator struct {
+	Event *ContractVoteTrans // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *ContractVoteTransIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(ContractVoteTrans)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(ContractVoteTrans)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *ContractVoteTransIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *ContractVoteTransIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// ContractVoteTrans represents a VoteTrans event raised by the Contract contract.
+type ContractVoteTrans struct {
+	SourceAddr common.Address
+	VoteAddr   common.Address
+	TrafficID  *big.Int
+	State      bool
+	Raw        types.Log // Blockchain specific contextual infos
+}
+
+// FilterVoteTrans is a free log retrieval operation binding the contract event 0xe6d2d2c21284e671da4a773c628d519f81d37af2ae3950c34d207f567bb08f4e.
+//
+// Solidity: event voteTrans(address sourceAddr, address voteAddr, uint256 trafficID, bool state)
+func (_Contract *ContractFilterer) FilterVoteTrans(opts *bind.FilterOpts) (*ContractVoteTransIterator, error) {
+
+	logs, sub, err := _Contract.contract.FilterLogs(opts, "voteTrans")
+	if err != nil {
+		return nil, err
+	}
+	return &ContractVoteTransIterator{contract: _Contract.contract, event: "voteTrans", logs: logs, sub: sub}, nil
+}
+
+// WatchVoteTrans is a free log subscription operation binding the contract event 0xe6d2d2c21284e671da4a773c628d519f81d37af2ae3950c34d207f567bb08f4e.
+//
+// Solidity: event voteTrans(address sourceAddr, address voteAddr, uint256 trafficID, bool state)
+func (_Contract *ContractFilterer) WatchVoteTrans(opts *bind.WatchOpts, sink chan<- *ContractVoteTrans) (event.Subscription, error) {
+
+	logs, sub, err := _Contract.contract.WatchLogs(opts, "voteTrans")
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(ContractVoteTrans)
+				if err := _Contract.contract.UnpackLog(event, "voteTrans", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseVoteTrans is a log parse operation binding the contract event 0xe6d2d2c21284e671da4a773c628d519f81d37af2ae3950c34d207f567bb08f4e.
+//
+// Solidity: event voteTrans(address sourceAddr, address voteAddr, uint256 trafficID, bool state)
+func (_Contract *ContractFilterer) ParseVoteTrans(log types.Log) (*ContractVoteTrans, error) {
+	event := new(ContractVoteTrans)
+	if err := _Contract.contract.UnpackLog(event, "voteTrans", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log

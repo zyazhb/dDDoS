@@ -6,13 +6,9 @@ import (
 	"fmt"
 	"log"
 	"math/big"
-	"strings"
 
-	"github.com/ethereum/go-ethereum"
-	"github.com/ethereum/go-ethereum/accounts/abi"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/crypto"
 	_ "github.com/ethereum/go-ethereum/eth/gasprice"
 	"github.com/ethereum/go-ethereum/ethclient"
@@ -98,60 +94,4 @@ func UpdateNonce() (uint64, error) {
 }
 
 // WatchMessage 监听链上message信息
-func WatchMessage() {
-	contractAddress := common.HexToAddress(ContractAddr)
-	query := ethereum.FilterQuery{
-		Addresses: []common.Address{contractAddress},
-	}
 
-	logs := make(chan types.Log)
-	sub, err := Client.SubscribeFilterLogs(context.Background(), query, logs)
-	if err != nil {
-		log.Println(err)
-	}
-
-	contractAbi, err := abi.JSON(strings.NewReader(string(contract.ContractABI)))
-	if err != nil {
-        log.Fatal(err)
-    }
-
-	receiveMap := map[string]interface{}{}
-
-	for {
-        select {
-        case err := <-sub.Err():
-            log.Fatal(err)
-        case vLog := <-logs:
-			err := contractAbi.UnpackIntoMap(receiveMap, "msgConn", vLog.Data)
-			if err != nil {
-				log.Fatal(err)
-			}
-
-			eventID := receiveMap["eventID"].(*big.Int)
-			newNonce, _ := UpdateNonce()
-			Auth.Nonce = big.NewInt(int64(newNonce))
-
-			if receiveMap["name"].(string) == "Rconn" {
-				// IntanceRconn, err := Instance.IndexRconn(nil, eventID)
-				IntanceRconn := big.NewInt(102)
-				if err != nil {
-					log.Fatalln(err)
-				}
-
-				_, err = Instance.ReCheckDDos(Auth, IntanceRconn, big.NewInt(100))
-				if err != nil {
-					log.Fatalln(err)
-				}
-
-				_, err = Instance.InsertRddos(Auth, eventID)
-				if err != nil {
-					log.Fatalln(err)
-				}
-			} else if receiveMap["name"].(string) == "Rddos" {
-				log.Println("Have beeb ddosed")
-			} else {
-				log.Fatalln("Invaild message!")
-			}
-        }
-    }
-}
