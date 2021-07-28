@@ -13,7 +13,6 @@ type UpInfo struct {
 }
 
 var (
-	eventID = 1700064
 
 	UpChan = make(chan UpInfo, 1024)
 )
@@ -24,12 +23,11 @@ func DetectedDDoS(reason, srcip string, speed int) {
 		Reason: reason,
 	}
 
-	UpChan <- info
-
 	log.Println("--------------------------")
 	log.Println("[+] detected DDoS attack!")
 	log.Println("Time:", info.Now)
 	log.Println("Reason:", info.Reason)
 	log.Println("--------------------------")
-	//TO-DO 区块链交互
+
+	node.SendMessage(info.Reason)
 }

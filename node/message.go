@@ -33,12 +33,10 @@ type VoteInfo struct {
 	State bool
 }
 
-type WatchMessageHandler struct{}
-
-func (wmh WatchMessageHandler) WatchMessage() {
+func WatchMessage() {
 	done := make(chan bool)
 
-	contractAddress := common.HexToAddress(Conf.Server.contractAddr)
+	contractAddress := common.HexToAddress(Conf.Server.ContractAddr)
 	query := ethereum.FilterQuery{
 		Addresses: []common.Address{contractAddress},
 	}
@@ -69,7 +67,7 @@ func (wmh WatchMessageHandler) WatchMessage() {
 					}
 
 					// TODO: function traffic <-> ML | param: traffic info | return: answer bool
-					wmh.transTrafficInfoToML(tidyTrafficToStruct(ret))
+					transTrafficInfoToML(tidyTrafficToStruct(ret))
 				} else if vLog.Topics[0].String() == voteTransHash {
 					_, err := contractAbi.Unpack("voteTrans", vLog.Data)
 					if err != nil {
@@ -84,13 +82,13 @@ func (wmh WatchMessageHandler) WatchMessage() {
 	<-done
 }
 
-func (wmh WatchMessageHandler) transTrafficInfoToML(info contract.TrafficStationupchainTrafficInfo) bool {
+func transTrafficInfoToML(info contract.TrafficStationupchainTrafficInfo) bool {
 	return true
 }
 
-func (wmh WatchMessageHandler) pendingTrafficIDAt(ctx context.Context, address string, ins *contract.Contract) (*big.Int, error) {
+func pendingTrafficIDAt(ctx context.Context, address string, ins *contract.Contract) (*big.Int, error) {
 	auth := &bind.CallOpts{
-		From:    common.HexToAddress(Conf.Client.clientPublicAddr),
+		From:    common.HexToAddress(Conf.Client.ClientPublicAddr),
 		Context: ctx,
 	}
 

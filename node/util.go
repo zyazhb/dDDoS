@@ -8,16 +8,16 @@ import (
 )
 
 type ClientConfig struct {
-	chainAddress 	string 	`yaml:"chain-address"`
-	chainPort		int		`yaml:"chain-port"`
+	ChainAddress 	string 	`yaml:"chain-address"`
+	ChainPort		int		`yaml:"chain-port"`
 
 	Server struct {
-		contractAddr	string	`yaml:"contract-address"`
+		ContractAddr	string	`yaml:"contract-address"`
 	}
 
 	Client struct {
-		clientPrivateAddr	string `yaml:"privateAddress"`
-		clientPublicAddr	string `yaml:"publicAddress"`
+		ClientPrivateAddr	string `yaml:"privateAddress"`
+		ClientPublicAddr	string `yaml:"publicAddress"`
 	}
 }
 

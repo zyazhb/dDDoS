@@ -26,7 +26,7 @@ var (
 
 // RunNode 连接到geth节点，完成配置初始化
 func RunNode() error {
-	fullURL := fmt.Sprintf("ws://%s:%d", Conf.chainAddress, Conf.chainPort)
+	fullURL := fmt.Sprintf("ws://%s:%d", Conf.ChainAddress, Conf.ChainPort)
 
 	client, err := ethclient.Dial(fullURL)
 	if err != nil {
@@ -36,8 +36,8 @@ func RunNode() error {
 	log.Println("We have a connection to ethereum")
 
 	Client = client
-	Auth = consultWithNode(Conf.Client.clientPrivateAddr)
-	Instance = connectToContract(Conf.Server.contractAddr)
+	Auth = consultWithNode(Conf.Client.ClientPrivateAddr)
+	Instance = connectToContract(Conf.Server.ContractAddr)
 
 	return nil
 }
@@ -72,4 +72,24 @@ func connectToContract(contractAddr string) *contract.Contract {
 	}
 
 	return instances
+}
+
+func SendMessage(trafficInfo string) {
+	// read -> public key | write/event -> private key
+	auth := consultWithNode(Conf.Client.ClientPrivateAddr)
+
+	trafficID, err := pendingTrafficIDAt(context.Background(), Conf.Client.ClientPublicAddr, Instance)
+	if err != nil {
+		log.Fatalf("Initial trafficID with error: %v\n", err)
+	}
+
+	_, err = Instance.EmitTrafficTrans(auth, contract.TrafficStationupchainTrafficInfo{
+		TrafficID:   trafficID,
+		SourceAddr:  common.HexToAddress(Conf.Client.ClientPublicAddr),
+		TrafficInfo: trafficInfo,
+	})
+	if err != nil {
+		log.Fatalf("[x] Send transaction with error message: %s\n", err)
+		return
+	}
 }
