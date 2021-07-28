@@ -78,7 +78,7 @@ func SendMessage(trafficInfo string) {
 	// read -> public key | write/event -> private key
 	auth := consultWithNode(Conf.Client.ClientPrivateAddr)
 
-	trafficID, err := pendingTrafficIDAt(context.Background(), Conf.Client.ClientPublicAddr, Instance)
+	trafficID, err := pendingTrafficIDAt(context.Background(), Conf.Client.ClientPublicAddr)
 	if err != nil {
 		log.Fatalf("Initial trafficID with error: %v\n", err)
 	}

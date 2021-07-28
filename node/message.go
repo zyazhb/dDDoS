@@ -33,6 +33,10 @@ type VoteInfo struct {
 	State bool
 }
 
+var (
+	votingCount map[uint64]int
+)
+
 func WatchMessage() {
 	done := make(chan bool)
 
@@ -66,11 +70,13 @@ func WatchMessage() {
 						log.Fatal(err)
 					}
 
-					// TODO: function traffic <-> ML | param: traffic info | return: answer bool
 					retPack := tidyTrafficToStruct(ret)
-					mlResult := transTrafficInfoToML(retPack)
-					// TODO: create message channel as buffer
-					SendVote(retPack.TrafficID, retPack.SourceAddr, mlResult)
+
+					if (retPack.SourceAddr.String() != Conf.Client.ClientPrivateAddr) {
+						mlResult := transTrafficInfoToML(retPack)
+						// TODO: create message channel as buffer
+						SendVote(retPack.TrafficID, retPack.SourceAddr, mlResult)
+					}
 				} else if vLog.Topics[0].String() == voteTransHash {
 					ret, err := contractAbi.Unpack("voteTrans", vLog.Data)
 					if err != nil {
@@ -78,7 +84,15 @@ func WatchMessage() {
 					}
 					retPack := tidyVoteToStruct(ret)
 					// TODO: maintain judge sys from other machine's vote
-					judgeTrafficFromVote(retPack)
+					if (retPack.SourceAddr.String() == Conf.Client.ClientPublicAddr) {
+						votingCount[retPack.TrafficID.Uint64()] += 1
+
+						if (votingCount[retPack.TrafficID.Uint64()] == 1) {
+							judgeTrafficFromVote(retPack.TrafficID)
+
+							// success -> get traffic from chain -> rule
+						}
+					}
 				}
 			}
 		}
@@ -91,20 +105,44 @@ func transTrafficInfoToML(info contract.TrafficStationupchainTrafficInfo) bool {
 	return true
 }
 
-func judgeTrafficFromVote(vote contract.TrafficStationvoteInfo) bool {
-	return true
+func judgeTrafficFromVote(trafficID *big.Int) bool {
+	voteNum, err := pendingVotingNumAt(context.Background(), trafficID)
+	if err != nil {
+		log.Fatalln("[x] Failed to get vote num!")
+	}
+
+	if voteNum.Uint64() == 1 {
+		return true
+	} else {
+		return false
+	}
 }
 
-func pendingTrafficIDAt(ctx context.Context, address string, ins *contract.Contract) (*big.Int, error) {
+func pendingVotingNumAt(ctx context.Context, trafficID *big.Int) (*big.Int, error) {
+	auth := &bind.CallOpts{
+		From:    common.HexToAddress(Conf.Client.ClientPublicAddr),
+		Context: ctx,
+	}
+
+	result, err := Instance.GetVoteInfoByID(auth, trafficID)
+	if err != nil {
+		log.Fatalln("[x] Failed to get vote result!")
+		return nil, err
+	}
+
+	return result, nil
+}
+
+func pendingTrafficIDAt(ctx context.Context, address string) (*big.Int, error) {
 	auth := &bind.CallOpts{
 		From:    common.HexToAddress(Conf.Client.ClientPublicAddr),
 		Context: ctx,
 	}
 
 	addr := common.HexToAddress(address) // 需要被查询的地址
-	result, err := ins.PendingTrafficID(auth, addr)
+	result, err := Instance.PendingTrafficID(auth, addr)
 	if err != nil {
-		log.Fatalln("Failed to update traffic id!")
+		log.Fatalln("[x] Failed to update traffic id!")
 		return nil, err
 	}
 
