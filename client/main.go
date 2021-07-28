@@ -23,4 +23,7 @@ func main() {
 	// 捕获流量 -> 插入链中
 	go mitm.Run()
 	go capture.CapturePacket()
+
+	var wmh node.WatchMessageHandler
+	wmh.WatchMessage()
 }
