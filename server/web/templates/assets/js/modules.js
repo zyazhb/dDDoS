@@ -1997,7 +1997,7 @@ function chartJSInit() {
                                     label: '总在线设备数',
                                     color: 'rgba(255,255,255, .98)',
                                     formatter: function(w) {
-                                        w = 1
+                                        w = 5
                                         return w
                                     }
                                 }
