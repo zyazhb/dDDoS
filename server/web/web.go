@@ -37,6 +37,26 @@ func RunWeb() {
 		})
 	})
 
+	router.GET("/devices", func(c *gin.Context) {
+
+		c.HTML(http.StatusOK, "devices.html", gin.H{
+			"title":        "Main website2",
+			"Total_stream": "31",
+			"time":         nowInfo.Now.String(),
+			"reason":       nowInfo.Reason,
+		})
+	})
+
+	router.GET("/controller", func(c *gin.Context) {
+
+		c.HTML(http.StatusOK, "controller.html", gin.H{
+			"title":        "Main website2",
+			"Total_stream": "31",
+			"time":         nowInfo.Now.String(),
+			"reason":       nowInfo.Reason,
+		})
+	})
+
 	router.GET("/ping", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"message": "pong",
