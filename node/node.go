@@ -97,11 +97,9 @@ func UpdateNonce() (uint64, error) {
 	return Client.PendingNonceAt(context.Background(), FromAddress)
 }
 
-// WatchMessage 监听链上message信息
-func WatchMessage() {
-	contractAddress := common.HexToAddress(ContractAddr)
-	query := ethereum.FilterQuery{
-		Addresses: []common.Address{contractAddress},
+	trafficID, err := pendingTrafficIDAt(context.Background(), Conf.Client.ClientPublicAddr)
+	if err != nil {
+		log.Fatalf("Initial trafficID with error: %v\n", err)
 	}
 
 	logs := make(chan types.Log)
