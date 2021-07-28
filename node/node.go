@@ -93,3 +93,18 @@ func SendMessage(trafficInfo string) {
 		return
 	}
 }
+
+func SendVote(trafficID *big.Int, sourceAddr common.Address, voteState bool) {
+	auth := consultWithNode(Conf.Client.ClientPrivateAddr)
+
+	_, err := Instance.EmitVoteTrans(auth, contract.TrafficStationvoteInfo{
+		SourceAddr: sourceAddr,
+		VoteAddr: common.HexToAddress(Conf.Client.ClientPublicAddr),
+		TrafficID: trafficID,
+		State: voteState,
+	})
+	if err != nil {
+		log.Fatalf("[x] Send vote transaction with error message: %s\n", err)
+		return
+	}
+}

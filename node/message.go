@@ -67,13 +67,18 @@ func WatchMessage() {
 					}
 
 					// TODO: function traffic <-> ML | param: traffic info | return: answer bool
-					transTrafficInfoToML(tidyTrafficToStruct(ret))
+					retPack := tidyTrafficToStruct(ret)
+					mlResult := transTrafficInfoToML(retPack)
+					// TODO: create message channel as buffer
+					SendVote(retPack.TrafficID, retPack.SourceAddr, mlResult)
 				} else if vLog.Topics[0].String() == voteTransHash {
-					_, err := contractAbi.Unpack("voteTrans", vLog.Data)
+					ret, err := contractAbi.Unpack("voteTrans", vLog.Data)
 					if err != nil {
 						log.Fatal(err)
 					}
-					// fmt.Printf("[+] Retrive value: %v\n", tidyVoteToStruct(ret))
+					retPack := tidyVoteToStruct(ret)
+					// TODO: maintain judge sys from other machine's vote
+					judgeTrafficFromVote(retPack)
 				}
 			}
 		}
@@ -83,6 +88,10 @@ func WatchMessage() {
 }
 
 func transTrafficInfoToML(info contract.TrafficStationupchainTrafficInfo) bool {
+	return true
+}
+
+func judgeTrafficFromVote(vote contract.TrafficStationvoteInfo) bool {
 	return true
 }
 
