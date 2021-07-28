@@ -16,7 +16,8 @@ type ClientConfig struct {
 	}
 
 	Client struct {
-		clientAddr		string	`yaml:"address"`
+		clientPrivateAddr	string `yaml:"privateAddress"`
+		clientPublicAddr	string `yaml:"publicAddress"`
 	}
 }
 

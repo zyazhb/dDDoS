@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #导入必要的包
-from sklearn.ensemble import RandomForestClassifier 
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.ensemble import ExtraTreesClassifier
 from sklearn.model_selection import train_test_split,GridSearchCV,cross_val_score
 from sklearn.metrics import accuracy_score
@@ -44,7 +44,7 @@ def ExtraTreeTest(x,y):
 
 ## 参数调整测试
 def paramsAdjust():
-    param_grid = {'max_features':np.arange(1,80,1)} 
+    param_grid = {'max_features':np.arange(1,80,1)}
     # param_grid = {'criterion':['gini', 'entropy']}
     rfc = RandomForestClassifier(n_estimators=111
                                 ,random_state=0
@@ -52,7 +52,7 @@ def paramsAdjust():
                                 )
     GS = GridSearchCV(rfc,param_grid,cv=10)
     GS.fit(x,y)
-    
+
     print(GS.best_params_)  #显示调整出来的最佳参数
     print(GS.best_score_)    #分数不变，说明max_depth不影响模型
     #调整max_depth
@@ -91,7 +91,7 @@ def find_best_n_estimaters():
     plt.show()
     ## 进一步更小区间的测试
     # scorel = []
-    # for i in range(100,125):  
+    # for i in range(100,125):
     #     rfc = RandomForestClassifier(n_estimators=i,  #这里从25开始所以不用加1
     #                                 # n_jobs=-1,
     #                                  random_state=0)

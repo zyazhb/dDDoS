@@ -2,7 +2,6 @@ package node
 
 import (
 	"context"
-	"crypto/ecdsa"
 	"fmt"
 	"log"
 	"math/big"
@@ -37,7 +36,7 @@ func RunNode() error {
 	log.Println("We have a connection to ethereum")
 
 	Client = client
-	Auth = consultWithNode(Conf.Client.clientAddr)
+	Auth = consultWithNode(Conf.Client.clientPrivateAddr)
 	Instance = connectToContract(Conf.Server.contractAddr)
 
 	return nil
@@ -50,26 +49,13 @@ func consultWithNode(privateKeys string) *bind.TransactOpts {
 		log.Fatal(err)
 	}
 
-	publicKey := privateKey.Public()
-	publicKeyECDSA, ok := publicKey.(*ecdsa.PublicKey)
-	if !ok {
-		log.Fatal("cannot assert type: publicKey is not of type *ecdsa.PublicKey")
-	}
-
-	FromAddress = crypto.PubkeyToAddress(*publicKeyECDSA)
-
-	nonce, err := UpdateNonce()
-	if err != nil {
-		log.Fatal(err)
-	}
-
 	gasPrice, err := Client.SuggestGasPrice(context.Background())
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	auth := bind.NewKeyedTransactor(privateKey)
-	auth.Nonce = big.NewInt(int64(nonce))
+	auth.Nonce = nil
 	auth.Value = big.NewInt(0)
 	auth.GasLimit = uint64(300000)
 	auth.GasPrice = gasPrice
@@ -87,11 +73,3 @@ func connectToContract(contractAddr string) *contract.Contract {
 
 	return instances
 }
-
-// UpdateNonce 更新Nonce高度
-func UpdateNonce() (uint64, error) {
-	return Client.PendingNonceAt(context.Background(), FromAddress)
-}
-
-// WatchMessage 监听链上message信息
-

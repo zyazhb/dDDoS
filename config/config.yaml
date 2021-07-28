@@ -5,4 +5,5 @@ server:
   contract-address: '' # 填入获取的地址
 
 client:
-  address: '' # 填入获取的地址
+  privateAddress: '' # 填入获取的地址
+  publicAddress: ''
