@@ -57,6 +57,27 @@ func RunWeb() {
 		})
 	})
 
+	router.GET("/traffic", func(c *gin.Context) {
+
+		c.HTML(http.StatusOK, "traffic.html", gin.H{
+			"title":        "Main website2",
+		})
+	})
+
+	router.GET("/situationawareness", func(c *gin.Context) {
+
+		c.HTML(http.StatusOK, "situationawareness.html", gin.H{
+			"title":        "Main website2",
+		})
+	})
+
+	router.GET("/log", func(c *gin.Context) {
+
+		c.HTML(http.StatusOK, "log.html", gin.H{
+			"title":        "Main website2",
+		})
+	})
+
 	router.GET("/ping", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"message": "pong",

@@ -1,0 +1,208 @@
+{{define "traffic.html"}}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>dDDos</title>
+    <!-- CSS -->
+    <link href="/css/main.css" rel="stylesheet">
+    <link href="/css/styles.css" rel="stylesheet">
+    <!-- dateRangePicker -->
+    <link href="/plugins/daterangepicker/daterangepicker.css" rel="stylesheet">
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+    <link rel="icon" href="/img/favicon.png">
+    <!-- Fonts -->
+    <link href="/fonts/inter/inter.css" rel="stylesheet">
+    <link href="/css/css1.css" rel="stylesheet">
+    <link href="/css/css2.css" rel="stylesheet">
+    <!--[if lt IE 9]><script src="http://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script><script src="http://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+    <!-- jQuery -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/echarts/4.7.0/echarts.js"></script>
+</head>
+
+<body class="body">
+    <!-- include header -->
+    {{template "/header" .}}
+
+    <!-- main -->
+    <main>
+        <!-- include sidebar -->
+        {{template "/sidebar" .}}
+        <!-- main content -->
+        <div class="main-container">
+            <div class="overflow-hidden">
+                <div id="dashboard">
+                    <!-- content-header -->
+                    <div class="row flex-wrap align-items-center px-6 py-5">
+                        <div class="col">
+                            <div class="text-light pb-5 pb-lg-0 mr-auto">
+                                <h2 class="fw-100 mb-0">流量统计图</h2>
+                                <!-- <p class="mb-0">基于区块链及分布式机器学习的物联网设备安全态势感知及控制平台</p> -->
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- panel -->
+            <div class="panel">
+
+                <div id="container" style="width: 100%;height:580px;"></div>
+                <script type="text/javascript">
+                    var dom = document.getElementById("container");
+                    var myChart = echarts.init(dom
+                    );
+                    var app = {};
+
+                    var option;
+
+
+
+                    setTimeout(function () {
+
+                        option = {
+                            legend: {},
+                            tooltip: {
+                                trigger: 'axis',
+                                showContent: false
+                            },
+                            dataset: {
+                                source: [
+                                    ['product', '8:00', '10:00', '12:00', '14:00', '16:00', '18:00'],
+                                    ['Normal', 56.5, 82.1, 88.7, 70.1, 53.4, 85.1],
+                                    ['SYN Flood', 51.1, 51.4, 55.1, 53.3, 73.8, 68.7],
+                                    ['UDP Flood', 40.1, 62.2, 69.5, 36.4, 45.2, 32.5],
+                                    ['Same Src-IP', 25.2, 37.1, 41.2, 18, 33.9, 49.1]
+                                ]
+                            },
+                            xAxis: { type: 'category' },
+                            yAxis: { gridIndex: 0 },
+                            grid: { top: '55%' },
+                            series: [
+                                { type: 'line', smooth: true, seriesLayoutBy: 'row', emphasis: { focus: 'series' } },
+                                { type: 'line', smooth: true, seriesLayoutBy: 'row', emphasis: { focus: 'series' } },
+                                { type: 'line', smooth: true, seriesLayoutBy: 'row', emphasis: { focus: 'series' } },
+                                { type: 'line', smooth: true, seriesLayoutBy: 'row', emphasis: { focus: 'series' } },
+                                {
+                                    type: 'pie',
+                                    id: 'pie',
+                                    radius: '30%',
+                                    center: ['50%', '25%'],
+                                    emphasis: { focus: 'data' },
+                                    label: {
+                                        formatter: '{b}: {@8:00} ({d}%)'
+                                    },
+                                    encode: {
+                                        itemName: 'product',
+                                        value: '8:00',
+                                        tooltip: '8:00'
+                                    }
+                                }
+                            ]
+                        };
+
+                        myChart.on('updateAxisPointer', function (event) {
+                            var xAxisInfo = event.axesInfo[0];
+                            if (xAxisInfo) {
+                                var dimension = xAxisInfo.value + 1;
+                                myChart.setOption({
+                                    series: {
+                                        id: 'pie',
+                                        label: {
+                                            formatter: '{b}: {@[' + dimension + ']} ({d}%)'
+                                        },
+                                        encode: {
+                                            value: dimension,
+                                            tooltip: dimension
+                                        }
+                                    }
+                                });
+                            }
+                        });
+
+                        myChart.setOption(option);
+
+                    });
+
+                    if (option && typeof option === 'object') {
+                        myChart.setOption(option);
+                    }
+
+                </script>
+            </div><!-- /.panel -->
+    </main>
+    <!-- offcanvas - search -->
+    <div id="offcanvas-search" class="offcanvas h-100 py-8" data-animation="fadeDown" data-scrollbar="offcanvas">
+        <div class="row">
+            <div class="col-sm-1 order-sm-last"><button type="button" data-toggle="offcanvas-close"
+                    class="close float-right mr-lg-6 text-light o-1 lead-2 fw-100" data-dismiss="offcanvas"
+                    aria-label="Close"><span aria-hidden="true" class="icon-close"></span></button></div>
+        </div>
+    </div>
+    <!-- /.offcanvas - search -->
+    <!-- preloader -->
+    <div class="preloaderWrapper"></div>
+    <!-- busuanzi -->
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="/js/bootstrap.min.js"></script>
+    <!-- Chart.js -->
+    <script src="/plugins/chart/Chart.min.js" id="_chartJS_min"></script>
+    <script src="/plugins/chart/Chart.bundle.min.js"></script>
+    <script src="/plugins/chart/chartjs-plugin-annotation.js"></script>
+    <script src="/plugins/chart/chartjs-plugin-labels.js"></script>
+    <!-- apexcharts -->
+    <script src="/plugins/apexcharts/apexcharts.min.js"></script>
+    <!-- RangeSlider -->
+    <script src="/plugins/rangeslider/rangeslider.min.js" id="_rangeJS_min"></script>
+    <!-- Moment -->
+    <script src="/plugins/lib/moment/moment.min.js"></script>
+    <!-- dateRangePicker -->
+    <script src="/plugins/daterangepicker/daterangepicker.js" id="_DateRangeJS_min"></script>
+    <!-- User JS -->
+    <script src="/js/scripts.js"></script>
+    <!-- Main JS -->
+    <script src="/js/main.js" id="_mainJS" data-plugins="load"></script>
+    <!-- Modules -->
+    <script src="/js/modules.js"></script>
+</body>
+
+<script>
+    for (let index = 0; index < 5; index++) {
+        let name = "#test".concat(index);
+
+        $(name).click(function () {
+            if ($(this).hasClass("btn-outline-warning")) {
+                $(this).removeClass("btn-outline-warning");
+                $(this).addClass("btn-outline-danger");
+
+                $(this).text("UNDER ATTACK");
+
+                return false;
+            } else if ($(this).hasClass("btn-outline-danger")) {
+                $(this).removeClass("btn-outline-danger");
+                $(this).addClass("btn-outline-success");
+
+                $(this).text("OFFLINE");
+                return false;
+            } else if ($(this).hasClass("btn-outline-success")) {
+                $(this).removeClass("btn-outline-success");
+                $(this).addClass("btn-outline-warning");
+
+                $(this).text("RUN");
+                return false;
+            } else {
+                console.log("Failed to change the style!");
+            }
+        });
+    }
+
+</script>
+
+{{end}}

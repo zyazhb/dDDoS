@@ -1,0 +1,190 @@
+{{define "log.html"}}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>dDDos</title>
+    <!-- CSS -->
+    <link href="/css/main.css" rel="stylesheet">
+    <link href="/css/styles.css" rel="stylesheet">
+    <!-- dateRangePicker -->
+    <link href="/plugins/daterangepicker/daterangepicker.css" rel="stylesheet">
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+    <link rel="icon" href="/img/favicon.png">
+    <!-- Fonts -->
+    <link href="/fonts/inter/inter.css" rel="stylesheet">
+    <link href="/css/css1.css" rel="stylesheet">
+    <link href="/css/css2.css" rel="stylesheet">
+    <!--[if lt IE 9]><script src="http://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script><script src="http://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+    <!-- jQuery -->
+    <script src="/js/jquery.min.js"></script>
+</head>
+
+<body class="body">
+    <!-- include header -->
+    {{template "/header" .}}
+
+    <!-- main -->
+    <main>
+        <!-- include sidebar -->
+        {{template "/sidebar" .}}
+        <!-- main content -->
+        <div class="main-container">
+            <div class="overflow-hidden">
+                <div id="dashboard">
+                    <!-- content-header -->
+                    <div class="row flex-wrap align-items-center px-6 py-5">
+                        <div class="col">
+                            <div class="text-light pb-5 pb-lg-0 mr-auto">
+                                <h2 class="fw-100 mb-0">防御日志</h2>
+                                <!-- <p class="mb-0">基于区块链及分布式机器学习的物联网设备安全态势感知及控制平台</p> -->
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-auto">
+                            <div class="d-flex flex-wrap">
+                                <div
+                                    class="w-100 w-sm-auto reportrange-btn d-flex align-items-center warning-gradient rounded-4 c-pointer">
+                                    <div class="d-flex align-items-center justify-content-center w-100">
+                                        <div id="reportrange" class="py-2 px-6"><span></span>&nbsp; </div>
+                                    </div>
+                                </div><a href="#"
+                                    class="mt-4 mt-sm-0 ml-sm-4 reportrange-btn btn btn-sm btn-circle warning-gradient lead-1 text-secondary"><img
+                                        src="./img/svg/calender.svg" style="display:block;width:20px;height:20px" /></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- panel -->
+            <div class="panel">
+                <div class="panel-header align-items-center p-relative">
+                    <div class="position-absolute w-100 l-5 l-sm-0 pe-n text-sm-center">
+                        <h5 class="title pe-a mb-0 d-inline">防御日志</h5>
+                    </div>
+                    <div class="p-relative ml-auto"><a href="#" class="lead-1"><img
+                                src="./img/svg/refresh.svg"
+                                style="display:block;width:20px;height:20px"></a>
+                    </div>
+                </div>
+                <div class="collapse show" id="collapseActivityTimeline">
+                    <div class="panel-body mb-0">
+                        <div class="pl-3">
+                            <!-- item -->
+
+                            <!-- item -->
+                            <div id="c1" class="timeline-item" data-time="22 Mar 2021 14:24"
+                                data-icon="&#xe901;">
+                                <div class="timeline-item-inner">
+                                    <h6 class="d-inline-block fw-500 text-danger mb-1">
+                                        Error</h6>
+                                    <p id="d1" class="small-3 lh-5 mb-0">
+                                        {"CommiterID":"0xcd12E46fe6bdf4Eb73a96c1a775590719c69c706",
+                                    </p>
+                                    "TargetIP":"219.217.199.15",
+                                    "Description":"IP:219.217.199.15(智能微波炉)正在遭受攻击"}
+                                </div>
+                            </div><!-- /.item -->
+                            <!-- item -->
+                            <div class="timeline-item" data-time="22 Mar 2021 14:25"
+                                data-icon="&#xe927;">
+                                <div class="timeline-item-inner">
+                                    <h6 class="d-inline-block fw-500 text-warning mb-1">
+                                        Warning</h6>
+                                    <p class="small-3 lh-5 mb-0">
+                                        {"CommiterID":"0x91e03AfEE54DD2D4B441BDcFC428f9611e109546",
+                                    </p>
+                                    "TargetIP":"219.217.199.16",
+                                    "Description":"IP:219.217.199.16(物联网空调)正在遭受攻击"}
+                                </div>
+                            </div><!-- /.item -->
+                            <!-- item -->
+                            <div class="timeline-item" data-time="22 Mar 2021 14:32"
+                                data-icon="&#xe901;">
+                                <div class="timeline-item-inner">
+                                    <h6 class="d-inline-block fw-500 text-danger mb-1">
+                                        Error</h6>
+                                    <p class="small-3 lh-5 mb-0">
+                                        {"CommiterID":"0x91e03AfEE54DD2D4B441BDcFC428f9611e109546",
+                                    </p>
+                                    "Description":"IP:219.217.199.16(物联网空调)已停运"}</p>
+                                </div>
+                            </div><!-- /.item -->
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.panel -->
+    </main>
+    <!-- offcanvas - search -->
+    <div id="offcanvas-search" class="offcanvas h-100 py-8" data-animation="fadeDown" data-scrollbar="offcanvas">
+        <div class="row">
+            <div class="col-sm-1 order-sm-last"><button type="button" data-toggle="offcanvas-close"
+                    class="close float-right mr-lg-6 text-light o-1 lead-2 fw-100" data-dismiss="offcanvas"
+                    aria-label="Close"><span aria-hidden="true" class="icon-close"></span></button></div>
+        </div>
+    </div>
+    <!-- /.offcanvas - search -->
+    <!-- preloader -->
+    <div class="preloaderWrapper"></div>
+    <!-- busuanzi -->
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="/js/bootstrap.min.js"></script>
+    <!-- Chart.js -->
+    <script src="/plugins/chart/Chart.min.js" id="_chartJS_min"></script>
+    <script src="/plugins/chart/Chart.bundle.min.js"></script>
+    <script src="/plugins/chart/chartjs-plugin-annotation.js"></script>
+    <script src="/plugins/chart/chartjs-plugin-labels.js"></script>
+    <!-- apexcharts -->
+    <script src="/plugins/apexcharts/apexcharts.min.js"></script>
+    <!-- RangeSlider -->
+    <script src="/plugins/rangeslider/rangeslider.min.js" id="_rangeJS_min"></script>
+    <!-- Moment -->
+    <script src="/plugins/lib/moment/moment.min.js"></script>
+    <!-- dateRangePicker -->
+    <script src="/plugins/daterangepicker/daterangepicker.js" id="_DateRangeJS_min"></script>
+    <!-- User JS -->
+    <script src="/js/scripts.js"></script>
+    <!-- Main JS -->
+    <script src="/js/main.js" id="_mainJS" data-plugins="load"></script>
+    <!-- Modules -->
+    <script src="/js/modules.js"></script>
+</body>
+
+<script>
+    for (let index = 0; index < 5; index++) {
+        let name = "#test".concat(index);
+
+        $(name).click(function () {
+            if ($(this).hasClass("btn-outline-warning")) {
+                $(this).removeClass("btn-outline-warning");
+                $(this).addClass("btn-outline-danger");
+
+                $(this).text("UNDER ATTACK");
+
+                return false;
+            } else if ($(this).hasClass("btn-outline-danger")) {
+                $(this).removeClass("btn-outline-danger");
+                $(this).addClass("btn-outline-success");
+
+                $(this).text("OFFLINE");
+                return false;
+            } else if ($(this).hasClass("btn-outline-success")) {
+                $(this).removeClass("btn-outline-success");
+                $(this).addClass("btn-outline-warning");
+
+                $(this).text("RUN");
+                return false;
+            } else {
+                console.log("Failed to change the style!");
+            }
+        });
+    }
+
+</script>
+
+{{end}}
