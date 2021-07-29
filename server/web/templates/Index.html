@@ -142,9 +142,8 @@
                                                 <div class="text-center">
                                                     <hr class="panel-hr my-6">
                                                     <div class="w-lg-75 mx-auto">
-                                                        <a href="#">
                                                         <p class="mb-0 lead-1"><span
-                                                                class="text-warning fw-600">一键启动模拟攻击</a>
+                                                                class="text-warning fw-600" onclick="startAttack(this)" id="attackinfo">一键启动模拟攻击
                                                     </div>
                                                     <hr class="panel-hr mt-6 mb-0">
                                                 </div>
@@ -278,6 +277,12 @@
                 console.log("Failed to change the style!");
             }
         });
+    }
+
+    function startAttack(btn){
+        btn.innerHTML="启动攻击中……";
+        window.confirm("启动攻击中……\n即将跳转到日志界面");
+        window.location.href="/log";
     }
 
 </script>
