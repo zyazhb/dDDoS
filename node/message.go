@@ -83,14 +83,11 @@ func WatchMessage() {
 						log.Fatal(err)
 					}
 					retPack := tidyVoteToStruct(ret)
-					// TODO: maintain judge sys from other machine's vote
 					if (retPack.SourceAddr.String() == Conf.Client.ClientPublicAddr) {
 						votingCount[retPack.TrafficID.Uint64()] += 1
 
 						if (votingCount[retPack.TrafficID.Uint64()] == 1) {
 							judgeTrafficFromVote(retPack.TrafficID)
-
-							// success -> get traffic from chain -> rule
 						}
 					}
 				}
@@ -105,16 +102,16 @@ func transTrafficInfoToML(info contract.TrafficStationupchainTrafficInfo) bool {
 	return true
 }
 
-func judgeTrafficFromVote(trafficID *big.Int) bool {
+func judgeTrafficFromVote(trafficID *big.Int) {
 	voteNum, err := pendingVotingNumAt(context.Background(), trafficID)
 	if err != nil {
 		log.Fatalln("[x] Failed to get vote num!")
 	}
 
+	// TODO: 这里硬编码的数量要改成动态获取peer的数量
 	if voteNum.Uint64() == 1 {
-		return true
+		// TODO: 这里的话一个是iptables规则处理，一个是发送预警 -> 新建event进行处理
 	} else {
-		return false
 	}
 }
 
