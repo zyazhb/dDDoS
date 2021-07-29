@@ -22,6 +22,8 @@ contract trafficStation {
     mapping(address => mapping(uint => uint)) voting;
     //  send from: address, traffic id: uint, traffic info: upchainTrafficInfo
     mapping(address => mapping(uint => upchainTrafficInfo)) traffics;
+    //  send from: address, num: uint
+    mapping(address => uint) addrToID;
     /*
 
                 node1  -------------traffic info----------------> node~
@@ -29,10 +31,10 @@ contract trafficStation {
                 node1  -------------traffic info----------------> node~
 
     */
-
     function emitTrafficTrans(upchainTrafficInfo memory uti) public {
         require(address(0x0) != uti.sourceAddr);
         voting[uti.sourceAddr][uti.trafficID] = 0;
+        addrToID[uti.sourceAddr] += 1;
         emit trafficTrans(uti.trafficID, uti.sourceAddr, uti.trafficInfo);
     }
 
@@ -52,8 +54,12 @@ contract trafficStation {
         return voting[msg.sender][trafficID];
     }
 
-    function getTrafficInfoByID(uint trafficID) public view returns (upchainTrafficInfo memory) {
+    function getTrafficInfoByID(uint trafficID) public view returns(upchainTrafficInfo memory) {
         return traffics[msg.sender][trafficID];
+    }
+
+    function pendingTrafficID(address queryAddr) public view returns(uint) {
+        return addrToID[queryAddr];
     }
 }
 

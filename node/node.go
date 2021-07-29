@@ -2,17 +2,12 @@ package node
 
 import (
 	"context"
-	"crypto/ecdsa"
 	"fmt"
 	"log"
 	"math/big"
-	"strings"
 
-	"github.com/ethereum/go-ethereum"
-	"github.com/ethereum/go-ethereum/accounts/abi"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/crypto"
 	_ "github.com/ethereum/go-ethereum/eth/gasprice"
 	"github.com/ethereum/go-ethereum/ethclient"
@@ -31,7 +26,7 @@ var (
 
 // RunNode 连接到geth节点，完成配置初始化
 func RunNode() error {
-	fullURL := fmt.Sprintf("ws://%s:%d", Conf.chainAddress, Conf.chainPort)
+	fullURL := fmt.Sprintf("ws://%s:%d", Conf.ChainAddress, Conf.ChainPort)
 
 	client, err := ethclient.Dial(fullURL)
 	if err != nil {
@@ -41,8 +36,8 @@ func RunNode() error {
 	log.Println("We have a connection to ethereum")
 
 	Client = client
-	Auth = consultWithNode(Conf.Client.clientAddr)
-	Instance = connectToContract(Conf.Server.contractAddr)
+	Auth = consultWithNode(Conf.Client.ClientPrivateAddr)
+	Instance = connectToContract(Conf.Server.ContractAddr)
 
 	return nil
 }
@@ -54,26 +49,13 @@ func consultWithNode(privateKeys string) *bind.TransactOpts {
 		log.Fatal(err)
 	}
 
-	publicKey := privateKey.Public()
-	publicKeyECDSA, ok := publicKey.(*ecdsa.PublicKey)
-	if !ok {
-		log.Fatal("cannot assert type: publicKey is not of type *ecdsa.PublicKey")
-	}
-
-	FromAddress = crypto.PubkeyToAddress(*publicKeyECDSA)
-
-	nonce, err := UpdateNonce()
-	if err != nil {
-		log.Fatal(err)
-	}
-
 	gasPrice, err := Client.SuggestGasPrice(context.Background())
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	auth := bind.NewKeyedTransactor(privateKey)
-	auth.Nonce = big.NewInt(int64(nonce))
+	auth.Nonce = nil
 	auth.Value = big.NewInt(0)
 	auth.GasLimit = uint64(300000)
 	auth.GasPrice = gasPrice
@@ -92,64 +74,37 @@ func connectToContract(contractAddr string) *contract.Contract {
 	return instances
 }
 
-// UpdateNonce 更新Nonce高度
-func UpdateNonce() (uint64, error) {
-	return Client.PendingNonceAt(context.Background(), FromAddress)
-}
+func SendMessage(trafficInfo string) {
+	// read -> public key | write/event -> private key
+	auth := consultWithNode(Conf.Client.ClientPrivateAddr)
 
 	trafficID, err := pendingTrafficIDAt(context.Background(), Conf.Client.ClientPublicAddr)
 	if err != nil {
 		log.Fatalf("Initial trafficID with error: %v\n", err)
 	}
 
-	logs := make(chan types.Log)
-	sub, err := Client.SubscribeFilterLogs(context.Background(), query, logs)
+	_, err = Instance.EmitTrafficTrans(auth, contract.TrafficStationupchainTrafficInfo{
+		TrafficID:   trafficID,
+		SourceAddr:  common.HexToAddress(Conf.Client.ClientPublicAddr),
+		TrafficInfo: trafficInfo,
+	})
 	if err != nil {
-		log.Println(err)
+		log.Fatalf("[x] Send transaction with error message: %s\n", err)
+		return
 	}
+}
 
-	contractAbi, err := abi.JSON(strings.NewReader(string(contract.ContractABI)))
+func SendVote(trafficID *big.Int, sourceAddr common.Address, voteState bool) {
+	auth := consultWithNode(Conf.Client.ClientPrivateAddr)
+
+	_, err := Instance.EmitVoteTrans(auth, contract.TrafficStationvoteInfo{
+		SourceAddr: sourceAddr,
+		VoteAddr: common.HexToAddress(Conf.Client.ClientPublicAddr),
+		TrafficID: trafficID,
+		State: voteState,
+	})
 	if err != nil {
-        log.Fatal(err)
-    }
-
-	receiveMap := map[string]interface{}{}
-
-	for {
-        select {
-        case err := <-sub.Err():
-            log.Fatal(err)
-        case vLog := <-logs:
-			err := contractAbi.UnpackIntoMap(receiveMap, "msgConn", vLog.Data)
-			if err != nil {
-				log.Fatal(err)
-			}
-
-			eventID := receiveMap["eventID"].(*big.Int)
-			newNonce, _ := UpdateNonce()
-			Auth.Nonce = big.NewInt(int64(newNonce))
-
-			if receiveMap["name"].(string) == "Rconn" {
-				// IntanceRconn, err := Instance.IndexRconn(nil, eventID)
-				IntanceRconn := big.NewInt(102)
-				if err != nil {
-					log.Fatalln(err)
-				}
-
-				_, err = Instance.ReCheckDDos(Auth, IntanceRconn, big.NewInt(100))
-				if err != nil {
-					log.Fatalln(err)
-				}
-
-				_, err = Instance.InsertRddos(Auth, eventID)
-				if err != nil {
-					log.Fatalln(err)
-				}
-			} else if receiveMap["name"].(string) == "Rddos" {
-				log.Println("Have beeb ddosed")
-			} else {
-				log.Fatalln("Invaild message!")
-			}
-        }
-    }
+		log.Fatalf("[x] Send vote transaction with error message: %s\n", err)
+		return
+	}
 }
