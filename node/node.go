@@ -97,7 +97,14 @@ func SendMessage(trafficInfo string) {
 func SendVote(trafficID *big.Int, sourceAddr common.Address, voteState bool) {
 	auth := consultWithNode(Conf.Client.ClientPrivateAddr)
 
-	_, err := Instance.EmitVoteTrans(auth, contract.TrafficStationvoteInfo{
+	nonce, err := Client.PendingNonceAt(context.Background(), common.HexToAddress(Conf.Client.ClientPublicAddr))
+	if err != nil {
+		log.Fatalln("[x] Error to pending nonce!")
+	}
+
+	auth.Nonce = new(big.Int).SetUint64(nonce)
+
+	_, err = Instance.EmitVoteTrans(auth, contract.TrafficStationvoteInfo{
 		SourceAddr: sourceAddr,
 		VoteAddr: common.HexToAddress(Conf.Client.ClientPublicAddr),
 		TrafficID: trafficID,

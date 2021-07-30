@@ -3,14 +3,14 @@ package node
 import (
 	"context"
 	"log"
-	"strings"
 	"math/big"
+	"strings"
 
 	"github.com/ethereum/go-ethereum"
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/accounts/abi"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
+	"github.com/ethereum/go-ethereum/common"
+	"github.com/ethereum/go-ethereum/core/types"
 
 	"main/node/contract"
 )
@@ -34,10 +34,11 @@ type VoteInfo struct {
 }
 
 var (
-	votingCount map[uint64]int
+	votingCount map[uint64]int = make(map[uint64]int)
 )
 
 func WatchMessage() {
+	log.Println("[-] Start watch message")
 	done := make(chan bool)
 
 	contractAddress := common.HexToAddress(Conf.Server.ContractAddr)
@@ -64,7 +65,8 @@ func WatchMessage() {
 			case err := <-sub.Err():
 				log.Fatal(err)
 			case vLog := <-logs:
-				if vLog.Topics[0].String() == trafficTransHash {
+				eventKeccak256 := vLog.Topics[0].String()
+				if eventKeccak256 == trafficTransHash {
 					ret, err := contractAbi.Unpack("trafficTrans", vLog.Data)
 					if err != nil {
 						log.Fatal(err)
@@ -72,12 +74,12 @@ func WatchMessage() {
 
 					retPack := tidyTrafficToStruct(ret)
 
-					if (retPack.SourceAddr.String() != Conf.Client.ClientPrivateAddr) {
+					if (retPack.SourceAddr.String() != Conf.Client.ClientPublicAddr) {
 						mlResult := transTrafficInfoToML(retPack)
 						// TODO: create message channel as buffer
 						SendVote(retPack.TrafficID, retPack.SourceAddr, mlResult)
 					}
-				} else if vLog.Topics[0].String() == voteTransHash {
+				} else if eventKeccak256 == voteTransHash {
 					ret, err := contractAbi.Unpack("voteTrans", vLog.Data)
 					if err != nil {
 						log.Fatal(err)
@@ -111,7 +113,9 @@ func judgeTrafficFromVote(trafficID *big.Int) {
 	// TODO: 这里硬编码的数量要改成动态获取peer的数量
 	if voteNum.Uint64() == 1 {
 		// TODO: 这里的话一个是iptables规则处理，一个是发送预警 -> 新建event进行处理
+		log.Printf("[*] Being attacked by votenum: %s", voteNum.String())
 	} else {
+		return
 	}
 }
 
