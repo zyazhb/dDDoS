@@ -280,10 +280,14 @@
     }
 
     function startAttack(btn){
-        btn.innerHTML="启动攻击中……";
-        window.confirm("启动攻击中……\n即将跳转到日志界面");
+        // btn.innerHTML="启动攻击中……";
+        $("span#attackinfo").text("启动攻击中……");
+        
+        // window.confirm("启动攻击中……\n即将跳转到日志界面");
         window.location.href="/log";
     }
+
+
 
 </script>
 
