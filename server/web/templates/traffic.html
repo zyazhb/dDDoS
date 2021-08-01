@@ -66,22 +66,43 @@
                     setTimeout(function () {
 
                         option = {
-                            legend: {},
+                            legend: {
+                                textStyle: {
+                                    color: "rgba(255, 255, 255, 1)"
+                                }
+                            },
+                            color: ['#00e09e', '#FFCC00', '#FF6666', '#44cef6', '#75878a', '#ff4777'],
                             tooltip: {
                                 trigger: 'axis',
                                 showContent: false
                             },
                             dataset: {
                                 source: [
-                                    ['product', '8:00', '10:00', '12:00', '14:00', '16:00', '18:00'],
-                                    ['Normal', 56.5, 82.1, 88.7, 70.1, 53.4, 85.1],
-                                    ['SYN Flood', 51.1, 51.4, 55.1, 53.3, 73.8, 68.7],
-                                    ['UDP Flood', 40.1, 62.2, 69.5, 36.4, 45.2, 32.5],
-                                    ['Same Src-IP', 25.2, 37.1, 41.2, 18, 33.9, 49.1]
+                                    ['product', '0:00', '2:00', '4:00', '6:00', '8:00', '10:00', '12:00', '14:00', '16:00', '18:00', '20:00', '22:00', '24:00'],
+                                    ['Normal', 56.5, 82.1, 88.7, 70.1, 53.4, 85.1, 56.5, 82.1, 88.7, 70.1, 53.4, 85.1, 53.4],
+                                    ['SYN Flood', 51.1, 51.4, 55.1, 53.3, 73.8, 68.7, 51.1, 51.4, 55.1, 53.3, 73.8, 68.7, 73.8],
+                                    ['UDP Flood', 40.1, 62.2, 69.5, 36.4, 45.2, 32.5, 40.1, 62.2, 69.5, 36.4, 45.2, 32.5, 45.2],
+                                    ['Same Src-IP', 25.2, 37.1, 41.2, 18, 33.9, 49.1, 25.2, 37.1, 41.2, 18, 33.9, 49.1, 41.2]
                                 ]
                             },
-                            xAxis: { type: 'category' },
-                            yAxis: { gridIndex: 0 },
+                            xAxis: {
+                                type: 'category',
+                                axisLine: {
+                                    lineStyle: {
+                                        color: '#ffffff',
+                                        width: 1, //这里是为了突出显示加上的  
+                                    }
+                                },
+                            },
+                            yAxis: {
+                                gridIndex: 0,
+                                axisLine: {
+                                    lineStyle: {
+                                        color: '#ffffff',
+                                        width: 1, //这里是为了突出显示加上的  
+                                    }
+                                },
+                            },
                             grid: { top: '55%' },
                             series: [
                                 { type: 'line', smooth: true, seriesLayoutBy: 'row', emphasis: { focus: 'series' } },
