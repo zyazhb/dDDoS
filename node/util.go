@@ -8,16 +8,16 @@ import (
 )
 
 type ClientConfig struct {
-	ChainAddress 	string 	`yaml:"chain-address"`
-	ChainPort		int		`yaml:"chain-port"`
+	ChainAddress string `yaml:"chain-address"`
+	ChainPort    int    `yaml:"chain-port"`
 
 	Server struct {
-		ContractAddr	string	`yaml:"contract-address"`
+		ContractAddr string `yaml:"contract-address"`
 	}
 
 	Client struct {
-		ClientPrivateAddr	string `yaml:"privateAddress"`
-		ClientPublicAddr	string `yaml:"publicAddress"`
+		ClientPrivateAddr string `yaml:"privateAddress"`
+		ClientPublicAddr  string `yaml:"publicAddress"`
 	}
 }
 
@@ -36,12 +36,9 @@ func init() {
 		return
 	}
 
-	conf := new(ClientConfig)
-	err = yaml.Unmarshal(yamlFile, conf)
+	err = yaml.Unmarshal(yamlFile, &Conf)
 	if err != nil {
 		log.Fatalln("Faile to unmarshal config file!")
 		return
 	}
-
-	Conf = conf
 }

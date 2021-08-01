@@ -20,19 +20,6 @@ const (
 	trafficTransHash = "0x82a0cd03c34dff9e0879fd6d40cea94cdf58b4b4bbf4b2c8a3ebb91ca8007577"
 )
 
-type UpchainTrafficInfo struct {
-	TrafficID *big.Int
-	SourceAddr common.Address
-	TrafficInfo string
-}
-
-type VoteInfo struct {
-	SourceAddr common.Address
-	VoteAddr common.Address
-	TrafficID *big.Int
-	State bool
-}
-
 var (
 	votingCount map[uint64]int = make(map[uint64]int)
 )

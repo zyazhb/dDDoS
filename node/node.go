@@ -15,6 +15,7 @@ import (
 	"main/node/contract"
 )
 
+// TODO: 改成struct，减少依赖关系
 var (
 	Client *ethclient.Client
 
