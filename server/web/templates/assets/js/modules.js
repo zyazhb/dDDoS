@@ -16,14 +16,14 @@
 
   [Table of contents]
 
-	- Charts
-	-- ChartJS
-	-- Apexchart
-	- RangeJS
-	- DateRangePicker
-	- Preloader
-	- Shop-Range-Slider
-	- JQVMAP
+    - Charts
+    -- ChartJS
+    -- Apexchart
+    - RangeJS
+    - DateRangePicker
+    - Preloader
+    - Shop-Range-Slider
+    - JQVMAP
 
 ------------------------------------------------------------------------ */
 
@@ -91,7 +91,7 @@ function chartJSInit() {
                     },
                     tooltips: {
                         callbacks: {
-                            label: function(tooltipItem) {
+                            label: function (tooltipItem) {
                                 return tooltipItem.yLabel;
                             }
                         }
@@ -171,7 +171,7 @@ function chartJSInit() {
                     },
                     tooltips: {
                         callbacks: {
-                            label: function(tooltipItem) {
+                            label: function (tooltipItem) {
                                 return tooltipItem.yLabel;
                             }
                         }
@@ -251,7 +251,7 @@ function chartJSInit() {
                     },
                     tooltips: {
                         callbacks: {
-                            label: function(tooltipItem) {
+                            label: function (tooltipItem) {
                                 return tooltipItem.yLabel;
                             }
                         }
@@ -331,7 +331,7 @@ function chartJSInit() {
                     },
                     tooltips: {
                         callbacks: {
-                            label: function(tooltipItem) {
+                            label: function (tooltipItem) {
                                 return tooltipItem.yLabel;
                             }
                         }
@@ -352,6 +352,166 @@ function chartJSInit() {
                                 display: false,
                                 min: 30,
                                 max: 42
+                            },
+                            gridLines: {
+                                display: false
+                            }
+                        }]
+                    },
+                    title: {
+                        display: false
+                    }
+                }
+            });
+        }
+
+        /* chart-sm-05 (line-chart) */
+        if ($("#chart-sm-05").length) {
+            let chart_sm_05 = document.querySelector("#chart-sm-05"), // chart ID
+                chart_sm_05_chartLineLG = chart_sm_05.getContext("2d"),
+                chart_sm_05_gradientFill = chart_sm_05_chartLineLG.createLinearGradient(0, 0, 0, 50),
+                chart_sm_05_gradientFill_b = chart_sm_05_chartLineLG.createLinearGradient(0, 20, 0, 50);
+            chart_sm_05_gradientFill.addColorStop(0, "rgba(255, 255, 255, 1)");
+            chart_sm_05_gradientFill.addColorStop(.5, "rgba(198, 210, 253, 1)");
+            chart_sm_05_gradientFill.addColorStop(1, "rgba(162, 255, 194, 1)");
+            chart_sm_05_gradientFill_b.addColorStop(0, "rgba(32, 73, 219, .17)");
+            chart_sm_05_gradientFill_b.addColorStop(1, "rgba(32, 73, 219, .05)");
+            new Chart(chart_sm_05_chartLineLG, {
+                type: 'glowLineLight',
+                data: {
+                    labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S', 'M', 'T', 'W'],
+                    datasets: [{
+                        borderColor: chart_sm_05_gradientFill,
+                        backgroundColor: chart_sm_05_gradientFill_b,
+                        borderWidth: "2",
+                        data: [24, 16, 19, 24, 39, 15, 29, 13, 22, 24],
+                        label: 'Dataset',
+                        fill: true,
+                        radius: 0
+                    }]
+                },
+                options: {
+                    spanGaps: false,
+                    maintainAspectRatio: false,
+                    elements: {
+                        line: {
+                            tension: 0
+                        }
+                    },
+                    animation: {
+                        duration: 0
+                    },
+                    legend: {
+                        display: false
+                    },
+                    plugins: {
+                        filler: {
+                            propagate: false
+                        }
+                    },
+                    tooltips: {
+                        callbacks: {
+                            label: function (tooltipItem) {
+                                return tooltipItem.yLabel;
+                            }
+                        }
+                    },
+                    scales: {
+                        xAxes: [{
+                            display: false,
+                            ticks: {
+                                display: false
+                            },
+                            gridLines: {
+                                display: false
+                            }
+                        }],
+                        yAxes: [{
+                            display: false,
+                            ticks: {
+                                display: false,
+                                min: 0,
+                                max: 42
+                            },
+                            gridLines: {
+                                display: false
+                            }
+                        }]
+                    },
+                    title: {
+                        display: false
+                    }
+                }
+            });
+        }
+
+        /* chart-sm-06 (line-chart) */
+        if ($("#chart-sm-06").length) {
+            let chart_sm_06 = document.querySelector("#chart-sm-06"), // chart ID
+                chart_sm_06_chartLineLG = chart_sm_06.getContext("2d"),
+                chart_sm_06_gradientFill = chart_sm_06_chartLineLG.createLinearGradient(0, 0, 0, 50),
+                chart_sm_06_gradientFill_b = chart_sm_06_chartLineLG.createLinearGradient(0, 20, 0, 50);
+            chart_sm_06_gradientFill.addColorStop(0, "rgba(255, 255, 255, 1)");
+            chart_sm_06_gradientFill.addColorStop(.5, "rgba(198, 210, 253, 1)");
+            chart_sm_06_gradientFill.addColorStop(1, "rgba(162, 255, 194, 1)");
+            chart_sm_06_gradientFill_b.addColorStop(0, "rgba(32, 73, 219, .17)");
+            chart_sm_06_gradientFill_b.addColorStop(1, "rgba(32, 73, 219, .06)");
+            new Chart(chart_sm_06_chartLineLG, {
+                type: 'glowLineLight',
+                data: {
+                    labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S', 'M', 'T', 'W'],
+                    datasets: [{
+                        borderColor: chart_sm_06_gradientFill,
+                        backgroundColor: chart_sm_06_gradientFill_b,
+                        borderWidth: "2",
+                        data: [23, 21, 11, 4, 3, 14, 24, 16, 5, 23],
+                        label: 'Dataset',
+                        fill: true,
+                        radius: 0
+                    }]
+                },
+                options: {
+                    spanGaps: false,
+                    maintainAspectRatio: false,
+                    elements: {
+                        line: {
+                            tension: 0
+                        }
+                    },
+                    animation: {
+                        duration: 0
+                    },
+                    legend: {
+                        display: false
+                    },
+                    plugins: {
+                        filler: {
+                            propagate: false
+                        }
+                    },
+                    tooltips: {
+                        callbacks: {
+                            label: function (tooltipItem) {
+                                return tooltipItem.yLabel;
+                            }
+                        }
+                    },
+                    scales: {
+                        xAxes: [{
+                            display: false,
+                            ticks: {
+                                display: false
+                            },
+                            gridLines: {
+                                display: false
+                            }
+                        }],
+                        yAxes: [{
+                            display: false,
+                            ticks: {
+                                display: false,
+                                min: 0,
+                                max: 24
                             },
                             gridLines: {
                                 display: false
@@ -981,7 +1141,7 @@ function chartJSInit() {
 
         Chart.defaults.LineWithLine = Chart.defaults.line;
         Chart.controllers.LineWithLine = Chart.controllers.line.extend({
-            draw: function(ease) {
+            draw: function (ease) {
                 Chart.controllers.line.prototype.draw.call(this, ease);
 
                 if (this.chart.tooltip._active && this.chart.tooltip._active.length) {
@@ -1094,29 +1254,29 @@ function chartJSInit() {
                     annotation: {
                         events: ["click"],
                         annotations: [{
-                                drawTime: "afterDatasetsDraw",
-                                id: "hline",
-                                type: "line",
-                                mode: "horizontal",
-                                scaleID: "y-axis-0",
-                                value: "30",
-                                borderColor: "rgba(42, 242, 112, .5)",
-                                borderWidth: 1,
-                                label: {
-                                    backgroundColor: "rgba(42, 242, 112, .9)",
-                                    fontColor: "#3a4048",
-                                    cornerRadius: 2,
-                                    content: "Normal",
-                                    enabled: true
-                                },
+                            drawTime: "afterDatasetsDraw",
+                            id: "hline",
+                            type: "line",
+                            mode: "horizontal",
+                            scaleID: "y-axis-0",
+                            value: "30",
+                            borderColor: "rgba(42, 242, 112, .5)",
+                            borderWidth: 1,
+                            label: {
+                                backgroundColor: "rgba(42, 242, 112, .9)",
+                                fontColor: "#3a4048",
+                                cornerRadius: 2,
+                                content: "Normal",
+                                enabled: true
                             },
-                            {
-                                drawTime: "beforeDatasetsDraw",
-                                type: "box",
-                                backgroundColor: "rgba(255, 255, 255, 0)",
-                                borderColor: "rgba(255, 255, 255, 0)",
-                                borderWidth: 0
-                            }
+                        },
+                        {
+                            drawTime: "beforeDatasetsDraw",
+                            type: "box",
+                            backgroundColor: "rgba(255, 255, 255, 0)",
+                            borderColor: "rgba(255, 255, 255, 0)",
+                            borderWidth: 0
+                        }
                         ]
                     }
                 }
@@ -1212,29 +1372,29 @@ function chartJSInit() {
                     annotation: {
                         events: ["click"],
                         annotations: [{
-                                drawTime: "afterDatasetsDraw",
-                                id: "hline",
-                                type: "line",
-                                mode: "horizontal",
-                                scaleID: "y-axis-0",
-                                value: "30",
-                                borderColor: "rgba(42, 242, 112, .5)",
-                                borderWidth: 1,
-                                label: {
-                                    backgroundColor: "rgba(42, 242, 112, .9)",
-                                    fontColor: "#3a4048",
-                                    cornerRadius: 2,
-                                    content: "Normal",
-                                    enabled: true
-                                }
-                            },
-                            {
-                                drawTime: "beforeDatasetsDraw",
-                                type: "box",
-                                backgroundColor: "rgba(255, 255, 255, 0)",
-                                borderColor: "rgba(255, 255, 255, 0)",
-                                borderWidth: 0
+                            drawTime: "afterDatasetsDraw",
+                            id: "hline",
+                            type: "line",
+                            mode: "horizontal",
+                            scaleID: "y-axis-0",
+                            value: "30",
+                            borderColor: "rgba(42, 242, 112, .5)",
+                            borderWidth: 1,
+                            label: {
+                                backgroundColor: "rgba(42, 242, 112, .9)",
+                                fontColor: "#3a4048",
+                                cornerRadius: 2,
+                                content: "Normal",
+                                enabled: true
                             }
+                        },
+                        {
+                            drawTime: "beforeDatasetsDraw",
+                            type: "box",
+                            backgroundColor: "rgba(255, 255, 255, 0)",
+                            borderColor: "rgba(255, 255, 255, 0)",
+                            borderWidth: 0
+                        }
                         ]
                     }
                 }
@@ -1689,29 +1849,29 @@ function chartJSInit() {
                 data: {
                     labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
                     datasets: [{
-                            type: 'bar',
-                            hoverBackgroundColor: chart_sed_gradientFill,
-                            backgroundColor: chart_sed_gradientFill,
-                            data: [280, 205, 195, 228, 150, 175, 175, 200, 215, 187, 214, 210],
-                            label: 'Chart-1',
-                            fill: chart_sed_gradientFill
-                        },
-                        {
-                            type: 'bar',
-                            hoverBackgroundColor: chart_sed_gradientFill_02,
-                            backgroundColor: chart_sed_gradientFill_02,
-                            data: [147, 250, 175, 178, 150, 175, 175, 200, 215, 187, 214, 210],
-                            label: 'Chart-2',
-                            fill: chart_sed_gradientFill
-                        },
-                        {
-                            type: 'bar',
-                            hoverBackgroundColor: chart_sed_gradientFill_03,
-                            backgroundColor: chart_sed_gradientFill_03,
-                            data: [124, 190, 225, 198, 150, 175, 175, 210, 215, 187, 214, 210],
-                            label: 'Chart-3',
-                            fill: chart_sed_gradientFill
-                        }
+                        type: 'bar',
+                        hoverBackgroundColor: chart_sed_gradientFill,
+                        backgroundColor: chart_sed_gradientFill,
+                        data: [280, 205, 195, 228, 150, 175, 175, 200, 215, 187, 214, 210],
+                        label: 'Chart-1',
+                        fill: chart_sed_gradientFill
+                    },
+                    {
+                        type: 'bar',
+                        hoverBackgroundColor: chart_sed_gradientFill_02,
+                        backgroundColor: chart_sed_gradientFill_02,
+                        data: [147, 250, 175, 178, 150, 175, 175, 200, 215, 187, 214, 210],
+                        label: 'Chart-2',
+                        fill: chart_sed_gradientFill
+                    },
+                    {
+                        type: 'bar',
+                        hoverBackgroundColor: chart_sed_gradientFill_03,
+                        backgroundColor: chart_sed_gradientFill_03,
+                        data: [124, 190, 225, 198, 150, 175, 175, 210, 215, 187, 214, 210],
+                        label: 'Chart-3',
+                        fill: chart_sed_gradientFill
+                    }
                     ]
                 },
                 options: {
@@ -1801,7 +1961,7 @@ function chartJSInit() {
             tooltip: {
                 theme: "dark",
                 x: {
-                    formatter: function(val) {
+                    formatter: function (val) {
                         return moment(new Date(val)).format("HH:mm:ss");
                     }
                 }
@@ -1969,69 +2129,69 @@ function chartJSInit() {
         if ($("#chart-radialBar_B").length) {
             new ApexCharts(
                 document.querySelector("#chart-radialBar_B"), {
-                    chart: {
-                        height: 400,
-                        type: 'radialBar'
-                    },
-                    plotOptions: {
-                        radialBar: {
-                            track: {
-                                background: "#27263b"
+                chart: {
+                    height: 400,
+                    type: 'radialBar'
+                },
+                plotOptions: {
+                    radialBar: {
+                        track: {
+                            background: "#27263b"
+                        },
+                        hollow: {
+                            margin: 15,
+                            size: '30%',
+                            background: 'transparent',
+                            image: undefined,
+                        },
+                        dataLabels: {
+                            name: {
+                                fontSize: '1rem',
                             },
-                            hollow: {
-                                margin: 15,
-                                size: '30%',
-                                background: 'transparent',
-                                image: undefined,
+                            value: {
+                                fontSize: '.75rem',
+                                color: 'rgba(255,255,255, .8)'
                             },
-                            dataLabels: {
-                                name: {
-                                    fontSize: '1rem',
-                                },
-                                value: {
-                                    fontSize: '.75rem',
-                                    color: 'rgba(255,255,255, .8)'
-                                },
-                                total: {
-                                    show: true,
-                                    label: '总在线设备数',
-                                    color: 'rgba(255,255,255, .98)',
-                                    formatter: function(w) {
-                                        w = 5
-                                        return w
-                                    }
+                            total: {
+                                show: true,
+                                label: '总在线设备数',
+                                color: 'rgba(255,255,255, .98)',
+                                formatter: function (w) {
+                                    w = 5
+                                    return w
                                 }
                             }
                         }
-                    },
-                    colors: ['#0084ff', '#0084ff', '#2af270'],
-                    fill: {
-                        type: 'gradient',
-                        gradient: {
-                            shade: 'dark',
-                            type: 'horizontal',
-                            shadeIntensity: 0.5,
-                            gradientToColors: ['#2af270', '#da2f69', '#0084ff'],
-                            inverseColors: true,
-                            opacityFrom: 1,
-                            opacityTo: 1,
-                            stops: [0, 100]
+                    }
+                },
+                colors: ['#0084ff', '#0084ff', '#2af270'],
+                fill: {
+                    type: 'gradient',
+                    gradient: {
+                        shade: 'dark',
+                        type: 'horizontal',
+                        shadeIntensity: 0.5,
+                        gradientToColors: ['#2af270', '#da2f69', '#0084ff'],
+                        inverseColors: true,
+                        opacityFrom: 1,
+                        opacityTo: 1,
+                        stops: [0, 100]
+                    }
+                },
+                series: [98, 19.7, 70],
+                stroke: {
+                    lineCap: 'round'
+                },
+                labels: ['全期抵御成功率', '正在遭受攻击率', '正在防御数'],
+                responsive: [{
+                    breakpoint: 480,
+                    options: {
+                        legend: {
+                            show: false
                         }
-                    },
-                    series: [98, 19.7, 70],
-                    stroke: {
-                        lineCap: 'round'
-                    },
-                    labels: ['全期抵御成功率', '正在遭受攻击率', '正在防御数'],
-                    responsive: [{
-                        breakpoint: 480,
-                        options: {
-                            legend: {
-                                show: false
-                            }
-                        }
-                    }]
-                }
+                    }
+                }]
+            }
             ).render();
         }
 
@@ -2040,77 +2200,77 @@ function chartJSInit() {
 
             new ApexCharts(
                 document.querySelector("#chart-rb"), {
-                    chart: {
-                        height: 350,
-                        type: 'radialBar'
-                    },
-                    plotOptions: {
-                        radialBar: {
-                            startAngle: -135,
-                            endAngle: 225,
-                            hollow: {
-                                margin: 0,
-                                size: '85%',
-                                background: 'transparent',
-                                image: undefined,
-                                imageOffsetX: 0,
-                                imageOffsetY: 0,
-                                position: 'front',
-                                dropShadow: {
-                                    enabled: true,
-                                    top: 3,
-                                    left: 0,
-                                    blur: 4,
-                                    opacity: 0.24
-                                }
-                            },
-                            track: {
-                                background: '#27263b',
-                                strokeWidth: '47%',
-                                margin: 0,
-                                dropShadow: {
-                                    enabled: true,
-                                    top: -3,
-                                    left: 0,
-                                    blur: 4,
-                                    opacity: 0.35
-                                }
-                            },
+                chart: {
+                    height: 350,
+                    type: 'radialBar'
+                },
+                plotOptions: {
+                    radialBar: {
+                        startAngle: -135,
+                        endAngle: 225,
+                        hollow: {
+                            margin: 0,
+                            size: '85%',
+                            background: 'transparent',
+                            image: undefined,
+                            imageOffsetX: 0,
+                            imageOffsetY: 0,
+                            position: 'front',
+                            dropShadow: {
+                                enabled: true,
+                                top: 3,
+                                left: 0,
+                                blur: 4,
+                                opacity: 0.24
+                            }
+                        },
+                        track: {
+                            background: '#27263b',
+                            strokeWidth: '47%',
+                            margin: 0,
+                            dropShadow: {
+                                enabled: true,
+                                top: -3,
+                                left: 0,
+                                blur: 4,
+                                opacity: 0.35
+                            }
+                        },
 
-                            dataLabels: {
-                                name: {
-                                    show: false
+                        dataLabels: {
+                            name: {
+                                show: false
+                            },
+                            value: {
+                                formatter: function (val) {
+                                    return parseInt(val) + '%';
                                 },
-                                value: {
-                                    formatter: function(val) {
-                                        return parseInt(val) + '%';
-                                    },
-                                    color: '#fff',
-                                    fontSize: '36px',
-                                    show: true,
-                                }
+                                color: '#fff',
+                                fontSize: '36px',
+                                show: true,
                             }
                         }
-                    },
-                    colors: ['#2af270'],
-                    fill: {
-                        type: 'gradient',
-                        gradient: {
-                            shade: 'dark',
-                            type: 'horizontal',
-                            shadeIntensity: 0.5,
-                            gradientToColors: ['#0084ff'],
-                            inverseColors: true,
-                            opacityFrom: 1,
-                            opacityTo: 1,
-                            stops: [0, 100]
-                        }
-                    },
-                    series: [Math.random() * 100],
-                    stroke: {
-                        lineCap: 'round'
                     }
+                },
+                colors: ['#2af270'],
+                fill: {
+                    type: 'gradient',
+                    gradient: {
+                        shade: 'dark',
+                        type: 'horizontal',
+                        shadeIntensity: 0.5,
+                        gradientToColors: ['#0084ff'],
+                        inverseColors: true,
+                        opacityFrom: 1,
+                        opacityTo: 1,
+                        stops: [0, 100]
+                    }
+                },
+                series: [Math.random() * 100],
+                stroke: {
+                    lineCap: 'round'
                 }
+            }
             ).render();
         }
 
@@ -2133,10 +2293,10 @@ function chartJSInit() {
             fillClass: 'rangeslider__fill',
             handleClass: 'rangeslider__handle',
 
-            onInit: function() {
+            onInit: function () {
                 this.output = $('<div class="range-output" />').insertAfter(this.$range).html(this.$element.val());
             },
-            onSlide: function(position, value) {
+            onSlide: function (position, value) {
                 this.output.html(value);
             }
         });
@@ -2152,7 +2312,7 @@ function chartJSInit() {
             handleClass: 'rangeslider__handle',
 
             // Callback function
-            onInit: function() {
+            onInit: function () {
                 var $rangeEl = this.$range;
 
                 // get range index labels
@@ -2161,19 +2321,19 @@ function chartJSInit() {
 
                 // add labels
                 $rangeEl.append('<div class="rangeslider__labels"></div>');
-                $(rangeLabels).each(function(index, value) {
+                $(rangeLabels).each(function (index, value) {
                     $rangeEl.find('.rangeslider__labels').append('<span class="rangeslider__labels__label">' + value + '</span>');
                 })
             },
 
             // Callback function
-            onSlide: function(position, value) {
+            onSlide: function (position, value) {
                 var $handle = this.$range.find('.rangeslider__handle__value');
                 $handle.text(this.value);
             },
 
             // Callback function
-            onSlideEnd: function(position, value) {}
+            onSlideEnd: function (position, value) { }
         });
     }
 
