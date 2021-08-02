@@ -1,0 +1,476 @@
+{{define "situationawareness.html"}}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>dDDos</title>
+    <!-- CSS -->
+    <link href="/css/main.css" rel="stylesheet">
+    <link href="/css/styles.css" rel="stylesheet">
+    <link href="/css/fonts/fontawesome/all.min.css" rel="stylesheet">
+    <link href="/css/fonts/beid.css" rel="stylesheet">
+    <!-- JQVMAP -->
+    <link href="/plugins/jqvmap/jqvmap.min.css" rel="stylesheet">
+    <!-- dateRangePicker -->
+    <link href="/plugins/daterangepicker/daterangepicker.css" rel="stylesheet">
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+    <link rel="icon" href="/img/favicon.png">
+    <!-- Fonts -->
+    <link href="/fonts/inter/inter.css" rel="stylesheet">
+    <link href="/css/css1.css" rel="stylesheet">
+    <link href="/css/css2.css" rel="stylesheet">
+    <!--[if lt IE 9]><script src="http://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script><script src="http://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+    <!-- jQuery -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/echarts/4.7.0/echarts.js"></script>
+</head>
+
+<body class="body">
+    <!-- include header -->
+    {{template "/header" .}}
+
+    <!-- main -->
+    <main>
+        <!-- include sidebar -->
+        {{template "/sidebar" .}}
+        <!-- main content -->
+        <div class="main-container">
+            <div class="overflow-hidden">
+                <div id="dashboard">
+                    <!-- content-header -->
+                    <div class="row flex-wrap align-items-center px-6 py-5">
+                        <div class="col">
+                            <div class="text-light pb-5 pb-lg-0 mr-auto">
+                                <h2 class="fw-100 mb-0">安全态势感知</h2>
+                                <!-- <p class="mb-0">基于区块链及分布式机器学习的物联网设备安全态势感知及控制平台</p> -->
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="panel-row row no-gutters">
+                        <div class="panel-col col-lp-6 panel-pt-col">
+                            <!-- panel -->
+                            <div class="panel">
+                                <header class="panel-header">
+                                    <h5 class="fw-200 text-uppercase mb-0">恶意IP来源 分布图</h5>
+                                    <a href="#" class="d-flex align-items-center justify-content-center ml-auto">
+                                        <!-- <span class="lead-3 text-warning fas fa-globe-americas"></span> -->
+                                    </a>
+                                    <div class="panel-header-nav ml-auto">
+                                        <a data-toggle="collapse" href="#collapseMap" role="button"
+                                            aria-expanded="false" aria-controls="collapseMap" class="nav-item mr-3">
+                                            <span class="icon-minus"></span>
+                                        </a>
+                                        <a data-toggle="refresh" class="nav-item mr-3"><span
+                                                class="icon-refresh"></span></a>
+                                        <a data-toggle="remove" class="nav-item"><span class="icon-close"></span></a>
+                                    </div>
+                                </header>
+                                <div class="collapse show" id="collapseMap">
+                                    <div class="panel-body px-0">
+                                        <div id="vmap" style="width: 100%; height: 400px;">
+                                            <a href="#" data-toggle="fullscreen-btn"
+                                                class="position-absolute r-6 t-4 lead-1 text-warning">
+                                                <span class="fas fa-expand"></span>
+                                            </a>
+                                        </div>
+                                        <div class="px-4">
+                                            <h6 class="mb-0">2021年IP溯源汇总</h6>
+                                            <span class="small"><span class="text-warning">+12.00%</span> 相比上月攻击量</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.panel -->
+                            <div class="panel  panel-pt">
+                                <div class="panel-row row no-gutters">
+                                    <!-- panel -->
+                                    <div class="panel-col col-xl-6">
+                                        <div class="panel">
+                                            <header class="panel-header align-items-center">
+                                                <div>
+                                                    <h5 class="title mb-0">受攻击设备 分类（月）</h5>
+                                                </div>
+                                                <div class="panel-header-nav ml-auto">
+                                                    <a data-toggle="collapse" href="#collapseQuickStat" role="button"
+                                                        aria-expanded="false" aria-controls="collapseQuickStat"
+                                                        class="nav-item mr-3">
+                                                        <span class="icon-minus"></span>
+                                                    </a>
+                                                    <a data-toggle="refresh" class="nav-item mr-3"><span
+                                                            class="icon-refresh"></span></a>
+                                                    <a data-toggle="remove" class="nav-item"><span
+                                                            class="icon-close"></span></a>
+                                                </div>
+                                            </header>
+                                            <div class="collapse show" id="collapseQuickStat">
+                                                <div class="panel-body">
+                                                    <div id="container" style="min-height:500px;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- panel -->
+                                    <div class="panel-col col-xl-6">
+                                        <div class="panel">
+                                            <header class="panel-header align-items-center">
+                                                <div>
+                                                    <h5 class="title mb-0">受攻击设备 变化趋势</h5>
+                                                </div>
+                                                <div class="panel-header-nav ml-auto">
+                                                    <a data-toggle="collapse" href="#collapseDayStat" role="button"
+                                                        aria-expanded="false" aria-controls="collapseDayStat"
+                                                        class="nav-item mr-3">
+                                                        <span class="icon-minus"></span>
+                                                    </a>
+                                                    <a data-toggle="refresh" class="nav-item mr-3"><span
+                                                            class="icon-refresh"></span></a>
+                                                    <a data-toggle="remove" class="nav-item"><span
+                                                            class="icon-close"></span></a>
+                                                </div>
+                                            </header>
+                                            <div class="collapse show" id="collapseDayStat">
+                                                <div class="panel-body">
+                                                    <div class="panel-user-stat panel-list my-4">
+                                                        <!-- profit -->
+                                                        <div class="panel-stat-item panel-list-item">
+                                                            <div class="d-flex">
+                                                                <div class="flex-1">
+                                                                    <div class="d-flex align-items-center h-100">
+                                                                        <div class="lh-1">
+                                                                            <span class="lead-4 text-warning">
+                                                                                <img src="/img/icons/headset.svg"
+                                                                                    alt="profit" class="panel-icon">
+                                                                            </span>
+                                                                        </div>
+                                                                        <div class="pl-3 lh-1">
+                                                                            <span class="d-block lead-2 mb-2">医疗设备</span>
+                                                                            <span class="small">可穿戴设备，智能仪表，病人定位及监控</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="CJSA-wrapper CJSA-grid p-relative w-50">
+                                                                    <canvas id="chart-sm-01" data-chart="animated"
+                                                                        height="49"></canvas>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- /.profit -->
+                                                        <!-- delivered -->
+                                                        <div class="panel-stat-item panel-list-item">
+                                                            <div class="d-flex">
+                                                                <div class="flex-1">
+                                                                    <div class="d-flex align-items-center h-100">
+                                                                        <div class="lh-1">
+                                                                            <span class="lead-4 text-primary">
+                                                                                <img src="/img/icons/outbox.svg"
+                                                                                    alt="outbox" class="panel-icon">
+                                                                            </span>
+                                                                        </div>
+                                                                        <div class="pl-3 lh-1">
+                                                                            <span
+                                                                                class="d-block lead-2 mb-2">家居设备</span>
+                                                                            <span class="small">智能空调，智能音箱，智能监控</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="CJSA-wrapper CJSA-grid p-relative w-50">
+                                                                    <canvas id="chart-sm-02" data-chart="animated"
+                                                                        height="49"></canvas>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- /.delivered -->
+                                                        <!-- cart -->
+                                                        <div class="panel-stat-item panel-list-item">
+                                                            <div class="d-flex">
+                                                                <div class="flex-1">
+                                                                    <div class="d-flex align-items-center h-100">
+                                                                        <div class="lh-1">
+                                                                            <span class="lead-4 text-danger">
+                                                                                <img src="/img/icons/profit.svg"
+                                                                                    alt="cart" class="panel-icon">
+                                                                            </span>
+                                                                        </div>
+                                                                        <div class="pl-3 lh-1">
+                                                                            <span
+                                                                                class="d-block lead-2 mb-2">工厂设备</span>
+                                                                            <span class="small">固定置产跟踪，智能机器人，智能检测</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="CJSA-wrapper CJSA-grid p-relative w-50">
+                                                                    <canvas id="chart-sm-03" data-chart="animated"
+                                                                        height="49"></canvas>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- /.cart -->
+                                                        <!-- support -->
+                                                        <div class="panel-stat-item panel-list-item">
+                                                            <div class="d-flex">
+                                                                <div class="flex-1">
+                                                                    <div class="d-flex align-items-center h-100">
+                                                                        <div class="lh-1">
+                                                                            <span class="lead-4 text-success">
+                                                                                <img src="/img/icons/cart.svg"
+                                                                                    alt="headset" class="panel-icon">
+                                                                            </span>
+                                                                        </div>
+                                                                        <div class="pl-3 lh-1">
+                                                                            <span
+                                                                                class="d-block lead-2 mb-2">公共设备</span>
+                                                                            <span class="small">智能停车，智能电表，水表</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="CJSA-wrapper CJSA-grid p-relative w-50">
+                                                                    <canvas id="chart-sm-04" data-chart="animated"
+                                                                        height="49"></canvas>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- /.support -->
+                                                        <!-- profit -->
+                                                        <div class="panel-stat-item panel-list-item">
+                                                            <div class="d-flex">
+                                                                <div class="flex-1">
+                                                                    <div class="d-flex align-items-center h-100">
+                                                                        <div class="lh-1">
+                                                                            <span class="lead-4 text-warning">
+                                                                                <img src="/img/icons/outbox.svg"
+                                                                                    alt="profit" class="panel-icon">
+                                                                            </span>
+                                                                        </div>
+                                                                        <div class="pl-3 lh-1">
+                                                                            <span class="d-block lead-2 mb-2">农业设备</span>
+                                                                            <span class="small">农业监控，畜牧业，水质，温度，空气</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="CJSA-wrapper CJSA-grid p-relative w-50">
+                                                                    <canvas id="chart-sm-05" data-chart="animated"
+                                                                        height="49"></canvas>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- /.profit -->
+                                                        <!-- delivered -->
+                                                        <div class="panel-stat-item panel-list-item">
+                                                            <div class="d-flex">
+                                                                <div class="flex-1">
+                                                                    <div class="d-flex align-items-center h-100">
+                                                                        <div class="lh-1">
+                                                                            <span class="lead-4 text-primary">
+                                                                                <img src="/img/icons/profit.svg"
+                                                                                    alt="outbox" class="panel-icon">
+                                                                            </span>
+                                                                        </div>
+                                                                        <div class="pl-3 lh-1">
+                                                                            <span
+                                                                                class="d-block lead-2 mb-2">物流设备</span>
+                                                                            <span class="small">物流跟踪，货物溯源等</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="CJSA-wrapper CJSA-grid p-relative w-50">
+                                                                    <canvas id="chart-sm-06" data-chart="animated"
+                                                                        height="49"></canvas>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- /.delivered -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script type="text/javascript">
+                var app = {};
+
+                var chartDom = document.getElementById('container');
+                var myChart = echarts.init(chartDom);
+                var option;
+
+                var cellSize = [82, 82];
+                var pieRadius = 30;
+
+                function getVirtulData() {
+                    var date = +echarts.number.parseDate('2021-07-01');
+                    var end = +echarts.number.parseDate('2021-08-01');
+                    var dayTime = 3600 * 24 * 1000;
+                    var data = [];
+                    for (var time = date; time < end; time += dayTime) {
+                        data.push([
+                            echarts.format.formatTime('yyyy-MM-dd', time),
+                            Math.floor(Math.random() * 10000)
+                        ]);
+                    }
+                    return data;
+                }
+
+                function getPieSeries(scatterData, chart) {
+                    return scatterData.map(function (item, index) {
+                        var center = chart.convertToPixel('calendar', item);
+                        return {
+                            id: index + 'pie',
+                            type: 'pie',
+                            center: center,
+                            label: {
+                                normal: {
+                                    formatter: '{c}',
+                                    position: 'inside'
+                                }
+                            },
+                            radius: pieRadius,
+                            data: [
+                                { name: '医疗设备', value: Math.round(Math.random() * 24) },
+                                { name: '家居设备', value: Math.round(Math.random() * 24) },
+                                { name: '工厂设备', value: Math.round(Math.random() * 24) },
+                                { name: '公共设备', value: Math.round(Math.random() * 24) },
+                                { name: '农业设备', value: Math.round(Math.random() * 24) },
+                                { name: '物流设备', value: Math.round(Math.random() * 24) }
+                            ]
+                        };
+                    });
+                }
+
+                function getPieSeriesUpdate(scatterData, chart) {
+                    return scatterData.map(function (item, index) {
+                        var center = chart.convertToPixel('calendar', item);
+                        return {
+                            id: index + 'pie',
+                            center: center
+                        };
+                    });
+                }
+
+                var scatterData = getVirtulData();
+
+                option = {
+                    tooltip: {},
+                    legend: {
+                        data: ['医疗设备', '家居设备', '工厂设备', '公共设备', '农业设备', '物流设备'],
+                        bottom: 18,
+                        textStyle: {
+                            color: "rgba(255, 255, 255, 1)"
+                        }
+                    },
+                    // color:['#00e09e','#afdd22','#ffb61e','#44cef6','#75878a','#ff4777'],
+                    calendar: {
+                        top: 'middle',
+                        left: 'center',
+                        orient: 'vertical',
+                        cellSize: cellSize,
+                        yearLabel: {
+                            show: false,
+                            fontSize: 30
+                        },
+                        itemStyle: {
+                            color: 'rgb(29, 98, 18,0)',
+                            borderColor: '#2af270',
+                            borderWidth: 2
+                        },
+                        dayLabel: {
+                            margin: 20,
+                            firstDay: 1,
+                            nameMap: ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
+                            color: '#fff'
+                        },
+                        monthLabel: {
+                            show: false
+                        },
+                        range: ['2021-07']
+                    },
+                    series: [{
+                        id: 'label',
+                        type: 'scatter',
+                        coordinateSystem: 'calendar',
+                        symbolSize: 1,
+                        label: {
+                            show: true,
+                            formatter: function (params) {
+                                return echarts.format.formatTime('dd', params.value[0]);
+                            },
+                            offset: [-cellSize[0] / 2 + 10, -cellSize[1] / 2 + 10],
+                            color: '#fff',
+                            fontSize: 10
+                        },
+                        data: scatterData
+                    }]
+                };
+
+                var pieInitialized;
+                setTimeout(function () {
+                    pieInitialized = true;
+                    myChart.setOption({
+                        series: getPieSeries(scatterData, myChart)
+                    });
+                }, 10);
+
+                app.onresize = function () {
+                    if (pieInitialized) {
+                        myChart.setOption({
+                            series: getPieSeriesUpdate(scatterData, myChart)
+                        });
+                    }
+                };
+
+                option && myChart.setOption(option);
+
+
+            </script>
+
+            <!-- preloader -->
+            <div class="preloaderWrapper"></div>
+
+            <!-- jQuery -->
+            <script src="/js/jquery.min.js"></script>
+
+            <!-- Bootstrap -->
+            <script src="/js/bootstrap.min.js"></script>
+
+            <!-- Chart.js -->
+            <script src="/plugins/chart/Chart.min.js" id="_chartJS_min"></script>
+            <script src="/plugins/chart/Chart.bundle.min.js"></script>
+            <script src="/plugins/chart/chartjs-plugin-annotation.js"></script>
+            <script src="/plugins/chart/chartjs-plugin-labels.js"></script>
+
+            <!-- apexcharts -->
+            <script src="/plugins/apexcharts/apexcharts.min.js"></script>
+
+            <!-- RangeSlider -->
+            <script src="/plugins/rangeslider/rangeslider.min.js" id="_rangeJS_min"></script>
+
+            <!-- Moment -->
+            <script src="/plugins/lib/moment/moment.min.js"></script>
+
+            <!-- JQVMAP -->
+            <script src="/plugins/jqvmap/jquery.vmap.min.js" id="_JQVMAP"></script>
+            <script src="/plugins/jqvmap/maps/jquery.vmap.world.js"></script>
+
+            <!-- dateRangePicker -->
+            <script src="/plugins/daterangepicker/daterangepicker.js" id="_DateRangeJS_min"></script>
+
+            <!-- User JS -->
+            <script src="/js/scripts.js"></script>
+
+            <!-- Main JS -->
+            <script src="/js/main.js" id="_mainJS" data-plugins="load"></script>
+
+            <!-- Modules -->
+            <script src="/js/modules.js"></script>
+
+            {{end}}

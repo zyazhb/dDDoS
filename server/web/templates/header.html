@@ -1,0 +1,45 @@
+{{define "/header"}}
+
+
+
+    <!-- header -->
+    <header class="main-header">
+        <!-- nav -->
+        <nav class="main-navbar navbar navbar-expand-lg navbar-light shadow-2">
+            <div class="lnav-box d-flex">
+                <div class="sidebar-toggler-wrapper ml-auto"><button
+                        class="p-collapsing-sidebar-toggler sidebar-toggler-secondary transition rounded-circle"
+                        data-collapsing="partially" data-collapsing-target="#adminNav" type="button"><img
+                            src="./img/svg/home.svg" style="display:block;width:330px;height:240px" /></span></button>
+                </div>
+            </div>
+            <div class="d-none d-lg-block ml-0 mr-auto pl-4">
+                dDDos安全态势感知平台
+            </div>
+            <div class="pr-6">
+                <ul class="nav sec-nav navbar-nav flex-row">
+                    <li class="user-item nav-item dropdown"><a
+                            class="user-link nav-link d-inline-flex align-items-center h-100 small-1 pl-1 pl-sm-3 pr-0"
+                            href="#" id="dropdownAdmin_02" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false"><img class="user-avatar rounded-circle mr-sm-3" src="/img/Hunter.jpg"
+                                alt="Avatar">
+                            <div class="d-none d-sm-block lh-1">
+                                <div class="lh-5">Hello Admin</div><span class="small-3">Online</span>
+                            </div>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right shadow-1 py-3 position-absolute mt-2"
+                            aria-labelledby="dropdownAdmin"><a class="dropdown-item" href="#"><span
+                                    class="icon-messenger-user-avatar mr-2"></span>My Profile</a><a
+                                class="dropdown-item" href="#"><span
+                                    class="icon-closed-envelope-email mr-2"></span>Messages</a><a class="dropdown-item"
+                                href="#"><span class="icon-options-gear mr-2"></span>Settings</a>
+                            <a class="dropdown-item" href="#"><span class="icon-power-on-buton mr-2"></span>Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- /.nav -->
+    </header>
+    <!-- /.header -->
+{{end}}
