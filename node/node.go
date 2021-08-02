@@ -27,7 +27,7 @@ var (
 
 // RunNode 连接到geth节点，完成配置初始化
 func RunNode() error {
-	fullURL := fmt.Sprintf("ws://%s:%d", Conf.ChainAddress, Conf.ChainPort)
+	fullURL := "ws://" + Conf.ChainAddress + ":" + Conf.ChainPort
 
 	client, err := ethclient.Dial(fullURL)
 	if err != nil {

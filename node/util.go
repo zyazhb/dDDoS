@@ -9,7 +9,7 @@ import (
 
 type ClientConfig struct {
 	ChainAddress string `yaml:"chain-address"`
-	ChainPort    int    `yaml:"chain-port"`
+	ChainPort    string `yaml:"chain-port"`
 
 	Server struct {
 		ContractAddr string `yaml:"contract-address"`
