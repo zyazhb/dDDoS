@@ -2,7 +2,6 @@ package web
 
 import (
 	"net/http"
-	"time"
 	"github.com/gin-gonic/gin"
 )
 
@@ -22,8 +21,6 @@ func RunWeb() {
 		c.HTML(http.StatusOK, "index.html", gin.H{
 			"title":        "Main website",
 			"Total_stream": "56",
-			"time":         nowInfo.Now.String(),
-			"reason":       nowInfo.Reason,
 		})
 	})
 
@@ -32,8 +29,6 @@ func RunWeb() {
 		c.HTML(http.StatusOK, "indexb.html", gin.H{
 			"title":        "Main website2",
 			"Total_stream": "44",
-			"time":         nowInfo.Now.String(),
-			"reason":       nowInfo.Reason,
 		})
 	})
 
@@ -42,8 +37,6 @@ func RunWeb() {
 		c.HTML(http.StatusOK, "devices.html", gin.H{
 			"title":        "Main website2",
 			"Total_stream": "31",
-			"time":         nowInfo.Now.String(),
-			"reason":       nowInfo.Reason,
 		})
 	})
 
@@ -52,8 +45,6 @@ func RunWeb() {
 		c.HTML(http.StatusOK, "controller.html", gin.H{
 			"title":        "Main website2",
 			"Total_stream": "31",
-			"time":         nowInfo.Now.String(),
-			"reason":       nowInfo.Reason,
 		})
 	})
 
@@ -89,11 +80,11 @@ func RunWeb() {
 	router.Run(":80")
 }
 
-func GetMsg() {
-	for {
-		select {
-		case <-time.Tick(1 * time.Second):
-			nowInfo = <-capture.UpChan
-		}
-	}
-}
+// func GetMsg() {
+// 	for {
+// 		select {
+// 		case <-time.Tick(1 * time.Second):
+// 			nowInfo = <-capture.UpChan
+// 		}
+// 	}
+// }
