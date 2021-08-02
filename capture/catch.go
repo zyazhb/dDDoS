@@ -2,7 +2,7 @@ package capture
 
 import (
 	"fmt"
-	// "log"
+	"log"
 	"net"
 	"os"
 	"time"
@@ -22,6 +22,7 @@ var (
 )
 
 func CapturePacket() {
+	log.Println("[-] Start capture packet")
 	// Open the device for capturing
 	handle, err = pcap.OpenLive(deviceName, snapshotLen, promiscuous, timeout)
 	if err != nil {

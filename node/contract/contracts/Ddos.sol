@@ -1,113 +1,68 @@
-pragma solidity >=0.4.26 <0.9.0;
-
+pragma solidity >=0.5.0 <0.9.0;
 pragma experimental ABIEncoderV2;
 
-contract Auther {
+contract trafficStation {
+    struct upchainTrafficInfo {
+        uint    trafficID;
+        address sourceAddr;
+        string  trafficInfo;
+    }
+
+    struct voteInfo {
+        address sourceAddr;
+        address voteAddr;
+        uint    trafficID;
+        bool    state;
+    }
+
+    event trafficTrans(uint trafficID, address sourceAddr, string trafficInfo);
+    event voteTrans(address sourceAddr, address voteAddr, uint trafficID, bool state);
+
+    //  send from: address, traffic id: uint, vote number: uint
+    mapping(address => mapping(uint => uint)) voting;
+    //  send from: address, traffic id: uint, traffic info: upchainTrafficInfo
+    mapping(address => mapping(uint => upchainTrafficInfo)) traffics;
+    //  send from: address, num: uint
+    mapping(address => uint) addrToID;
     /*
-    **  address: Fringe node -> Account address
-    **  bool: isRegist
+
+                node1  -------------traffic info----------------> node~
+                node1  <-------------vote info---------------- node~
+                node1  -------------traffic info----------------> node~
+
     */
-    mapping(address => bool) nodes;
-    address[] public nodesAddr;
-    address private chairman;
-
-    constructor() public {
-        chairman = msg.sender;
-        nodes[chairman] = true;
+    function emitTrafficTrans(upchainTrafficInfo memory uti) public {
+        require(address(0x0) != uti.sourceAddr);
+        voting[uti.sourceAddr][uti.trafficID] = 0;
+        addrToID[uti.sourceAddr] += 1;
+        emit trafficTrans(uti.trafficID, uti.sourceAddr, uti.trafficInfo);
     }
 
-    modifier onlyChairman() {
-        if (msg.sender != chairman) revert();
-        _;
+    function emitVoteTrans(voteInfo memory vi) public {
+        require(vi.voteAddr != address(0x0));
+        if (vi.state == true) {
+            voting[vi.sourceAddr][vi.trafficID] += 1;
+        }
+        emit voteTrans(vi.sourceAddr, vi.voteAddr, vi.trafficID, vi.state);
     }
 
-    modifier onlyRegisted() {
-        if (!nodes[msg.sender]) revert();
-        _;
+    /*
+                traffic sender source: send traffic info, get vote number -> judge, resend ddos traffic id, get price: ERC20
+    */
+
+    function getVoteInfoByID(uint trafficID) public view returns(uint) {
+        return voting[msg.sender][trafficID];
     }
 
-    function register(address addr) public onlyChairman {
-        require(!nodes[addr], "The node has been registed!");
+    function getTrafficInfoByID(uint trafficID) public view returns(upchainTrafficInfo memory) {
+        return traffics[msg.sender][trafficID];
+    }
 
-        nodes[addr] = true;
-        nodesAddr.push(addr);
+    function pendingTrafficID(address queryAddr) public view returns(uint) {
+        return addrToID[queryAddr];
     }
 }
 
-contract DDoS is Auther {
-    event msgConn(uint eventID, address addr, string typeName, string name);
 
-    struct Rconn {
-        address commiterAddr;
-        string targetIP;
-        uint speed;
-        string timestamp;
-        string descrptions;
 
-        bool isUsed;
-    }
 
-    // Rconn -> Actions
-
-    mapping(uint => Rconn) rconns;
-
-    function insertRconn(uint eventID, address addr, uint sp, string[] memory rconn) public onlyRegisted {
-        require(!rconns[eventID].isUsed , "This eventID has been used , can't insert into rconns");
-
-        rconns[eventID].commiterAddr = addr;
-        rconns[eventID].speed        = sp;
-        rconns[eventID].targetIP     = rconn[0];
-        rconns[eventID].timestamp    = rconn[1];
-        rconns[eventID].descrptions  = rconn[2];
-
-        rconns[eventID].isUsed = true;
-
-        emit msgConn(eventID, addr, "insert", "Rconn");
-    }
-
-    function indexRconn(uint eventID) public view onlyRegisted returns(uint) {
-        return rconns[eventID].speed;
-    }
-
-    // Rddos -> Actions
-
-    mapping(uint => Rconn) rddoses;
-    uint[] public events;
-
-    function insertRddos(uint eventID) onlyRegisted public {
-        require(!rconns[eventID].isUsed, "This eventID has been used , can't insert into rddoses!");
-
-        events.push(eventID);
-        rddoses[eventID] = rconns[eventID];
-        delete rconns[eventID];
-
-        emit msgConn(eventID, rddoses[eventID].commiterAddr, "insert", "Rddos");
-    }
-
-    // Valid Checker
-
-    mapping(address => bool) valids;
-
-    constructor() public {
-        for (uint i = 0; i < nodesAddr.length; i++) {
-            valids[nodesAddr[i]] = false;
-        }
-    }
-
-    function reCheckDDos(uint rconnSpeed, uint threshold) onlyRegisted public {
-        require(nodes[msg.sender], "The node's address is not registed!");
-
-        if(rconnSpeed >= threshold) {
-            valids[msg.sender] = true;
-        }
-    }
-
-    modifier onlyValidAttack() {
-        for (uint i = 0; i < nodesAddr.length; i++) {
-            if (valids[nodesAddr[i]] == false) {
-                revert();
-            }
-        }
-        _;
-    }
-}

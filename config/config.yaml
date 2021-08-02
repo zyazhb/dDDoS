@@ -1,0 +1,9 @@
+chain-address: 127.0.0.1
+chain-port: 8545
+
+server:
+  contract-address: '' # 填入获取的地址
+
+client:
+  privateAddress: '' # 填入获取的地址
+  publicAddress: ''
