@@ -2,7 +2,9 @@ package web
 
 import (
 	"net/http"
-
+	"time"
+	
+	"log"
 	"github.com/gin-gonic/gin"
 )
 
@@ -73,9 +75,14 @@ func RunWeb() {
 
 	router.GET("/log", func(c *gin.Context) {
 
+		var a string
 		c.HTML(http.StatusOK, "log.html", gin.H{
 			"title":        "Main website2",
 		})
+
+		
+		
+
 	})
 
 	router.GET("/ping", func(c *gin.Context) {
