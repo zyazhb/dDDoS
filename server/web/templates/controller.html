@@ -1,0 +1,273 @@
+{{define "controller.html"}}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>dDDos</title>
+    <!-- CSS -->
+    <link href="/css/main.css" rel="stylesheet">
+    <link href="/css/styles.css" rel="stylesheet">
+    <!-- dateRangePicker -->
+    <link href="/plugins/daterangepicker/daterangepicker.css" rel="stylesheet">
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+    <link rel="icon" href="/img/favicon.png">
+    <!-- Fonts -->
+    <link href="/fonts/inter/inter.css" rel="stylesheet">
+    <link href="/css/css1.css" rel="stylesheet">
+    <link href="/css/css2.css" rel="stylesheet">
+    <!--[if lt IE 9]><script src="http://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script><script src="http://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+    <!-- jQuery -->
+    <script src="/js/jquery.min.js"></script>
+</head>
+
+<body class="body">
+    <!-- include header -->
+    {{template "/header" .}}
+
+    <!-- main -->
+    <main>
+        <!-- include sidebar -->
+        {{template "/sidebar" .}}
+        <!-- main content -->
+        <div class="main-container">
+            <div class="overflow-hidden">
+                <div id="dashboard">
+                    <!-- content-header -->
+                    <div class="row flex-wrap align-items-center px-6 py-5">
+                        <div class="col">
+                            <div class="text-light pb-5 pb-lg-0 mr-auto">
+                                <h2 class="fw-100 mb-0">物联网设备控制器</h2>
+                                <!-- <p class="mb-0">基于区块链及分布式机器学习的物联网设备安全态势感知及控制平台</p> -->
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- panel -->
+            <div class="panel panel-orders">
+                <div class="panel">
+                    <div class="panel-header align-items-center p-relative">
+                        <div class="position-absolute w-100 l-5 l-sm-0 pe-n text-sm-center">
+                            <h5 class="title pe-a mb-0 d-inline">物联网设备状态概览</h5>
+                        </div>
+                        <div class="p-relative ml-auto"><a href="#" class="lead-1"><img src="./img/svg/refresh.svg"
+                                    style="display:block;width:20px;height:20px"></a>
+                        </div>
+                    </div>
+                    <div class="collapse show" id="collapseRecentOrders">
+                        <div class="panel-body pl-6">
+                            <div>
+                                <div class="panel-list-sc list-unstyled" data-scrollbar="scroll">
+                                    <div class="pr-10">
+                                        <table class="table table-borderless mb-0">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col" class="pt-0">#</th>
+                                                    <th scope="col" class="pt-0">ID</th>
+                                                    <th scope="col" class="pt-0">Name</th>
+                                                    <th scope="col" class="pt-0">IP</th>
+                                                    <th scope="col" class="pt-0">Status</th>
+                                                    <th scope="col" class="pt-0"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row">1</th>
+                                                    <td>
+                                                        <div class="d-flex align-items-center">
+                                                            <small class="ml-3 small-2">2021001</small>
+                                                        </div>
+                                                    </td>
+                                                    <td>空气净化器</td>
+                                                    <td>219.217.199.12</td>
+                                                    <td><a href="" class="btn btn-sm btn-outline-warning btn-round px-4"
+                                                            id="test1">Run</a>
+                                                    </td>
+                                                    <td>
+                                                        <div class="panel-dropdown-menu dropdown">
+                                                            <button
+                                                                class="btn text-warning dropdown-toggle no-carret bc-t p-0"
+                                                                type="button" data-toggle="dropdown"
+                                                                aria-haspopup="true" aria-expanded="false"><img
+                                                                    src="./img/svg/more.svg"
+                                                                    style="display:block;width:20px;height:20px" /></button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">2</th>
+                                                    <td>
+                                                        <div class="d-flex align-items-center">
+                                                            <small class="ml-3 small-2">2021002</small>
+                                                        </div>
+                                                    </td>
+                                                    <td>扫地机器人</td>
+                                                    <td>219.217.199.13</td>
+                                                    <td><a href="" class="btn btn-sm btn-outline-warning btn-round px-4"
+                                                            id="test2">Run</a>
+                                                    </td>
+                                                    <td>
+                                                        <div class="panel-dropdown-menu dropdown">
+                                                            <button
+                                                                class="btn text-warning dropdown-toggle no-carret bc-t p-0"
+                                                                type="button" data-toggle="dropdown"
+                                                                aria-haspopup="true" aria-expanded="false"><img
+                                                                    src="./img/svg/more.svg"
+                                                                    style="display:block;width:20px;height:20px" /></button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">3</th>
+                                                    <td>
+                                                        <div class="d-flex align-items-center">
+                                                            <small class="ml-3 small-2">2021003</small>
+                                                        </div>
+                                                    </td>
+                                                    <td>智能灯具</td>
+                                                    <td>219.217.199.14</td>
+                                                    <td><a href="" class="btn btn-sm btn-outline-danger btn-round px-4"
+                                                            id="test3">Run</a>
+                                                    </td>
+                                                    <td>
+                                                        <div class="panel-dropdown-menu dropdown">
+                                                            <button
+                                                                class="btn text-warning dropdown-toggle no-carret bc-t p-0"
+                                                                type="button" data-toggle="dropdown"
+                                                                aria-haspopup="true" aria-expanded="false"><img
+                                                                    src="./img/svg/more.svg"
+                                                                    style="display:block;width:20px;height:20px" /></button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">4</th>
+                                                    <td>
+                                                        <div class="d-flex align-items-center">
+                                                            <small class="ml-3 small-2">2021004</small>
+                                                        </div>
+                                                    </td>
+                                                    <td>智能微波炉</td>
+                                                    <td>219.217.199.15</td>
+                                                    <td><a href="" class="btn btn-sm btn-outline-warning btn-round px-4"
+                                                            id="test4">Under Attack</a>
+                                                    </td>
+                                                    <td>
+                                                        <div class="panel-dropdown-menu dropdown">
+                                                            <button
+                                                                class="btn text-warning dropdown-toggle no-carret bc-t p-0"
+                                                                type="button" data-toggle="dropdown"
+                                                                aria-haspopup="true" aria-expanded="false"><img
+                                                                    src="./img/svg/more.svg"
+                                                                    style="display:block;width:20px;height:20px" /></button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">5</th>
+                                                    <td>
+                                                        <div class="d-flex align-items-center">
+                                                            <small class="ml-3 small-2">2021004</small>
+                                                        </div>
+                                                    </td>
+                                                    <td>物联网空调</td>
+                                                    <td>219.217.199.16</td>
+                                                    <td><a href="" class="btn btn-sm btn-outline-success btn-round px-4"
+                                                            id="test5">Offline</a>
+                                                    </td>
+                                                    <td>
+                                                        <div class="panel-dropdown-menu dropdown">
+                                                            <button
+                                                                class="btn text-warning dropdown-toggle no-carret bc-t p-0"
+                                                                type="button" data-toggle="dropdown"
+                                                                aria-haspopup="true" aria-expanded="false"><img
+                                                                    src="./img/svg/more.svg"
+                                                                    style="display:block;width:20px;height:20px" /></button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /.panel -->
+            </div><!-- /.panel -->
+    </main>
+    <!-- offcanvas - search -->
+    <div id="offcanvas-search" class="offcanvas h-100 py-8" data-animation="fadeDown" data-scrollbar="offcanvas">
+        <div class="row">
+            <div class="col-sm-1 order-sm-last"><button type="button" data-toggle="offcanvas-close"
+                    class="close float-right mr-lg-6 text-light o-1 lead-2 fw-100" data-dismiss="offcanvas"
+                    aria-label="Close"><span aria-hidden="true" class="icon-close"></span></button></div>
+        </div>
+    </div>
+    <!-- /.offcanvas - search -->
+    <!-- preloader -->
+    <div class="preloaderWrapper"></div>
+    <!-- busuanzi -->
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="/js/bootstrap.min.js"></script>
+    <!-- Chart.js -->
+    <script src="/plugins/chart/Chart.min.js" id="_chartJS_min"></script>
+    <script src="/plugins/chart/Chart.bundle.min.js"></script>
+    <script src="/plugins/chart/chartjs-plugin-annotation.js"></script>
+    <script src="/plugins/chart/chartjs-plugin-labels.js"></script>
+    <!-- apexcharts -->
+    <script src="/plugins/apexcharts/apexcharts.min.js"></script>
+    <!-- RangeSlider -->
+    <script src="/plugins/rangeslider/rangeslider.min.js" id="_rangeJS_min"></script>
+    <!-- Moment -->
+    <script src="/plugins/lib/moment/moment.min.js"></script>
+    <!-- dateRangePicker -->
+    <script src="/plugins/daterangepicker/daterangepicker.js" id="_DateRangeJS_min"></script>
+    <!-- User JS -->
+    <script src="/js/scripts.js"></script>
+    <!-- Main JS -->
+    <script src="/js/main.js" id="_mainJS" data-plugins="load"></script>
+    <!-- Modules -->
+    <script src="/js/modules.js"></script>
+</body>
+
+<script>
+    for (let index = 0; index < 5; index++) {
+        let name = "#test".concat(index);
+
+        $(name).click(function () {
+            if ($(this).hasClass("btn-outline-warning")) {
+                $(this).removeClass("btn-outline-warning");
+                $(this).addClass("btn-outline-danger");
+
+                $(this).text("UNDER ATTACK");
+
+                return false;
+            } else if ($(this).hasClass("btn-outline-danger")) {
+                $(this).removeClass("btn-outline-danger");
+                $(this).addClass("btn-outline-success");
+
+                $(this).text("OFFLINE");
+                return false;
+            } else if ($(this).hasClass("btn-outline-success")) {
+                $(this).removeClass("btn-outline-success");
+                $(this).addClass("btn-outline-warning");
+
+                $(this).text("RUN");
+                return false;
+            } else {
+                console.log("Failed to change the style!");
+            }
+        });
+    }
+
+</script>
+
+{{end}}

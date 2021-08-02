@@ -11194,6 +11194,15 @@ a.text-warning:focus {
     color: #0ddc56 !important;
 }
 
+.text-abnormal {
+    color: #f7ea77 !important;
+}
+
+a.text-abnormal:hover,
+a.text-abnormal:focus {
+    color: #fff350 !important;
+}
+
 .text-danger {
     color: #da2f69 !important;
 }
