@@ -22,6 +22,15 @@
     <!--[if lt IE 9]><script src="http://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script><script src="http://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
     <!-- jQuery -->
     <script src="/js/jquery.min.js"></script>
+    <script src="js/jtopo-min.js"></script>
+    <script src="http://www.jtopo.com/demo/js/toolbar.js"></script>
+    <style>
+		canvas{
+			display: block;
+			margin: 0 auto;
+			/* border:1px solid greenyellow; */
+		}
+	</style>
 </head>
 
 <body class="body">
@@ -54,7 +63,7 @@
                     <div class="position-absolute w-100 l-5 l-sm-0 pe-n text-sm-center">
                         <h5 class="title pe-a mb-0 d-inline">实景图渲染</h5>
                     </div>
-                    <div class="p-relative ml-auto"><a href="#" class="lead-1"><img src="./img/svg/bigger.svg"
+                    <div class="p-relative ml-auto"><a href="#" class="lead-1"><img src="./img/svg/more.svg"
                                 style="display:block;width:20px;height:20px" id="bigger" /></span></a>
                     </div>
                 </div>
@@ -69,8 +78,21 @@
 
                 </script>
                 <div class="panel-body py-0 pl-0 pr-4" id="switchgif">
-                    <img id="1gif" src="/img/1.gif">
-                    <img id="2gif" src="/img/2.gif">
+                    <!-- <img id="1gif" src="/img/1.gif">
+                    <img id="2gif" src="/img/2.gif"> -->
+                    <canvas id="canvas" width="758" height="500" ></canvas>
+
+                    <div class="text-info">
+                        <ul id="contextmenu"
+                            style="display:none; position: absolute; z-index:9999;" class="card card-info">
+                            <li><a>顺时针旋转</a></li>
+                            <li><a>逆时针旋转</a></li>
+                            <li><a>更改颜色</a></li>
+                            <li><a>放大</a></li>
+                            <li><a>缩小</a></li>
+                            <li><a>删除该节点</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div><!-- /.panel -->
     </main>
@@ -141,6 +163,79 @@
         });
     }
 
+</script>
+<script>
+    $(document).ready(function () {
+        var canvas = document.getElementById('canvas');
+        var stage = new JTopo.Stage(canvas);
+        //显示工具栏
+        showJTopoToobar(stage);
+        var scene = new JTopo.Scene(stage);
+        scene.background = 'img/home1.png';
+
+        var node = new JTopo.Node("扫地机器人");
+        node.setLocation(150, 100);
+        node.setImage('img/robots.png');
+        scene.add(node);
+
+        var currentNode = null;
+
+        function handler(event) {
+            if (event.button == 0) {// 右键
+                // 当前位置弹出菜单（div）
+                $("#contextmenu").css({
+                    top: 100,
+                    left: 100
+                }).show();
+                console.log(event.pageY);
+                
+            }
+            if (event.button == 2) {// 右键
+                // 当前位置弹出菜单（div）
+                $("#contextmenu").hide();
+            }
+        }
+        node.addEventListener('mouseup', function (event) {
+            currentNode = this;
+            handler(event);
+        });
+
+        // stage.click(function(event){
+        //     if(event.button == 0){// 右键
+        //         // 关闭弹出菜单（div）
+        //         $("#contextmenu").hide();
+        //     }
+        // });
+        $("#contextmenu a").click(function () {
+            var text = $(this).text();
+
+            if (text == '删除该节点') {
+                scene.remove(currentNode);
+                currentNode = null;
+            } if (text == '撤销上一次操作') {
+                currentNode.restore();
+            } else {
+                currentNode.save();
+            }
+
+            if (text == '更改颜色') {
+                currentNode.fillColor = JTopo.util.randomColor();
+            } else if (text == '顺时针旋转') {
+                currentNode.rotate += 0.5;
+            } else if (text == '逆时针旋转') {
+                currentNode.rotate -= 0.5;
+            } else if (text == '放大') {
+                currentNode.scaleX += 0.2;
+                currentNode.scaleY += 0.2;
+            } else if (text == '缩小') {
+                currentNode.scaleX -= 0.2;
+                currentNode.scaleY -= 0.2;
+            }
+            $("#contextmenu").hide();
+        });
+
+    });
+</script>
 </script>
 
 {{end}}
