@@ -25,12 +25,12 @@
     <script src="js/jtopo-min.js"></script>
     <script src="http://www.jtopo.com/demo/js/toolbar.js"></script>
     <style>
-		canvas{
-			display: block;
-			margin: 0 auto;
-			/* border:1px solid greenyellow; */
-		}
-	</style>
+        canvas {
+            display: block;
+            margin: 0 auto;
+            /* border:1px solid greenyellow; */
+        }
+    </style>
 </head>
 
 <body class="body">
@@ -80,18 +80,20 @@
                 <div class="panel-body py-0 pl-0 pr-4" id="switchgif">
                     <!-- <img id="1gif" src="/img/1.gif">
                     <img id="2gif" src="/img/2.gif"> -->
-                    <canvas id="canvas" width="758" height="500" ></canvas>
+                    <canvas id="canvas" width="758" height="500"></canvas>
 
-                    <div class="text-info">
-                        <ul id="contextmenu"
-                            style="display:none; position: absolute; z-index:9999;" class="card card-info">
-                            <li><a>顺时针旋转</a></li>
-                            <li><a>逆时针旋转</a></li>
-                            <li><a>更改颜色</a></li>
-                            <li><a>放大</a></li>
-                            <li><a>缩小</a></li>
-                            <li><a>删除该节点</a></li>
-                        </ul>
+                    <div class="text-info card border hover-shadow-5" id="contextmenu"
+                        style="display:none; position: absolute; z-index:9999;">
+                        <div class="card-body">
+                            <ul>
+                                <li><a>顺时针旋转</a></li>
+                                <li><a>逆时针旋转</a></li>
+                                <li><a>更改颜色</a></li>
+                                <li><a>放大</a></li>
+                                <li><a>缩小</a></li>
+                                <li><a>删除该节点</a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div><!-- /.panel -->
@@ -188,7 +190,7 @@
                     left: 100
                 }).show();
                 console.log(event.pageY);
-                
+
             }
             if (event.button == 2) {// 右键
                 // 当前位置弹出菜单（div）
