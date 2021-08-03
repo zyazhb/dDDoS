@@ -24,14 +24,6 @@ func RunWeb() {
 		})
 	})
 
-	router.GET("/indexb", func(c *gin.Context) {
-
-		c.HTML(http.StatusOK, "indexb.html", gin.H{
-			"title":        "Main website2",
-			"Total_stream": "44",
-		})
-	})
-
 	router.GET("/devices", func(c *gin.Context) {
 
 		c.HTML(http.StatusOK, "devices.html", gin.H{
