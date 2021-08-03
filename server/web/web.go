@@ -63,6 +63,15 @@ func RunWeb() {
 
 	})
 
+	router.GET("/logg", func(c *gin.Context) {
+
+		c.HTML(http.StatusOK, "logg.html", gin.H{
+			"title":        "Main website2",
+			
+		})
+
+	})
+
 	router.GET("/ping", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"message": "pong",

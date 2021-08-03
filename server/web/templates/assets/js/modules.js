@@ -2339,7 +2339,7 @@ function chartJSInit() {
 
     /* dateRangePicker */
     if ($('#_DateRangeJS_min').length > 0) {
-        let start = moment().subtract(29, 'days'),
+        let start = moment(),
             end = moment();
 
         function cb(start, end) {
