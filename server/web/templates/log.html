@@ -84,55 +84,42 @@
                                             </header>
                                             <div class="collapse show" id="collapseActivityTimeline">
                                                 <div class="panel-body">
-                                                    <div class="pl-5">
-                                                        <div class="timeline-item" data-time="22 Mar 2021 14:32"
-                                                            data-icon="&#xe901;">
+                                                    <div class="pl-5" id="defend">
+                                                        <!-- <div class="timeline-item" id="time1" data-icon="&#xe901;">
                                                             <div class="timeline-item-inner">
                                                                 <h6 id="ti1"></h6>
                                                                 <p id="da1"></p>
                                                                 <p id="da2"></p>
                                                                 <p id="da3"></p>
                                                             </div>
-                                                        </div><!-- /.item -->
-                                                        <!-- item -->
-                                                        <div id="c1" class="timeline-item" data-time="22 Mar 2021 14:24"
-                                                            data-icon="&#xe901;">
-                                                            <div class="timeline-item-inner">
-                                                                <h6 id="ti2"></h6>
-                                                                <p id="db1"></p>
-                                                                <p id="db2"></p>
-                                                                <p id="db3"></p>
-                                                            </div>
-                                                        </div><!-- /.item -->
-                                                        <!-- item -->
-                                                        <div class="timeline-item" data-time="22 Mar 2021 14:25"
-                                                            data-icon="&#xe927;">
-                                                            <div class="timeline-item-inner">
-                                                                <h6 id="ti3"></h6>
-                                                                <p id="dc1"></p>
-                                                                <p id="dc2"></p>
-                                                                <p id="dc3"></p>
-                                                            </div>
-                                                        </div><!-- /.item -->
+                                                        </div> -->
+                                                        <!-- /.item -->
                                                         <script>
                                                             setTimeout(function () {
+                                                                var tx1 = "<div class=\"timeline-item\" data-time=\"22 Mar 2021 14:33\"data-icon=\"&#xe901;\"><div class=\"timeline-item-inner\"><h6 id=\"ti1\"></h6><p id=\"da1\"></p><p id=\"da2\"></p><p id=\"da3\"></p></div></div>";
+                                                                $("#defend").append(tx1);
                                                                 $("#ti1").html("Successfully processed").addClass("d-inline-block fw-500 text-warning mb-1");
                                                                 $("#da1").html("CommiterID:0xcd12E46fe6bdf4Eb73a96c1a775590719c69c706");
                                                                 $("#da2").html("TargetIP:219.217.199.15");
                                                                 $("#da3").html("Description:IP:219.217.199.15(智能微波炉)检测到异常连接");
                                                             }, 1000)
+
                                                             setTimeout(function () {
+                                                                var tx2 = "<div class=\"timeline-item\" data-time=\"22 Mar 2021 14:34\"data-icon=\"&#xe901;\"><div class=\"timeline-item-inner\"><h6 id=\"ti2\"></h6><p id=\"db1\"></p><p id=\"db2\"></p><p id=\"db3\"></p></div></div>";
+                                                                $("#defend").append(tx2);
                                                                 $("#ti2").html("Danger").addClass("d-inline-block fw-500 text-danger mb-1");
                                                                 $("#db1").html("CommiterID:0xcd12E46fe6bdf4Eb73a96c1a775590719c69c706");
                                                                 $("#db2").html("TargetIP:219.217.199.15");
                                                                 $("#db3").html("Description:IP:219.217.199.15(智能微波炉)正在遭受攻击");
-                                                            }, 10000)
+                                                            }, 2000)
                                                             setTimeout(function () {
-                                                                $("#ti3").html("Warning").addClass("d-inline-block fw-500 text-danger mb-1");
+                                                                var tx3 = "<div class=\"timeline-item\" data-time=\"22 Mar 2021 14:35\"data-icon=\"&#xe901;\"><div class=\"timeline-item-inner\"><h6 id=\"ti3\"></h6><p id=\"dc1\"></p><p id=\"dc2\"></p><p id=\"dc3\"></p></div></div>";
+                                                                $("#defend").append(tx3);
+                                                                $("#ti3").html("Warning").addClass("d-inline-block fw-500 text-abnormal mb-1");
                                                                 $("#dc1").html("CommiterID:0xcd12E46fe6bdf4Eb73a96c1a775590719c69c706");
                                                                 $("#dc2").html("TargetIP:219.217.199.15");
                                                                 $("#dc3").html("Description:IP:219.217.199.15(智能微波炉)已停运");
-                                                            }, 20000)
+                                                            }, 3000)
                                                         </script>
                                                     </div>
                                                 </div>
@@ -148,9 +135,9 @@
                                                     <h5 class="title mb-0">攻击日志</h5>
                                                 </div>
                                                 <div class="panel-header-nav ml-auto">
-                                                    <a data-toggle="collapse" href="#collapseActivityTimeline2" role="button"
-                                                        aria-expanded="false" aria-controls="collapseActivityTimeline2"
-                                                        class="nav-item mr-3">
+                                                    <a data-toggle="collapse" href="#collapseActivityTimeline2"
+                                                        role="button" aria-expanded="false"
+                                                        aria-controls="collapseActivityTimeline2" class="nav-item mr-3">
                                                         <span class="icon-minus"></span>
                                                     </a>
                                                     <a data-toggle="refresh" class="nav-item mr-3"><span
