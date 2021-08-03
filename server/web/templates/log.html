@@ -87,6 +87,7 @@
                                                     <div class="pl-5" id="defend">
                                                         <!-- <div class="timeline-item" id="time1" data-icon="&#xe901;">
                                                             <div class="timeline-item-inner">
+                                                                <div id="time1" class="timeline-item-time"></div>
                                                                 <h6 id="ti1"></h6>
                                                                 <p id="da1"></p>
                                                                 <p id="da2"></p>
@@ -99,6 +100,7 @@
                                                                 var tx1 = "<div class=\"timeline-item\" data-time=\"22 Mar 2021 14:33\"data-icon=\"&#xe901;\"><div class=\"timeline-item-inner\"><h6 id=\"ti1\"></h6><p id=\"da1\"></p><p id=\"da2\"></p><p id=\"da3\"></p></div></div>";
                                                                 $("#defend").append(tx1);
                                                                 $("#ti1").html("Successfully processed").addClass("d-inline-block fw-500 text-warning mb-1");
+                                                                $("#time1").html(datetime.toLocaleString());
                                                                 $("#da1").html("CommiterID:0xcd12E46fe6bdf4Eb73a96c1a775590719c69c706");
                                                                 $("#da2").html("TargetIP:219.217.199.15");
                                                                 $("#da3").html("Description:IP:219.217.199.15(智能微波炉)检测到异常连接");
@@ -108,6 +110,7 @@
                                                                 var tx2 = "<div class=\"timeline-item\" data-time=\"22 Mar 2021 14:34\"data-icon=\"&#xe901;\"><div class=\"timeline-item-inner\"><h6 id=\"ti2\"></h6><p id=\"db1\"></p><p id=\"db2\"></p><p id=\"db3\"></p></div></div>";
                                                                 $("#defend").append(tx2);
                                                                 $("#ti2").html("Danger").addClass("d-inline-block fw-500 text-danger mb-1");
+                                                                $("#time1").html(datetime.toLocaleString());
                                                                 $("#db1").html("CommiterID:0xcd12E46fe6bdf4Eb73a96c1a775590719c69c706");
                                                                 $("#db2").html("TargetIP:219.217.199.15");
                                                                 $("#db3").html("Description:IP:219.217.199.15(智能微波炉)正在遭受攻击");
@@ -156,29 +159,21 @@
                                                             <div class="timeline-item-inner">
                                                                 <h6 class="d-inline-block fw-500 text-warning mb-1">
                                                                     Successfully attack</h6>
-                                                                <p id="p1"></p>
-                                                                <p id="p2"></p>
-                                                                <p id="p3"></p>
-                                                                <p id="p4"></p>
-                                                                <p id="p5"></p>
-                                                                <p id="p6"></p>
-                                                                <p id="p7"></p>
-                                                                <p id="p8"></p>
-                                                                <p id="p9"></p>
-                                                                <p id="p10"></p>
-                                                                <p id="p11"></p>
-                                                                <p id="p12"></p>
-                                                                <p id="p13"></p>
-                                                                <p id="p14"></p>
-                                                                <p id="p15"></p>
-                                                                <p id="p16"></p>
+                                                                <d1v></p>
                                                                 <script>
+
                                                                     let list = new Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15);
                                                                     for (let index = 0; index < 1000; index++) {
                                                                         list.push(index)
                                                                     }
                                                                     var count = 0;
+                                                                    /* setInterval(() => {
+                                                                        var txt = "<p id=\"p"+count+"\"></p>"
+                                                                        count ++
+                                                                    }, 100) */
                                                                     setInterval(() => {
+                                                                        var txt = "<p id=\"p"+count+"\"></p>"
+                                                                        $("d1v").append(txt);
                                                                         $("#p1").html("IP:218.217.1." + list[count] + "正在请求219.217.199.15");
                                                                         $("#p2").html("IP:218.217.2." + list[count + 1] + "正在请求219.217.199.15");
                                                                         $("#p3").html("IP:218.217.3." + list[count + 2] + "正在请求219.217.199.15");
@@ -196,7 +191,7 @@
                                                                         $("#p15").html("IP:218.217.15." + list[count + 14] + "正在请求219.217.199.15");
                                                                         $("#p16").html("IP:218.217.16." + list[count + 15] + "正在请求219.217.199.15");
                                                                         count++;
-                                                                    }, 100)
+                                                                    }, 500)
                                                                 </script>
 
                                                             </div>
