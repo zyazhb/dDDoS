@@ -85,19 +85,10 @@
                                             <div class="collapse show" id="collapseActivityTimeline">
                                                 <div class="panel-body">
                                                     <div class="pl-5" id="defend">
-                                                        <!-- <div class="timeline-item" id="time1" data-icon="&#xe901;">
-                                                            <div class="timeline-item-inner">
-                                                                <h6 id="ti1"></h6>
-                                                                <p id="da1"></p>
-                                                                <p id="da2"></p>
-                                                                <p id="da3"></p>
-                                                            </div>
-                                                        </div> -->
-                                                        <!-- /.item -->
                                                         <script>
                                                             setTimeout(function () {
                                                                 var datetime = new Date();
-                                                                var tx1 = "<div class=\"timeline-item\" data-time=" + datetime.toLocaleString() + "data-icon=\"&#xe901;\"><div class=\"timeline-item-inner\"><h6 id=\"ti1\"></h6><p id=\"da1\"></p><p id=\"da2\"></p><p id=\"da3\"></p></div></div>";
+                                                                var tx1 = "<div class=\"timeline-item\" data-icon=\"&#xe901;\" data-time=" +datetime.toLocaleTimeString()  +"><div class=\"timeline-item-inner\"><h6 id=\"ti1\"></h6><p id=\"da1\"></p><p id=\"da2\"></p><p id=\"da3\"></p></div></div>";
                                                                 $("#defend").append(tx1);
                                                                 $("#ti1").html("获取成功").addClass("d-inline-block fw-500 text-warning mb-1");
                                                                 $("#da1").html("获取到链上ID:0xcd12E46fe6bdf4Eb73a96c1a775590719c69c706");
@@ -107,7 +98,7 @@
 
                                                             setTimeout(function () {
                                                                 var datetime = new Date();
-                                                                var tx2 = "<div class=\"timeline-item\" data-time=" + datetime.toLocaleString() + "data-icon=\"&#xe901;\"><div class=\"timeline-item-inner\"><h6 id=\"ti2\"></h6><p id=\"db1\"></p><p id=\"db2\"></p><p id=\"db3\"></p></div></div>";
+                                                                var tx2 = "<div class=\"timeline-item\" data-icon=\"&#xe901;\" data-time=" +datetime.toLocaleTimeString()  +"><div class=\"timeline-item-inner\"><h6 id=\"ti2\"></h6><p id=\"db1\"></p><p id=\"db2\"></p><p id=\"db3\"></p></div></div>";
                                                                 $("#defend").append(tx2);
                                                                 $("#ti2").html("正在机器学习验证").addClass("d-inline-block fw-500 text-warning mb-1");
                                                                 $("#db1").html("获取到链上ID:0xcd12E46fe6bdf4Eb73a96c1a775590719c69c706");
@@ -116,7 +107,7 @@
                                                             }, 2000)
                                                             setTimeout(function () {
                                                                 var datetime = new Date();
-                                                                var tx3 = "<div class=\"timeline-item\" data-time=" + datetime.toLocaleString() + "data-icon=\"&#xe901;\"><div class=\"timeline-item-inner\"><h6 id=\"ti3\"></h6><p id=\"dc1\"></p><p id=\"dc2\"></p><p id=\"dc3\"></p></div></div>";
+                                                                var tx3 = "<div class=\"timeline-item\" data-icon=\"&#xe901;\" data-time=" +datetime.toLocaleTimeString()  +"><div class=\"timeline-item-inner\"><h6 id=\"ti3\"></h6><p id=\"dc1\"></p><p id=\"dc2\"></p><p id=\"dc3\"></p></div></div>";
                                                                 $("#defend").append(tx3);
                                                                 $("#ti3").html("处理完成").addClass("d-inline-block fw-500 text-warning mb-1");
                                                                 $("#dc1").html("获取到链上ID:0xcd12E46fe6bdf4Eb73a96c1a775590719c69c706");
