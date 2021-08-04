@@ -117,6 +117,18 @@
                                     &emsp;当前状态：</b>检测到异常，等待其他节点进行验证</span>
                         </div>
                     </div>
+                    <!-- 物联网空调 -->
+                    <div class="text-white card border" id="conmenu"
+                        style="display:none; position: absolute; z-index:9999; background-color: #060424;">
+                        <div class="card-body">
+                            <i class="fas fa-circle text-light small-5"></i><span class="small-3"><b>
+                                    设备名称：</b>物联网空调</br></span>
+                            <span class="small-3"><b>
+                                    &emsp;设备IP：</b>219.217.199.16</br></span>
+                            <span class="small-3"><b>
+                                    &emsp;当前状态：</b>已停运</span>
+                        </div>
+                    </div>
                 </div>
             </div><!-- /.panel -->
     </main>
@@ -215,6 +227,13 @@
         node3.alarm = '发现异常流量';
         scene.add(node3);
 
+        var node4 = new JTopo.Node("物联网空调");
+        node4.setLocation(530, 210);
+        node4.setImage('img/conditioner.png');
+        node4.alarm = '已停运';
+        node4.fontColor = "000000";
+        scene.add(node4);
+
         setInterval(function () {
             if (node3.alarm == '发现异常流量') {
                 node3.alarm = null;
@@ -252,12 +271,12 @@
                 $("#robotmenu").hide();
             }
         }
-        function handlery(event, id) {
+        function handlery(event, id,x) {
             if (event.button == 0) {// 右键
                 // 当前位置弹出菜单（div）
                 $("#" + id).css({
                     top: event.pageY - 152.4 - 20,
-                    left: event.pageX - 240 + 100
+                    left: event.pageX - 240 + 100+x
                 }).show();
             }
             if (event.button == 2) {// 右键
@@ -273,13 +292,22 @@
         node2.addEventListener('mouseup', function (event) {
             currentNode = this;
             var id = "airmenu";
-            handlery(event, id);
+            var x=0;
+            handlery(event, id,x);
         });
 
         node3.addEventListener('mouseup', function (event) {
             currentNode = this;
             var id = "ovenmenu";
-            handlery(event, id);
+            var x=0;
+            handlery(event, id,x);
+        });
+
+        node4.addEventListener('mouseup', function (event) {
+            currentNode = this;
+            var id = "conmenu";
+            var x=50;
+            handlery(event, id,x);
         });
 
         function newLink(nodeA, nodeZ, text, dashedPattern) {
