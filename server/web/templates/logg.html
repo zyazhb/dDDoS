@@ -88,32 +88,44 @@
                                                         <script>
                                                             setTimeout(function () {
                                                                 var datetime = new Date();
-                                                                var tx1 = "<div class=\"timeline-item\" data-icon=\"&#xe901;\" data-time=" +datetime.toLocaleTimeString()  +"><div class=\"timeline-item-inner\"><h6 id=\"ti1\"></h6><p id=\"da1\"></p><p id=\"da2\"></p><p id=\"da3\"></p></div></div>";
+                                                                var tx1 = "<div class=\"timeline-item\" data-icon=\"&#xe901;\" data-time=" +datetime.toLocaleTimeString()  +"><div class=\"timeline-item-inner\" id=\"dtimeline\"><h6 id=\"ti1\"></h6></div></div>";
                                                                 $("#defend").append(tx1);
-                                                                $("#ti1").html("获取成功").addClass("d-inline-block fw-500 text-warning mb-1");
-                                                                $("#da1").html("获取到链上ID:0xcd12E46fe6bdf4Eb73a96c1a775590719c69c706");
-                                                                $("#da2").html("受攻击IP:219.217.199.15(智能微波炉)");
-                                                                $("#da3").html("详情:已检测到异常，正在启动机器学习识别部分");
+                                                                $("#ti1").html("收到异常流量广播").addClass("d-inline-block fw-500 text-abnormal mb-1");
+                                                                $("#time1").html(datetime.toLocaleString());
+                                                                $("#dtimeline").append("<p>【流量ID】trafficID:0xcd12E46fe6bdf4Eb73a96c1a775590719c69c706</p>");
+                                                                $("#dtimeline").append("<p>【源地址】sourceAddr:219.217.199.15</p>");
+                                                                $("#dtimeline").append("<p>【流量信息】trafficInfo:0,0,14/02/2018 08:31:01,112641719,3</p>");
+                                                                $("#dtimeline").append("<p>【目标设备】targetDevice:智能微波炉</p>");
+                                                                $("#dtimeline").append("<p>【设备类别】targetDevice:家居设备</p>");
                                                             }, 1000)
 
                                                             setTimeout(function () {
                                                                 var datetime = new Date();
-                                                                var tx2 = "<div class=\"timeline-item\" data-icon=\"&#xe901;\" data-time=" +datetime.toLocaleTimeString()  +"><div class=\"timeline-item-inner\"><h6 id=\"ti2\"></h6><p id=\"db1\"></p><p id=\"db2\"></p><p id=\"db3\"></p></div></div>";
+                                                                var tx2 = "<div class=\"timeline-item\" data-icon=\"&#xe901;\" data-time=" +datetime.toLocaleTimeString()  +"><div class=\"timeline-item-inner\" id=\"atimeline\"><h6 id=\"ti2\"></h6></div></div>";
                                                                 $("#defend").append(tx2);
-                                                                $("#ti2").html("正在机器学习验证").addClass("d-inline-block fw-500 text-warning mb-1");
-                                                                $("#db1").html("获取到链上ID:0xcd12E46fe6bdf4Eb73a96c1a775590719c69c706");
-                                                                $("#db2").html("受攻击IP:219.217.199.15(智能微波炉)");
-                                                                $("#db3").html("详情:正在处理。。。");
-                                                            }, 2000)
+                                                                $("#ti2").html("正在进行机器学习验证").addClass("d-inline-block fw-500 text-warning mb-1");
+                                                                $("#time1").html(datetime.toLocaleString());
+                                                                $("#atimeline").append("<p>【网关状态】已获取流量信息</p>");
+                                                                $("#atimeline").append("<p>【验证结果】机器学习判定为DDoS，类型为SYN Flood</p>");
+                                                            }, 5000)
                                                             setTimeout(function () {
                                                                 var datetime = new Date();
-                                                                var tx3 = "<div class=\"timeline-item\" data-icon=\"&#xe901;\" data-time=" +datetime.toLocaleTimeString()  +"><div class=\"timeline-item-inner\"><h6 id=\"ti3\"></h6><p id=\"dc1\"></p><p id=\"dc2\"></p><p id=\"dc3\"></p></div></div>";
+                                                                var tx3 = "<div class=\"timeline-item\" data-icon=\"&#xe901;\" data-time=" +datetime.toLocaleTimeString()  +"><div class=\"timeline-item-inner\" id=\"ptimeline\"><h6 id=\"ti3\"></h6></div></div>";
                                                                 $("#defend").append(tx3);
-                                                                $("#ti3").html("处理完成").addClass("d-inline-block fw-500 text-warning mb-1");
-                                                                $("#dc1").html("获取到链上ID:0xcd12E46fe6bdf4Eb73a96c1a775590719c69c706");
-                                                                $("#dc2").html("受攻击IP:219.217.199.15(智能微波炉)");
-                                                                $("#dc3").html("详情:机器已关闭");
-                                                            }, 4000)
+                                                                $("#ti3").html("正在进行投票").addClass("d-inline-block fw-500 text-warning mb-1");
+                                                                $("#ptimeline").append("<p>【源地址】sourceAddr:219.217.199.15</p>");
+                                                                $("#ptimeline").append("<p>【投票地址】voteAddr:219.217.199.15</p>");
+                                                                $("#ptimeline").append("<p>【目标设备】trafficID:0xcd12E46fe6bdf4Eb73a96c1a775590719c69c706</p>");
+                                                                $("#ptimeline").append("<p>【判定结果】state:True</p>");
+                                                            }, 10000)
+                                                            setTimeout(function () {
+                                                                var datetime = new Date();
+                                                                var tx4 = "<div class=\"timeline-item\" data-icon=\"&#xe901;\" data-time=" +datetime.toLocaleTimeString()  +"><div class=\"timeline-item-inner\" id=\"p2timeline\"><h6 id=\"ti4\"></h6></div></div>";
+                                                                $("#defend").append(tx4);
+                                                                $("#ti4").html("收到最终验证结果").addClass("d-inline-block fw-500 text-warning mb-1");
+                                                                $("#p2timeline").append("<p>【网关状态】已将攻击信息记录</p>");
+                                                                $("#p2timeline").append("<p>【网关状态】判定正确，收获奖励积分</p>");
+                                                            }, 12000)
                                                         </script>
                                                     </div>
                                                 </div>
@@ -149,37 +161,8 @@
                                                             data-icon="&#xe901;">
                                                             <div class="timeline-item-inner">
                                                                 <h6 class="d-inline-block fw-500 text-warning mb-1">
-                                                                    Successfully attack</h6>
-                                                                <h5><br>暂无</h5>
-                                                                <!-- <script>
-                                                                    let list = new Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15);
-                                                                    for (let index = 0; index < 1000; index++) {
-                                                                        list.push(index)
-                                                                    }
-                                                                    var count = 0;
-                                                                    setInterval(() => {
-                                                                        var txt = "<p id=\"p"+count+"\"></p>"
-                                                                        $("d1v").append(txt);
-                                                                        $("#p1").html("IP:218.217.1." + list[count] + "正在请求219.217.199.15");
-                                                                        $("#p2").html("IP:218.217.2." + list[count + 1] + "正在请求219.217.199.15");
-                                                                        $("#p3").html("IP:218.217.3." + list[count + 2] + "正在请求219.217.199.15");
-                                                                        $("#p4").html("IP:218.217.4." + list[count + 3] + "正在请求219.217.199.15");
-                                                                        $("#p5").html("IP:218.217.5." + list[count + 4] + "正在请求219.217.199.15");
-                                                                        $("#p6").html("IP:218.217.6." + list[count + 5] + "正在请求219.217.199.15");
-                                                                        $("#p7").html("IP:218.217.7." + list[count + 6] + "正在请求219.217.199.15");
-                                                                        $("#p8").html("IP:218.217.8." + list[count + 7] + "正在请求219.217.199.15");
-                                                                        $("#p9").html("IP:218.217.9." + list[count + 8] + "正在请求219.217.199.15");
-                                                                        $("#p10").html("IP:218.217.10." + list[count + 9] + "正在请求219.217.199.15");
-                                                                        $("#p11").html("IP:218.217.11." + list[count + 10] + "正在请求219.217.199.15");
-                                                                        $("#p12").html("IP:218.217.12." + list[count + 11] + "正在请求219.217.199.15");
-                                                                        $("#p13").html("IP:218.217.13." + list[count + 12] + "正在请求219.217.199.15");
-                                                                        $("#p14").html("IP:218.217.14." + list[count + 13] + "正在请求219.217.199.15");
-                                                                        $("#p15").html("IP:218.217.15." + list[count + 14] + "正在请求219.217.199.15");
-                                                                        $("#p16").html("IP:218.217.16." + list[count + 15] + "正在请求219.217.199.15");
-                                                                        count++;
-                                                                    }, 500)
-                                                                </script> -->
-
+                                                                    所辖设备暂无被攻击记录</h6>
+                                                                <h5><br></h5>
                                                             </div>
                                                         </div><!-- /.item -->
                                                     </div>

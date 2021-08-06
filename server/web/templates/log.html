@@ -89,34 +89,37 @@
                                                         <script>
                                                             setTimeout(function () {
                                                                 var datetime = new Date();
-                                                                var tx1 = "<div class=\"timeline-item\" data-icon=\"&#xe901;\" data-time=" +datetime.toLocaleTimeString()  +"><div class=\"timeline-item-inner\"><h6 id=\"ti1\"></h6><p id=\"da1\"></p><p id=\"da2\"></p><p id=\"da3\"></p></div></div>";
+                                                                var tx1 = "<div class=\"timeline-item\" data-icon=\"&#xe901;\" data-time=" +datetime.toLocaleTimeString()  +"><div class=\"timeline-item-inner\" id=\"dtimeline\"><h6 id=\"ti1\"></h6></div></div>";
                                                                 $("#defend").append(tx1);
-                                                                $("#ti1").html("Successfully processed").addClass("d-inline-block fw-500 text-warning mb-1");
+                                                                $("#ti1").html("检测到异常流量").addClass("d-inline-block fw-500 text-abnormal mb-1");
                                                                 $("#time1").html(datetime.toLocaleString());
-                                                                $("#da1").html("CommiterID:0xcd12E46fe6bdf4Eb73a96c1a775590719c69c706");
-                                                                $("#da2").html("TargetIP:219.217.199.15");
-                                                                $("#da3").html("Description:IP:219.217.199.15(智能微波炉)检测到异常连接");
+                                                                setTimeout(function () {
+                                                                $("#dtimeline").append("<p>【网关状态】正在采集流量特征</p>");},1000)
+                                                                setTimeout(function () {
+                                                                $("#dtimeline").append("<p>【网关状态】正在将流量特征广播给其他结点</p>");},2000)
                                                             }, 1000)
 
                                                             setTimeout(function () {
                                                                 var datetime = new Date();
-                                                                var tx2 = "<div class=\"timeline-item\" data-icon=\"&#xe901;\" data-time=" +datetime.toLocaleTimeString()  +"><div class=\"timeline-item-inner\"><h6 id=\"ti2\"></h6><p id=\"db1\"></p><p id=\"db2\"></p><p id=\"db3\"></p></div></div>";
+                                                                var tx2 = "<div class=\"timeline-item\" data-icon=\"&#xe901;\" data-time=" +datetime.toLocaleTimeString()  +"><div class=\"timeline-item-inner\" id=\"atimeline\"><h6 id=\"ti2\"></h6></div></div>";
                                                                 $("#defend").append(tx2);
-                                                                $("#ti2").html("Danger").addClass("d-inline-block fw-500 text-danger mb-1");
+                                                                $("#ti2").html("经机器学习共识验证，确认为DDoS").addClass("d-inline-block fw-500 text-danger mb-1");
                                                                 $("#time1").html(datetime.toLocaleString());
-                                                                $("#db1").html("CommiterID:0xcd12E46fe6bdf4Eb73a96c1a775590719c69c706");
-                                                                $("#db2").html("TargetIP:219.217.199.15");
-                                                                $("#db3").html("Description:IP:219.217.199.15(智能微波炉)正在遭受攻击");
-                                                            }, 2000)
+                                                                $("#atimeline").append("<p>【流量ID】trafficID:0xcd12E46fe6bdf4Eb73a96c1a775590719c69c706</p>");
+                                                                $("#atimeline").append("<p>【源地址】sourceAddr:219.217.199.15</p>");
+                                                                $("#atimeline").append("<p>【流量信息】trafficInfo:0,0,14/02/2018 08:31:01,112641719,3</p>");
+                                                                $("#atimeline").append("<p>【目标设备】targetDevice:智能微波炉</p>");
+                                                                $("#atimeline").append("<p>【设备类别】targetDevice:家居设备</p>");
+                                                            }, 5000)
                                                             setTimeout(function () {
                                                                 var datetime = new Date();
-                                                                var tx3 = "<div class=\"timeline-item\" data-icon=\"&#xe901;\" data-time=" +datetime.toLocaleTimeString()  +"><div class=\"timeline-item-inner\"><h6 id=\"ti3\"></h6><p id=\"dc1\"></p><p id=\"dc2\"></p><p id=\"dc3\"></p></div></div>";
+                                                                var tx3 = "<div class=\"timeline-item\" data-icon=\"&#xe901;\" data-time=" +datetime.toLocaleTimeString()  +"><div class=\"timeline-item-inner\" id=\"ptimeline\"><h6 id=\"ti3\"></h6></div></div>";
                                                                 $("#defend").append(tx3);
-                                                                $("#ti3").html("Warning").addClass("d-inline-block fw-500 text-abnormal mb-1");
-                                                                $("#dc1").html("CommiterID:0xcd12E46fe6bdf4Eb73a96c1a775590719c69c706");
-                                                                $("#dc2").html("TargetIP:219.217.199.15");
-                                                                $("#dc3").html("Description:IP:219.217.199.15(智能微波炉)已停运");
-                                                            }, 3000)
+                                                                $("#ti3").html("正在处理攻击").addClass("d-inline-block fw-500 text-warning mb-1");
+                                                                $("#ptimeline").append("<p>【网关状态】已将攻击信息记录</p>");
+                                                                $("#ptimeline").append("<p>【网关状态】正在将对此次攻击流量进行清洗过滤</p>");
+                                                                $("#ptimeline").append("<p>【设备状态】智能微波炉已恢复正常工作</p>");
+                                                            }, 10000)
                                                         </script>
                                                     </div>
                                                 </div>
