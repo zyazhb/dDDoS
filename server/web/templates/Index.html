@@ -22,6 +22,7 @@
     <!--[if lt IE 9]><script src="http://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script><script src="http://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
     <!-- jQuery -->
     <script src="/js/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/echarts/4.7.0/echarts.js"></script>
 </head>
 
 <body class="body">
@@ -40,8 +41,8 @@
                     <div class="row flex-wrap align-items-center px-6 py-5">
                         <div class="col">
                             <div class="text-light pb-5 pb-lg-0 mr-auto">
-                                <h2 class="fw-100 mb-0">dDDos安全态势感知平台</h2>
-                                <p class="mb-0">基于区块链及分布式机器学习的物联网设备安全态势感知及控制平台</p>
+                                <h2 class="fw-100 mb-0">基于区块链的DDoS物联网设备威胁感知与防护系统</h2>
+                                <!-- <p class="mb-0">基于区块链的DDOS物联网设备威胁感知与防护系统</p> -->
                             </div>
                         </div>
                         <div class="col-12 col-lg-auto">
@@ -72,7 +73,7 @@
 
                                         <div class="panel-header align-items-center p-relative">
                                             <div class="position-absolute w-100 l-5 l-sm-0 pe-n text-sm-center">
-                                                <h5 class="title pe-a mb-0 d-inline">网络信息概览</h5>
+                                                <h5 class="title pe-a mb-0 d-inline">当前环境网络信息概览</h5>
                                             </div>
                                             <div class="p-relative ml-auto"><a href="#" class="lead-1"><img
                                                         src="./img/svg/refresh.svg"
@@ -92,7 +93,7 @@
                                                                         style="display:block;width:20px;height:20px" /></span>
                                                             </div>
                                                             <div>
-                                                                <h3 class="mb-0 lh-1">5</h3><span
+                                                                <h3 class="mb-0 lh-1">4</h3><span
                                                                     class="small-2 fw-600">设备数</span>
                                                             </div>
                                                         </div>
@@ -132,21 +133,17 @@
                                                     </div>
                                                     <hr class="panel-y-hr">
                                                     <div class="px-6 lh-8">
-                                                        <h4 class="mb-0">5986</h4>区块链节点数
+                                                        <h4 class="mb-0">150</h4>区块链节点数
                                                     </div>
                                                     <hr class="panel-y-hr">
                                                     <div class="px-6 lh-8">
-                                                        <h4 class="mb-0">3</h4> IP所属国家数
+                                                        <h4 class="mb-0">4</h4> IP所属国家数
                                                     </div>
                                                 </div>
-                                                <div class="text-center">
-                                                    <hr class="panel-hr my-6">
-                                                    <div class="w-lg-75 mx-auto">
-                                                        <p class="mb-0 lead-1"><span
-                                                                class="text-warning fw-600" onclick="startAttack(this)" id="attackinfo">一键启动模拟攻击
-                                                    </div>
-                                                    <hr class="panel-hr mt-6 mb-0">
-                                                </div>
+                                            </div>
+                                            <div class="text-center">
+                                                <a href="/log" class="btn btn-lg btn-outline-warning btn-round px-10"
+                                                    id="attack">一键启动模拟攻击</a>
                                             </div>
                                         </div>
                                     </div><!-- /.welcome panel -->
@@ -164,7 +161,7 @@
                                     <div class="panel">
                                         <div class="panel-header align-items-center p-relative">
                                             <div class="position-absolute w-100 l-5 l-sm-0 pe-n text-sm-center">
-                                                <h5 class="title pe-a mb-0 d-inline">全网防御情况</h5>
+                                                <h5 class="title pe-a mb-0 d-inline">全网设备情况</h5>
                                             </div>
                                             <div class="p-relative ml-auto"><a href="#" class="lead-1"><img
                                                         src="./img/svg/refresh.svg"
@@ -173,22 +170,116 @@
                                         </div>
                                         <div class="collapse show" id="collapseAudienceBC">
                                             <div class="panel-body pt-0">
-                                                <div id="chart-radialBar_B"></div>
+                                                <!-- <div id="chart-radialBar_B"></div> -->
+                                                <div id="main" style="width: 100%;height:350px;"></div>
+                                                <script>
+                                                    var chartDom = document.getElementById('main');
+                                                    var myChart = echarts.init(chartDom);
+                                                    var option;
+
+                                                    option = {
+                                                        series: [{
+                                                            type: 'gauge',
+                                                            radius:'100%',
+                                                            center:['50%','70%'],
+                                                            startAngle: 180,
+                                                            endAngle: 0,
+                                                            min: 0,
+                                                            max: 1,
+                                                            splitNumber: 8,
+                                                            axisLine: {
+                                                                lineStyle: {
+                                                                    width: 6,
+                                                                    color: [
+                                                                        [0.25, '#FF6E76'],
+                                                                        [0.5, '#FDDD60'],
+                                                                        [0.75, '#58D9F9'],
+                                                                        [1, '#7CFFB2']
+                                                                    ]
+                                                                }
+                                                            },
+                                                            pointer: {
+                                                                icon: 'path://M12.8,0.7l12,40.1H0.7L12.8,0.7z',
+                                                                length: '72%',
+                                                                width: 2,
+                                                                offsetCenter: [0, '-30%'],
+                                                                itemStyle: {
+                                                                    color: 'auto'
+                                                                }
+                                                            },
+                                                            axisTick: {
+                                                                length: 12,
+                                                                lineStyle: {
+                                                                    color: 'auto',
+                                                                    width: 2
+                                                                }
+                                                            },
+                                                            splitLine: {
+                                                                length: 20,
+                                                                lineStyle: {
+                                                                    color: 'auto',
+                                                                    width: 5
+                                                                }
+                                                            },
+                                                            axisLabel: {
+                                                                color: '#464646',
+                                                                fontSize: 20,
+                                                                distance: -60,
+                                                                formatter: function (value) {
+                                                                    if (value === 0.875) {
+                                                                        return '优';
+                                                                    }
+                                                                    else if (value === 0.625) {
+                                                                        return '中';
+                                                                    }
+                                                                    else if (value === 0.375) {
+                                                                        return '良';
+                                                                    }
+                                                                    else if (value === 0.125) {
+                                                                        return '差';
+                                                                    }
+                                                                }
+                                                            },
+                                                            title: {
+                                                                offsetCenter: [0, '-20%'],
+                                                                fontSize: 20,
+                                                                color: "#ffffff"
+                                                            },
+                                                            detail: {
+                                                                fontSize: 30,
+                                                                offsetCenter: [0, '0%'],
+                                                                valueAnimation: true,
+                                                                formatter: function (value) {
+                                                                    return Math.round(value * 100) + '分';
+                                                                },
+                                                                color: 'auto'
+                                                            },
+                                                            data: [{
+                                                                value: 0.87,
+                                                                name: '风险等级评定',
+                                                            }]
+                                                        }]
+                                                    };
+
+                                                    if (option && typeof option === 'object') {
+                                                        myChart.setOption(option);
+                                                    }
+                                                </script>
                                                 <!-- modules.js -->
                                                 <div class="d-flex align-items-center justify-content-center">
                                                     <div class="text-center px-6"><span
                                                             class="d-block small-8 text-warning text-glow-white"></span>
-                                                        <h3 class="mb-0">2</h3><span
+                                                        <h3 class="mb-0">1</h3><span
                                                             class="fw-600 text-danger text-glow-danger-sm">正遭受攻击数</span>
                                                     </div>
                                                     <div class="text-center px-6"><span
                                                             class="d-block small-8 text-warning text-glow-warning"></span>
-                                                        <h3 class="mb-0">86</h3><span
+                                                        <h3 class="mb-0">200</h3><span
                                                             class="fw-600 text-warning text-glow-warning-sm">全网总设备数</span>
                                                     </div>
                                                     <div class="text-center px-6"><span
                                                             class="d-block small-8 text-warning text-glow-danger"></span>
-                                                        <h3 class="mb-0">79</h3><span
+                                                        <h3 class="mb-0">169</h3><span
                                                             class="fw-600 text-white text-glow-white-sm">正常运行数
                                                         </span>
                                                     </div>
@@ -250,45 +341,10 @@
 </body>
 
 <script>
-    for (let index = 0; index < 5; index++) {
-        let name = "#test".concat(index);
-
-        $(name).click(function () {
-            if ($(this).hasClass("btn-outline-warning")) {
-                $(this).removeClass("btn-outline-warning");
-                $(this).addClass("btn-outline-danger");
-
-                $(this).text("UNDER ATTACK");
-
-                return false;
-            } else if ($(this).hasClass("btn-outline-danger")) {
-                $(this).removeClass("btn-outline-danger");
-                $(this).addClass("btn-outline-success");
-
-                $(this).text("OFFLINE");
-                return false;
-            } else if ($(this).hasClass("btn-outline-success")) {
-                $(this).removeClass("btn-outline-success");
-                $(this).addClass("btn-outline-warning");
-
-                $(this).text("RUN");
-                return false;
-            } else {
-                console.log("Failed to change the style!");
-            }
-        });
-    }
-
-    function startAttack(btn){
-        // btn.innerHTML="启动攻击中……";
-        $("span#attackinfo").text("启动攻击中……");
-        
-        // window.confirm("启动攻击中……\n即将跳转到日志界面");
-        window.location.href="/log";
-    }
-
-
-
+    $("a#attack").click(function () {
+        // $("a#attack").text("启动攻击中……");
+        window.confirm("启动攻击中……即将跳转到日志界面");
+    });
 </script>
 
 </html>

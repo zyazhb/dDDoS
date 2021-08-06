@@ -2157,7 +2157,7 @@ function chartJSInit() {
                                 label: '总在线设备数',
                                 color: 'rgba(255,255,255, .98)',
                                 formatter: function (w) {
-                                    w = 5
+                                    w = 169
                                     return w
                                 }
                             }
@@ -2178,11 +2178,11 @@ function chartJSInit() {
                         stops: [0, 100]
                     }
                 },
-                series: [98, 19.7, 70],
+                series: [5, 10, 76],
                 stroke: {
                     lineCap: 'round'
                 },
-                labels: ['全期抵御成功率', '正在遭受攻击率', '正在防御数'],
+                labels: ['移动性物联网终端', '非移动性小数据物联网终端', '非移动性大数据物联网终端'],
                 responsive: [{
                     breakpoint: 480,
                     options: {
@@ -2239,7 +2239,7 @@ function chartJSInit() {
 
                         dataLabels: {
                             name: {
-                                show: false
+                                show: true
                             },
                             value: {
                                 formatter: function (val) {
@@ -2266,7 +2266,8 @@ function chartJSInit() {
                         stops: [0, 100]
                     }
                 },
-                series: [Math.random() * 100],
+                series: [92],
+                labels:["当前在线节点数"],
                 stroke: {
                     lineCap: 'round'
                 }
@@ -2339,7 +2340,7 @@ function chartJSInit() {
 
     /* dateRangePicker */
     if ($('#_DateRangeJS_min').length > 0) {
-        let start = moment().subtract(29, 'days'),
+        let start = moment(),
             end = moment();
 
         function cb(start, end) {
