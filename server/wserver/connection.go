@@ -2,7 +2,6 @@ package wserver
 
 import (
 	"errors"
-	"io"
 	"log"
 	"time"
 
@@ -16,7 +15,7 @@ import (
 type Conn struct {
 	Connection *websocket.Conn
 
-	AfterReadFunc   func(messageType int, r io.Reader)
+	AfterReadFunc   func(messageType int, r []byte)
 	BeforeCloseFunc func()
 
 	stopChan chan struct{}
@@ -27,10 +26,12 @@ func (c *Conn) Write(text []byte) error {
 	case <-c.stopChan:
 		return errors.New("[x] connection is closed, can't be written")
 	default:
-		err := c.Connection.WriteMessage(websocket.TextMessage, text)
+		w, err := c.Connection.NextWriter(websocket.TextMessage)
 		if err != nil {
 			return err
 		}
+
+		w.Write(text)
 
 		return nil
 	}
@@ -49,6 +50,7 @@ func (c *Conn) Close() error {
 }
 
 func (c *Conn) Listen() {
+	// TODO: 能用，但是连接关闭控制还要想想能不能实现连接池进行管理
 	c.Connection.SetCloseHandler(func(code int, text string) error {
 		if c.BeforeCloseFunc != nil {
 			c.BeforeCloseFunc()
@@ -70,7 +72,7 @@ Exit:
 		case <-c.stopChan:
 			break Exit
 		default:
-			messageType, r, err := c.Connection.NextReader()
+			messageType, r, err := c.Connection.ReadMessage()
 			if err != nil {
 				log.Fatalln("[x] Read next message error!")
 				break

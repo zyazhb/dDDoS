@@ -16,7 +16,7 @@ import (
 )
 
 const (
-	voteTransHash	 = "0xe6d2d2c21284e671da4a773c628d519f81d37af2ae3950c34d207f567bb08f4e"
+	voteTransHash    = "0xe6d2d2c21284e671da4a773c628d519f81d37af2ae3950c34d207f567bb08f4e"
 	trafficTransHash = "0x82a0cd03c34dff9e0879fd6d40cea94cdf58b4b4bbf4b2c8a3ebb91ca8007577"
 )
 
@@ -52,6 +52,10 @@ func WatchMessage() {
 			case err := <-sub.Err():
 				log.Fatal(err)
 			case vLog := <-logs:
+				// var mt MessageType
+
+				// TODO: 明天完善掉就完事
+
 				eventKeccak256 := vLog.Topics[0].String()
 				if eventKeccak256 == trafficTransHash {
 					ret, err := contractAbi.Unpack("trafficTrans", vLog.Data)
@@ -61,7 +65,7 @@ func WatchMessage() {
 
 					retPack := tidyTrafficToStruct(ret)
 
-					if (retPack.SourceAddr.String() != Conf.Client.ClientPublicAddr) {
+					if retPack.SourceAddr.String() != Conf.Client.ClientPublicAddr {
 						mlResult := transTrafficInfoToML(retPack)
 						// TODO: create message channel as buffer
 						SendVote(retPack.TrafficID, retPack.SourceAddr, mlResult)
@@ -72,10 +76,10 @@ func WatchMessage() {
 						log.Fatal(err)
 					}
 					retPack := tidyVoteToStruct(ret)
-					if (retPack.SourceAddr.String() == Conf.Client.ClientPublicAddr) {
+					if retPack.SourceAddr.String() == Conf.Client.ClientPublicAddr {
 						votingCount[retPack.TrafficID.Uint64()] += 1
 
-						if (votingCount[retPack.TrafficID.Uint64()] == 1) {
+						if votingCount[retPack.TrafficID.Uint64()] == 1 {
 							judgeTrafficFromVote(retPack.TrafficID)
 						}
 					}
@@ -97,9 +101,7 @@ func judgeTrafficFromVote(trafficID *big.Int) {
 		log.Fatalln("[x] Failed to get vote num!")
 	}
 
-	// TODO: 这里硬编码的数量要改成动态获取peer的数量
 	if voteNum.Uint64() == 1 {
-		// TODO: 这里的话一个是iptables规则处理，一个是发送预警 -> 新建event进行处理
 		log.Printf("[*] Being attacked by votenum: %s", voteNum.String())
 	} else {
 		return

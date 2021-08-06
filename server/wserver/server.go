@@ -29,17 +29,13 @@ func (s *Server) WebsocketHandler(c *gin.Context) {
 		s.Connection.Close()
 	}
 
-	s.Connection.Listen()
-}
-
-func (s *Server) PushHandler(c *gin.Context) {
-	if c.PostForm("text") == "" {
-		log.Fatalln("[x] can't post nil text")
-		return
+	s.Connection.AfterReadFunc = func(messageType int, r []byte) {
+		log.Printf("[+] Receive message: %s\n", string(r))
 	}
 
-	var data []byte = []byte(c.PostForm("text"))
-	s.Connection.Write(data)
+	// s.Connection.AfterReadFunc = nil
+
+	s.Connection.Listen()
 }
 
 func NewServer() Server {

@@ -1,8 +1,10 @@
 package node
 
 import (
+	"encoding/json"
 	"io/ioutil"
 	"log"
+	"main/server/wserver"
 
 	"gopkg.in/yaml.v2"
 )
@@ -26,19 +28,44 @@ const (
 )
 
 var (
-	Conf *ClientConfig
+	Conf      *ClientConfig
+	Connector wserver.WsCat = wserver.WsCat{}
 )
 
 func init() {
 	yamlFile, err := ioutil.ReadFile(configFilePath)
 	if err != nil {
-		log.Fatalln("Read config file error!")
+		log.Fatalln("[x] Read config file error!")
 		return
 	}
 
 	err = yaml.Unmarshal(yamlFile, &Conf)
 	if err != nil {
-		log.Fatalln("Faile to unmarshal config file!")
+		log.Fatalln("[x] Faile to unmarshal config file!")
 		return
 	}
+
+	err = Connector.Connect("ws://" + Conf.ChainAddress + "/websocket/ws")
+	if err != nil {
+		log.Fatalln("[x] Connect to websocket server error")
+		return
+	}
+}
+
+type MessageType struct {
+	TypeName string
+	Content  string
+}
+
+func WriteMessage(p string) {
+	Connector.WriteMessage(p)
+}
+
+func WriteJsonMessage(mt MessageType) {
+	jp, err := json.Marshal(&mt)
+	if err != nil {
+		log.Fatalln("[x] Marshal content error")
+	}
+
+	Connector.WriteJsonMessage(jp)
 }

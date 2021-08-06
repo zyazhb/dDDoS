@@ -1,7 +1,9 @@
 package web
 
 import (
+	"main/server/wserver"
 	"net/http"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -43,22 +45,21 @@ func RunWeb() {
 	router.GET("/traffic", func(c *gin.Context) {
 
 		c.HTML(http.StatusOK, "traffic.html", gin.H{
-			"title":        "Main website2",
+			"title": "Main website2",
 		})
 	})
 
 	router.GET("/situationawareness", func(c *gin.Context) {
 
 		c.HTML(http.StatusOK, "situationawareness.html", gin.H{
-			"title":        "Main website2",
+			"title": "Main website2",
 		})
 	})
 
 	router.GET("/log", func(c *gin.Context) {
 
 		c.HTML(http.StatusOK, "log.html", gin.H{
-			"title":        "Main website2",
-			
+			"title": "Main website2",
 		})
 
 	})
@@ -69,14 +70,12 @@ func RunWeb() {
 		})
 	})
 
+	server := wserver.NewServer()
+
+	wsroute := router.Group("/websocket")
+	{
+		wsroute.GET("/ws", server.WebsocketHandler)
+	}
+
 	router.Run(":80")
 }
-
-// func GetMsg() {
-// 	for {
-// 		select {
-// 		case <-time.Tick(1 * time.Second):
-// 			nowInfo = <-capture.UpChan
-// 		}
-// 	}
-// }

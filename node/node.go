@@ -18,17 +18,17 @@ import (
 var (
 	Client *ethclient.Client
 
-	Instance   *contract.Contract
-	Auth       *bind.TransactOpts
+	Instance *contract.Contract
+	Auth     *bind.TransactOpts
 
-	FromAddress common.Address
+	FullURL string
 )
 
 // RunNode 连接到geth节点，完成配置初始化
 func RunNode() error {
-	fullURL := "ws://" + Conf.ChainAddress + ":" + Conf.ChainPort
+	FullURL := "ws://" + Conf.ChainAddress + ":" + Conf.ChainPort
 
-	client, err := ethclient.Dial(fullURL)
+	client, err := ethclient.Dial(FullURL)
 	if err != nil {
 		log.Println(err)
 		return err
@@ -106,9 +106,9 @@ func SendVote(trafficID *big.Int, sourceAddr common.Address, voteState bool) {
 
 	_, err = Instance.EmitVoteTrans(auth, contract.TrafficStationvoteInfo{
 		SourceAddr: sourceAddr,
-		VoteAddr: common.HexToAddress(Conf.Client.ClientPublicAddr),
-		TrafficID: trafficID,
-		State: voteState,
+		VoteAddr:   common.HexToAddress(Conf.Client.ClientPublicAddr),
+		TrafficID:  trafficID,
+		State:      voteState,
 	})
 	if err != nil {
 		log.Fatalf("[x] Send vote transaction with error message: %s\n", err)
