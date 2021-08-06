@@ -81,18 +81,40 @@
                     <!-- <img id="1gif" src="/img/1.gif">
                     <img id="2gif" src="/img/2.gif"> -->
                     <canvas id="canvas" width="758" height="500"></canvas>
-
-                    <div class="text-info card border hover-shadow-5" id="contextmenu"
-                        style="display:none; position: absolute; z-index:9999;">
+                    <!-- 扫地机器人 -->
+                    <div class="text-white card border hover-shadow-5" id="robotmenu"
+                        style="display:none; position: absolute; z-index:9999; background-color: #060424;">
                         <div class="card-body">
-                            <ul>
-                                <li><a>顺时针旋转</a></li>
-                                <li><a>逆时针旋转</a></li>
-                                <li><a>更改颜色</a></li>
-                                <li><a>放大</a></li>
-                                <li><a>缩小</a></li>
-                                <li><a>删除该节点</a></li>
-                            </ul>
+                            <i class="fas fa-circle text-warning small-5"></i><span class="small-3"><b>
+                                    设备名称：</b>扫地机器人</br></span>
+                            <span class="small-3"><b>
+                                    &emsp;设备IP：</b>219.217.199.12</br></span>
+                            <span class="small-3"><b>
+                                    &emsp;当前状态：</b>正常运行</span>
+                        </div>
+                    </div>
+                    <!-- 空气净化器 -->
+                    <div class="text-white card border" id="airmenu"
+                        style="display:none; position: absolute; z-index:9999; background-color: #060424;">
+                        <div class="card-body">
+                            <i class="fas fa-circle text-warning small-5"></i><span class="small-3"><b>
+                                    设备名称：</b>空气净化器</br></span>
+                            <span class="small-3"><b>
+                                    &emsp;设备IP：</b>219.217.199.14</br></span>
+                            <span class="small-3"><b>
+                                    &emsp;当前状态：</b>正常运行</span>
+                        </div>
+                    </div>
+                    <!-- 智能微波炉 -->
+                    <div class="text-white card border" id="ovenmenu"
+                        style="display:none; position: absolute; z-index:9999; background-color: #060424;">
+                        <div class="card-body">
+                            <i class="fas fa-circle text-danger small-5"></i><span class="small-3"><b>
+                                    设备名称：</b>智能微波炉</br></span>
+                            <span class="small-3"><b>
+                                    &emsp;设备IP：</b>219.217.199.15</br></span>
+                            <span class="small-3"><b>
+                                    &emsp;当前状态：</b>检测到异常，等待其他节点进行验证</span>
                         </div>
                     </div>
                 </div>
@@ -180,62 +202,97 @@
         node.setImage('img/robots.png');
         scene.add(node);
 
+        var node2 = new JTopo.Node("空气净化器");
+        node2.setLocation(580, 350);
+        node2.setImage('img/aircleaner.png');
+        node2.fontColor = "000000";
+        scene.add(node2);
+
+        var node3 = new JTopo.Node("智能微波炉");
+        node3.setLocation(570, 32);
+        node3.setImage('img/oven.png');
+        node3.fontColor = "000000";
+        node3.alarm = '发现异常流量';
+        scene.add(node3);
+
+        setInterval(function () {
+            if (node3.alarm == '发现异常流量') {
+                node3.alarm = null;
+            } else {
+                node3.alarm = '发现异常流量'
+            }
+        }, 600);
+
+        var gateway = new JTopo.Node("智能网关（边缘节点）");
+        gateway.setLocation(100, 350);
+        gateway.setImage('img/gateway.png');
+        gateway.setSize(50, 50);
+        scene.add(gateway);
+
+        var link = newLink(gateway, node, '流量传输', 5);
+        link.arrowsRadius = 10;
+        var link2 = newLink(gateway, node2, '流量传输', 5);
+        link2.arrowsRadius = 10;
+        var link3 = newLink(gateway, node3, '流量传输', 5);
+        link3.arrowsRadius = 10;
+        link3.strokeColor = '249,58,58';
+
         var currentNode = null;
 
-        function handler(event) {
+        function handlerz(event) {
             if (event.button == 0) {// 右键
                 // 当前位置弹出菜单（div）
-                $("#contextmenu").css({
-                    top: 100,
-                    left: 100
+                $("#robotmenu").css({
+                    top: event.pageY - 152.4 - 20,
+                    left: event.pageX - 240 - 300
                 }).show();
-                console.log(event.pageY);
-
             }
             if (event.button == 2) {// 右键
                 // 当前位置弹出菜单（div）
-                $("#contextmenu").hide();
+                $("#robotmenu").hide();
+            }
+        }
+        function handlery(event, id) {
+            if (event.button == 0) {// 右键
+                // 当前位置弹出菜单（div）
+                $("#" + id).css({
+                    top: event.pageY - 152.4 - 20,
+                    left: event.pageX - 240 + 100
+                }).show();
+            }
+            if (event.button == 2) {// 右键
+                // 当前位置弹出菜单（div）
+                $("#" + id).hide();
             }
         }
         node.addEventListener('mouseup', function (event) {
             currentNode = this;
-            handler(event);
+            handlerz(event);
         });
 
-        // stage.click(function(event){
-        //     if(event.button == 0){// 右键
-        //         // 关闭弹出菜单（div）
-        //         $("#contextmenu").hide();
-        //     }
-        // });
-        $("#contextmenu a").click(function () {
-            var text = $(this).text();
-
-            if (text == '删除该节点') {
-                scene.remove(currentNode);
-                currentNode = null;
-            } if (text == '撤销上一次操作') {
-                currentNode.restore();
-            } else {
-                currentNode.save();
-            }
-
-            if (text == '更改颜色') {
-                currentNode.fillColor = JTopo.util.randomColor();
-            } else if (text == '顺时针旋转') {
-                currentNode.rotate += 0.5;
-            } else if (text == '逆时针旋转') {
-                currentNode.rotate -= 0.5;
-            } else if (text == '放大') {
-                currentNode.scaleX += 0.2;
-                currentNode.scaleY += 0.2;
-            } else if (text == '缩小') {
-                currentNode.scaleX -= 0.2;
-                currentNode.scaleY -= 0.2;
-            }
-            $("#contextmenu").hide();
+        node2.addEventListener('mouseup', function (event) {
+            currentNode = this;
+            var id = "airmenu";
+            handlery(event, id);
         });
 
+        node3.addEventListener('mouseup', function (event) {
+            currentNode = this;
+            var id = "ovenmenu";
+            handlery(event, id);
+        });
+
+        function newLink(nodeA, nodeZ, text, dashedPattern) {
+            var link = new JTopo.Link(nodeA, nodeZ, text);
+            link.lineWidth = 3; // 线宽
+            link.dashedPattern = dashedPattern; // 虚线
+            link.bundleOffset = 60; // 折线拐角处的长度
+            link.bundleGap = 20; // 线条之间的间隔
+            link.textOffsetY = 3; // 文本偏移量（向下3个像素）
+            link.strokeColor = '0,200,255';
+            scene.add(link);
+            return link;
+        }
     });
 </script>
 </script>
