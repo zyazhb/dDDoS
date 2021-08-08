@@ -75,6 +75,11 @@ func RunWeb() {
 	wsroute := router.Group("/websocket")
 	{
 		wsroute.GET("/ws", server.WebsocketHandler)
+		wsroute.GET("/wstest", func(c *gin.Context) {
+			c.HTML(http.StatusOK, "sockettest.html", gin.H{
+				"title": "Main website2",
+			})
+		})
 	}
 
 	router.Run(":80")

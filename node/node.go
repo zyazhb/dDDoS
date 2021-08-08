@@ -4,6 +4,7 @@ import (
 	"context"
 	"log"
 	"math/big"
+	"strconv"
 
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
@@ -92,6 +93,11 @@ func SendMessage(trafficInfo string) {
 		log.Fatalf("[x] Send transaction with error message: %s\n", err)
 		return
 	}
+
+	WriteJsonMessage(Message{
+		TypeName: DETECTTYPE,
+		Content: nil,
+	})
 }
 
 func SendVote(trafficID *big.Int, sourceAddr common.Address, voteState bool) {
@@ -104,7 +110,7 @@ func SendVote(trafficID *big.Int, sourceAddr common.Address, voteState bool) {
 
 	auth.Nonce = new(big.Int).SetUint64(nonce)
 
-	_, err = Instance.EmitVoteTrans(auth, contract.TrafficStationvoteInfo{
+	tmp, err := Instance.EmitVoteTrans(auth, contract.TrafficStationvoteInfo{
 		SourceAddr: sourceAddr,
 		VoteAddr:   common.HexToAddress(Conf.Client.ClientPublicAddr),
 		TrafficID:  trafficID,
@@ -114,4 +120,14 @@ func SendVote(trafficID *big.Int, sourceAddr common.Address, voteState bool) {
 		log.Fatalf("[x] Send vote transaction with error message: %s\n", err)
 		return
 	}
+
+	WriteJsonMessage(Message{
+		TypeName: VOTETYPE,
+		Content: map[string]MessageType{
+			"sourceAddr": MessageType(sourceAddr.String()),
+			"voteAddr": MessageType(Conf.Client.ClientPublicAddr),
+			"trafficID": MessageType(tmp.Hash().String()),
+			"state": MessageType(strconv.FormatBool(voteState)),
+		},
+	})
 }

@@ -24,7 +24,16 @@ type ClientConfig struct {
 }
 
 const (
-	configFilePath = "../config/config.yaml"
+	configFilePath = "../config/config1.yaml"
+)
+
+const (
+	DETECTTYPE    = "detect type"
+	VERIFIEDTYPE  = "verified type"
+	RECEIVEEDTYPE = "received type"
+	MLTYPE        = "machine learning"
+	VOTETYPE      = "vote type"
+	DEALINGTYPE   = "dealing type"
 )
 
 var (
@@ -52,20 +61,29 @@ func init() {
 	}
 }
 
-type MessageType struct {
+type MessageType string
+
+type Message struct {
 	TypeName string
-	Content  string
+	Content  map[string]MessageType
 }
 
 func WriteMessage(p string) {
 	Connector.WriteMessage(p)
 }
 
-func WriteJsonMessage(mt MessageType) {
+func WriteJsonMessage(mt Message) {
 	jp, err := json.Marshal(&mt)
 	if err != nil {
 		log.Fatalln("[x] Marshal content error")
 	}
 
 	Connector.WriteJsonMessage(jp)
+}
+
+func dealWithDDoSTraffic() {
+	WriteJsonMessage(Message{
+		TypeName: DEALINGTYPE,
+		Content: nil,
+	})
 }

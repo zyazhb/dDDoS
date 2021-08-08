@@ -5,6 +5,7 @@ import (
 	"log"
 	"math/big"
 	"strings"
+	"time"
 
 	"github.com/ethereum/go-ethereum"
 	"github.com/ethereum/go-ethereum/accounts/abi"
@@ -21,7 +22,8 @@ const (
 )
 
 var (
-	votingCount map[uint64]int = make(map[uint64]int)
+	votingCount = make(map[uint64]int)
+	MLChan      = make(chan contract.TrafficStationupchainTrafficInfo, 20)
 )
 
 func WatchMessage() {
@@ -52,11 +54,8 @@ func WatchMessage() {
 			case err := <-sub.Err():
 				log.Fatal(err)
 			case vLog := <-logs:
-				// var mt MessageType
-
-				// TODO: 明天完善掉就完事
-
 				eventKeccak256 := vLog.Topics[0].String()
+				// traffic trans -> ML
 				if eventKeccak256 == trafficTransHash {
 					ret, err := contractAbi.Unpack("trafficTrans", vLog.Data)
 					if err != nil {
@@ -66,9 +65,18 @@ func WatchMessage() {
 					retPack := tidyTrafficToStruct(ret)
 
 					if retPack.SourceAddr.String() != Conf.Client.ClientPublicAddr {
-						mlResult := transTrafficInfoToML(retPack)
-						// TODO: create message channel as buffer
-						SendVote(retPack.TrafficID, retPack.SourceAddr, mlResult)
+						WriteJsonMessage(Message{
+							TypeName: RECEIVEEDTYPE,
+							Content: map[string]MessageType{
+								"trafficID": MessageType(retPack.TrafficID.Text(10)),
+								"sourceAddr": MessageType(retPack.SourceAddr.String()),
+								"trafficInfo": MessageType("80,6," + time.Now().Format("15:04:05 2006/01/02") + "9151646,0"),
+								"targetDevice": "智能微波炉",
+								"targetDeviceType": "智能家居",
+							},
+						})
+
+						MLChan <- retPack
 					}
 				} else if eventKeccak256 == voteTransHash {
 					ret, err := contractAbi.Unpack("voteTrans", vLog.Data)
@@ -80,7 +88,14 @@ func WatchMessage() {
 						votingCount[retPack.TrafficID.Uint64()] += 1
 
 						if votingCount[retPack.TrafficID.Uint64()] == 1 {
-							judgeTrafficFromVote(retPack.TrafficID)
+							if ok := judgeTrafficFromVote(retPack.TrafficID); ok {
+								WriteJsonMessage(Message{
+									TypeName: VERIFIEDTYPE,
+									Content: nil,
+								})
+
+								dealWithDDoSTraffic()
+							}
 						}
 					}
 				}
@@ -88,23 +103,45 @@ func WatchMessage() {
 		}
 	}()
 
+	go transTrafficInfoToML()
+
 	<-done
 }
 
-func transTrafficInfoToML(info contract.TrafficStationupchainTrafficInfo) bool {
-	return true
+/*
+mlResult := transTrafficInfoToML(retPack)
+						// TODO: create message channel as buffer
+						SendVote(retPack.TrafficID, retPack.SourceAddr, mlResult)
+*/
+
+func transTrafficInfoToML() bool {
+	for {
+		select {
+		case c := <-MLChan:
+			WriteJsonMessage(Message{
+				TypeName: MLTYPE,
+				Content: map[string]MessageType{
+					"state":       "get",
+					"attackType":  "DDoS",
+					"trafficType": "SYN",
+				},
+			})
+			// do something here
+			SendVote(c.TrafficID, c.SourceAddr, true)
+		}
+	}
 }
 
-func judgeTrafficFromVote(trafficID *big.Int) {
+func judgeTrafficFromVote(trafficID *big.Int) bool {
 	voteNum, err := pendingVotingNumAt(context.Background(), trafficID)
 	if err != nil {
 		log.Fatalln("[x] Failed to get vote num!")
 	}
 
 	if voteNum.Uint64() == 1 {
-		log.Printf("[*] Being attacked by votenum: %s", voteNum.String())
+		return true
 	} else {
-		return
+		return false
 	}
 }
 
